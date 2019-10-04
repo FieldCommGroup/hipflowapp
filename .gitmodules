@@ -1,0 +1,3 @@
+[submodule "hipflowapp/Hip_Native/hipserver"]
+	path = hipflowapp/Hip_Native/hipserver
+	url = https://github.com/FieldCommGroup/hipserver
