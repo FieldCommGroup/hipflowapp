@@ -1,0 +1,91 @@
+/*************************************************************************************************
+ *
+ * Workfile: cmd_2561.h
+ * 11Dec18 - stevev
+ *
+ *************************************************************************************************
+ * The content of this file is the
+ *     Proprietary and Confidential property of the FieldComm Group
+ * Copyright (c) 2018, FieldComm Group, Inc., All Rights Reserved
+ *************************************************************************************************
+ *
+ * Description: This holds one command
+ *
+ * #include "cmd_2561.h"
+ */
+
+#ifndef CMD_2561_H_
+#define CMD_2561_H_
+
+#include "command.h"
+
+
+class cmd_2561 : public cmd_base
+{
+	uint8_t activeDevVar;
+public: // c.dtor
+	cmd_2561():cmd_base(2561) {	};
+	~cmd_2561(){};
+
+public: // work	
+	virtual uint8_t extractData(uint8_t &ByteCnt, uint8_t *pData);
+	virtual uint8_t insert_Data(uint8_t &ByteCnt, uint8_t *pData);
+
+};
+
+// extract ByteCnt bytes from data at pData
+// return zero on success, response code on error
+uint8_t cmd_2561::extractData(uint8_t &ByteCnt, uint8_t *pData)
+{
+	uint8_t ret = 0;
+
+	if (ByteCnt < 1)
+	{
+		activeDevVar = 0xff;
+		ret = RC_TOO_FEW;// too few data bytes
+	}
+	ret = extract(activeDevVar, &pData, ByteCnt);
+	if (ret)// not success
+	{
+		printf( "Data extraction error in cmd %d. ret = %d.\n", number(), ret);
+	}
+	else
+	if (NULL == deviceVar::devVarPtr(activeDevVar))
+	{
+		ret = RC_INVALID;
+	}
+	else
+	{
+		ret = isDevVarIndex2Totalizer(activeDevVar);
+	}
+	return ret;
+}
+
+
+// generate reply
+// add bytes from data to pData, filling ByteCnt with the number added (caller adds RC/DS)
+// return zero on success, response code (with byte count 0) on error
+uint8_t cmd_2561::insert_Data(uint8_t &ByteCnt, uint8_t *pData) 
+{
+	int ret = 0;
+	ByteCnt = 0; // just in case
+	do // once
+	{
+		if (ret = insert(activeDevVar, &pData, ByteCnt))  break;
+		if (ret = totFamDefRev.insertSelf(&pData, &ByteCnt)) break;
+		if (ret = insert(NONvolatileData.devVar_Map[0], &pData, ByteCnt))break;
+		if (ret = totFalSafHndling.insertSelf(&pData, &ByteCnt)) break;
+		if (ret = totMode.insertSelf(&pData, &ByteCnt)) break;
+		if (ret = totDirection.insertSelf(&pData, &ByteCnt)) break;
+	}
+	while(false);// execute once
+
+	if ( ret )
+	{
+		printf( "Data insertion error in cmd %d. ret = %d.\n", number(), ret);
+	}
+
+    return ret;
+};
+
+#endif // CMD_2561_H_

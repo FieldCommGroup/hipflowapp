@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DbgPress|ARM">
+      <Configuration>DbgPress</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DbgPress|x64">
+      <Configuration>DbgPress</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DbgPress|x86">
+      <Configuration>DbgPress</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DbgFlow|ARM">
+      <Configuration>DbgFlow</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RlsFlow|ARM">
+      <Configuration>RlsFlow</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DbgFlow|x86">
+      <Configuration>DbgFlow</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RlsFlow|x86">
+      <Configuration>RlsFlow</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DbgFlow|x64">
+      <Configuration>DbgFlow</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RlsFlow|x64">
+      <Configuration>RlsFlow</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RlsPress|ARM">
+      <Configuration>RlsPress</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RlsPress|x64">
+      <Configuration>RlsPress</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RlsPress|x86">
+      <Configuration>RlsPress</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1e8b03f5-6131-47fa-be12-500a8b88b3ed}</ProjectGuid>
+    <Keyword>Linux</Keyword>
+    <RootNamespace>Hip_Native</RootNamespace>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+    <ApplicationType>Linux</ApplicationType>
+    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
+    <LinuxProjectType>{D51BCBC9-82E9-4017-911E-C93873C4EA2B}</LinuxProjectType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|ARM'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <UseOfStl>libstdc++_static</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <UseOfStl>libstdc++_static</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|ARM'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <UseOfStl>libstdc++_static</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|ARM'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <UseOfStl>libstdc++_static</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|x86'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|x86'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|x86'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|x86'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|x64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|x64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|x64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|x64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|ARM'">
+    <IncludePath>.\;.\Hip_Server\Common;.\Hip_Server\AppConnect;.\Hip_Server\Realtime;$(IncludePath)</IncludePath>
+    <TargetName>HipNativeFlow</TargetName>
+    <TargetExt />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM'">
+    <IncludePath>E:\stevev\Work\Raspberry\include;C:\Work\Rasberry\include\arm-linux-gnueabihf;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;$(IncludePath)</IncludePath>
+    <TargetName>hipnative</TargetName>
+    <TargetExt />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|x64'">
+    <IncludePath>.\Hip_Server\Common;.\Hip_Server\AppConnect;.\Hip_Server\Realtime;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|x86'">
+    <IncludePath>.\Hip_Server\Common;.\Hip_Server\AppConnect;.\Hip_Server\Realtime;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|ARM'">
+    <IncludePath>.\;.\Hip_Server\Common;.\Hip_Server\AppConnect;.\Hip_Server\Realtime;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemGroup>
+    <ClCompile Include="ads1256_test.cpp" />
+    <ClCompile Include="bcm2835.cpp" />
+    <ClCompile Include="burst.cpp" />
+    <ClCompile Include="cDatabase.cpp" />
+    <ClCompile Include="commandSet.cpp" />
+    <ClCompile Include="Commands\command.cpp" />
+    <ClCompile Include="cSerialFile.cpp" />
+    <ClCompile Include="Data\insert_Extract.cpp" />
+    <ClCompile Include="Data\varient.cpp" />
+    <ClCompile Include="Files.cpp" />
+    <ClCompile Include="FillDefaultValues.cpp" />
+    <ClCompile Include="Hip_Server\AppConnect\app.cpp" />
+    <ClCompile Include="Hip_Server\AppConnect\apppdu.cpp" />
+    <ClCompile Include="Hip_Server\AppConnect\tppdu.cpp" />
+    <ClCompile Include="Hip_Server\Realtime\toolqueues.cpp" />
+    <ClCompile Include="Hip_Server\Realtime\toolsems.c" />
+    <ClCompile Include="Hip_Server\Realtime\toolsigs.c" />
+    <ClCompile Include="Hip_Server\Realtime\toolthreads.c" />
+    <ClCompile Include="Hip_Server\Realtime\toolutils.c" />
+    <ClCompile Include="InsertExtract.cpp" />
+    <ClCompile Include="IOthread.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="memory_glbl.cpp" />
+    <ClCompile Include="native.cpp" />
+    <ClCompile Include="nativeapp.cpp" />
+    <ClCompile Include="physical.cpp" />
+    <ClCompile Include="PhysicalAlarms.cpp" />
+    <ClCompile Include="PV.Cpp" />
+    <ClCompile Include="sems.cpp" />
+    <ClCompile Include="timer.cpp" />
+    <ClCompile Include="timeStamp.cpp" />
+    <ClCompile Include="Units.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ADS1256_defs.h" />
+    <ClInclude Include="bcm2835.h" />
+    <ClInclude Include="burst.h" />
+    <ClInclude Include="cDatabase.h" />
+    <ClInclude Include="cDataRaw.h" />
+    <ClInclude Include="CircularBuffer.h" />
+    <ClInclude Include="commandSet.h" />
+    <ClInclude Include="Commands\cmd_00.h" />
+    <ClInclude Include="Commands\cmd_01.h" />
+    <ClInclude Include="Commands\cmd_02.h" />
+    <ClInclude Include="Commands\cmd_03.h" />
+    <ClInclude Include="Commands\cmd_06.h" />
+    <ClInclude Include="Commands\cmd_07.h" />
+    <ClInclude Include="Commands\cmd_08.h" />
+    <ClInclude Include="Commands\cmd_09.h" />
+    <ClInclude Include="Commands\cmd_11.h" />
+    <ClInclude Include="Commands\cmd_12.h" />
+    <ClInclude Include="Commands\cmd_13.h" />
+    <ClInclude Include="Commands\cmd_14.h" />
+    <ClInclude Include="Commands\cmd_15.h" />
+    <ClInclude Include="Commands\cmd_16.h" />
+    <ClInclude Include="Commands\cmd_17.h" />
+    <ClInclude Include="Commands\cmd_18.h" />
+    <ClInclude Include="Commands\cmd_19.h" />
+    <ClInclude Include="Commands\cmd_20.h" />
+    <ClInclude Include="Commands\cmd_21.h" />
+    <ClInclude Include="Commands\cmd_22.h" />
+    <ClInclude Include="Commands\cmd_35.h" />
+    <ClInclude Include="Commands\cmd_38.h" />
+    <ClInclude Include="Commands\cmd_44.h" />
+    <ClInclude Include="Commands\cmd_48.h" />
+    <ClInclude Include="Commands\cmd_50.h" />
+    <ClInclude Include="Commands\cmd_51.h" />
+    <ClInclude Include="Commands\cmd_52.h" />
+    <ClInclude Include="Commands\cmd_53.h" />
+    <ClInclude Include="Commands\cmd_54.h" />
+    <ClInclude Include="Commands\cmd_79.h" />
+    <ClInclude Include="Commands\cmd_95.h" />
+    <ClInclude Include="Commands\cmd_c103.h" />
+    <ClInclude Include="Commands\cmd_c104.h" />
+    <ClInclude Include="Commands\cmd_c105.h" />
+    <ClInclude Include="Commands\cmd_c107.h" />
+    <ClInclude Include="Commands\cmd_c108.h" />
+    <ClInclude Include="Commands\cmd_c109.h" />
+    <ClInclude Include="Commands\cmd_c120.h" />
+    <ClInclude Include="Commands\cmd_c534.h" />
+    <ClInclude Include="Commands\cmd_k2560.h" />
+    <ClInclude Include="Commands\cmd_k2561.h" />
+    <ClInclude Include="Commands\cmd_k2562.h" />
+    <ClInclude Include="Commands\cmd_k2563.h" />
+    <ClInclude Include="Commands\cmd_k2688.h" />
+    <ClInclude Include="Commands\cmd_k2689.h" />
+    <ClInclude Include="Commands\cmd_k2690.h" />
+    <ClInclude Include="Commands\cmd_k2692.h" />
+    <ClInclude Include="Commands\cmd_k2693.h" />
+    <ClInclude Include="Commands\cmd_k2864.h" />
+    <ClInclude Include="Commands\command.h" />
+    <ClInclude Include="configuration_Default.h" />
+    <ClInclude Include="cSerialFile.h" />
+    <ClInclude Include="Data\AllDataObjects.h" />
+    <ClInclude Include="Data\DataObject.h" />
+    <ClInclude Include="Data\DataObjectBase.h" />
+    <ClInclude Include="Data\DataObjectConfig.h" />
+    <ClInclude Include="Data\DataSet.h" />
+    <ClInclude Include="Data\insert_Extract.h" />
+    <ClInclude Include="Data\PrimativeDataDesc.h" />
+    <ClInclude Include="Data\variableFactory.h" />
+    <ClInclude Include="Data\varient.h" />
+    <ClInclude Include="debug.h" />
+    <ClInclude Include="delay.h" />
+    <ClInclude Include="Files.h" />
+    <ClInclude Include="hartmdll.h" />
+    <ClInclude Include="hartPhy.h" />
+    <ClInclude Include="Hip_Server\AppConnect\app.h" />
+    <ClInclude Include="Hip_Server\AppConnect\appconnector.h" />
+    <ClInclude Include="Hip_Server\AppConnect\appmsg.h" />
+    <ClInclude Include="Hip_Server\AppConnect\apppdu.h" />
+    <ClInclude Include="Hip_Server\AppConnect\tpdll.h" />
+    <ClInclude Include="Hip_Server\AppConnect\tppdu.h" />
+    <ClInclude Include="Hip_Server\Common\common.h" />
+    <ClInclude Include="Hip_Server\Common\datatypes.h" />
+    <ClInclude Include="Hip_Server\Common\errval.h" />
+    <ClInclude Include="Hip_Server\Common\hartdefs.h" />
+    <ClInclude Include="Hip_Server\Realtime\toolqueues.h" />
+    <ClInclude Include="Hip_Server\Realtime\toolsems.h" />
+    <ClInclude Include="Hip_Server\Realtime\toolsigs.h" />
+    <ClInclude Include="Hip_Server\Realtime\toolthreads.h" />
+    <ClInclude Include="Hip_Server\Realtime\toolutils.h" />
+    <ClInclude Include="Hip_Server\Server\debug.h" />
+    <ClInclude Include="htesttypes.h" />
+    <ClInclude Include="InsertExtract.h" />
+    <ClInclude Include="lnkctrl.h" />
+    <ClInclude Include="memory_glbl.h" />
+    <ClInclude Include="msg.h" />
+    <ClInclude Include="native.h" />
+    <ClInclude Include="nativeapp.h" />
+    <ClInclude Include="PhysicalAlarms.h" />
+    <ClInclude Include="PV.h" />
+    <ClInclude Include="RunningAverage.h" />
+    <ClInclude Include="sems.h" />
+    <ClInclude Include="shared.h" />
+    <ClInclude Include="timer.h" />
+    <ClInclude Include="tooldef.h" />
+    <ClInclude Include="Units.h" />
+  </ItemGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|ARM'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\;.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;.\Commands;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>LINUX;_DEBUG;_FLOWDEVICE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CLanguageStandard>Default</CLanguageStandard>
+      <CppLanguageStandard>gnu++11</CppLanguageStandard>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>pthread;rt</LibraryDependencies>
+      <OutputFile>$(OutDir)HipNativeFlow</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\;.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_IS_HART7;LINUX;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CLanguageStandard>Default</CLanguageStandard>
+      <CppLanguageStandard>Default</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>pthread;rt</LibraryDependencies>
+      <OutputFile>$(OutDir)hipnative</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|x86'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|ARM'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\;.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;.\Commands;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OmitFramePointers>false</OmitFramePointers>
+      <CppLanguageStandard>gnu++11</CppLanguageStandard>
+      <PreprocessorDefinitions>_IS_HART7;LINUX;NDEBUG;_DEBUG;_FLOWDEVICE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CLanguageStandard>Default</CLanguageStandard>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>pthread;rt</LibraryDependencies>
+      <DebuggerSymbolInformation>OmitAllSymbolInformation</DebuggerSymbolInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|ARM'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\;.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|x86'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|x86'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|x86'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

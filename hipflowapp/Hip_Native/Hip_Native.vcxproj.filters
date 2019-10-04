@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="nativeapp.cpp" />
+    <ClCompile Include="burst.cpp" />
+    <ClCompile Include="native.cpp" />
+    <ClCompile Include="sems.cpp" />
+    <ClCompile Include="timer.cpp" />
+    <ClCompile Include="commandSet.cpp" />
+    <ClCompile Include="InsertExtract.cpp" />
+    <ClCompile Include="Hip_Server\AppConnect\app.cpp">
+      <Filter>AppConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="Hip_Server\AppConnect\apppdu.cpp">
+      <Filter>AppConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="Hip_Server\AppConnect\tppdu.cpp">
+      <Filter>AppConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="Hip_Server\Realtime\toolqueues.cpp">
+      <Filter>Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="Hip_Server\Realtime\toolsems.c">
+      <Filter>Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="Hip_Server\Realtime\toolsigs.c">
+      <Filter>Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="Hip_Server\Realtime\toolthreads.c">
+      <Filter>Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="Hip_Server\Realtime\toolutils.c">
+      <Filter>Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="cDatabase.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include="cSerialFile.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include="physical.cpp" />
+    <ClCompile Include="ads1256_test.cpp" />
+    <ClCompile Include="bcm2835.cpp" />
+    <ClCompile Include="memory_glbl.cpp" />
+    <ClCompile Include="Files.cpp" />
+    <ClCompile Include="IOthread.cpp" />
+    <ClCompile Include="PV.Cpp" />
+    <ClCompile Include="timeStamp.cpp" />
+    <ClCompile Include="PhysicalAlarms.cpp" />
+    <ClCompile Include="Data\insert_Extract.cpp" />
+    <ClCompile Include="Data\varient.cpp" />
+    <ClCompile Include="Commands\command.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Units.cpp" />
+    <ClCompile Include="FillDefaultValues.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="AppConnect">
+      <UniqueIdentifier>{918a2293-4b59-4f92-8a1b-8f4e590001c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{fff269ab-f756-4454-bf9d-6c5ec331f960}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Database">
+      <UniqueIdentifier>{7b87721a-0a93-49ac-b5ab-40fb97065291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Realtime">
+      <UniqueIdentifier>{0b40912d-5433-4a5e-9117-f551b633f44a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands">
+      <UniqueIdentifier>{15b3ddbc-53cc-48da-9ac8-e92085d80ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Includes">
+      <UniqueIdentifier>{bd0517f0-a24d-4e0c-b93b-dededee253cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{50845d13-02ed-4506-8428-8e65e7f5991a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Hip_Server\AppConnect\app.h">
+      <Filter>AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\AppConnect\appconnector.h">
+      <Filter>AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\AppConnect\appmsg.h">
+      <Filter>AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\AppConnect\apppdu.h">
+      <Filter>AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\AppConnect\tpdll.h">
+      <Filter>AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\AppConnect\tppdu.h">
+      <Filter>AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\Common\common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\Common\datatypes.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\Common\errval.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\Common\hartdefs.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\Realtime\toolqueues.h">
+      <Filter>Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\Realtime\toolsems.h">
+      <Filter>Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\Realtime\toolsigs.h">
+      <Filter>Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\Realtime\toolthreads.h">
+      <Filter>Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\Realtime\toolutils.h">
+      <Filter>Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="cDatabase.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include="cDataRaw.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include="cSerialFile.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include="Hip_Server\Server\debug.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="RunningAverage.h" />
+    <ClInclude Include="ADS1256_defs.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="bcm2835.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="burst.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="commandSet.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="delay.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="hartmdll.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="hartPhy.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="htesttypes.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="InsertExtract.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="lnkctrl.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="memory_glbl.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="tooldef.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="sems.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="nativeapp.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="native.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="shared.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="CircularBuffer.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Files.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="msg.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="PV.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\AllDataObjects.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\DataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\DataObjectBase.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\DataObjectConfig.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\DataSet.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\insert_Extract.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\PrimativeDataDesc.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\variableFactory.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\varient.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_00.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_01.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_02.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_03.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_06.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_07.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_08.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_09.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_11.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_12.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_13.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_14.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_15.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_16.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_17.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_18.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_19.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_20.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_21.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_22.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_35.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_38.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicalAlarms.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_44.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_48.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_50.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_51.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_52.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_53.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_54.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_79.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_95.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_c103.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_c104.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_c105.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_c107.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_c108.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_c109.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_c534.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_k2560.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_k2561.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_k2562.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_k2563.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_k2688.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_k2689.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_k2690.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_k2692.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_k2693.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_k2864.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\command.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Units.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="configuration_Default.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\cmd_c120.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
