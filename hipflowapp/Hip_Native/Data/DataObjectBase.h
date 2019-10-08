@@ -23,7 +23,7 @@
 #endif
 
 #include <tuple>
-#include "../Hip_Server/Common/datatypes.h"
+#include "../hipserver/hipserver/Common/datatypes.h"
 #include "varient.h"
 
 #ifdef INC_DEBUG

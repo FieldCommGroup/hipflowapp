@@ -23,6 +23,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "memory_glbl.h"
+#include <math.h>
 
 extern int kill_burst(void);
 

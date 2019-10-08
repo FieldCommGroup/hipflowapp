@@ -152,7 +152,7 @@ uint8_t cmd_104::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	if (pDV == NULL)// proly 38 or 48 or unknown UNIT CHANGE!!!!!
 	{
 //printf("    DEBUG:  DevVar Ptr is NULL.\n");
-		if (unt != HART_UNITCODE_NOT_USED && !isContinue)
+		if (unt != HART_NOT_USED && !isContinue)
 		{
 			printf("Null Device Variable Ptr: expected UNUSED got %d  [ bm# %d DevVar# %d ].\n", unt, burstMsgNumber, ItemValue(burstMsgArray[burstMsgNumber].indexList[0], uint8_t));
 			return RC_MULTIPLE_12;// invalid unit

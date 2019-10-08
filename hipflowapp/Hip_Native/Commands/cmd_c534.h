@@ -81,7 +81,7 @@ uint8_t cmd_534::insert_Data(uint8_t &ByteCnt, uint8_t *pData)
 		{
 			*pData++ = activeDevVar; ByteCnt++;// activeDevVar
 			*pData++ = 0; ByteCnt++;// lastDVcmdCode - Normal
-			*pData++ = HART_UNITCODE_NOT_USED; ByteCnt++;// Units
+			*pData++ = HART_NOT_USED; ByteCnt++;// Units
 			insert(NaN_value, &pData, ByteCnt);
 		}
 		// we have no device family, these are required to be zero

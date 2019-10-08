@@ -138,7 +138,7 @@ int cmd_09::insertUnsupported( uint8_t slotNum, uint8_t **ppData, uint8_t *pInse
 	{
 		if( (ret = insert(                 slotNum, ppData, *pInserCnt )) != RC_SUCCESS)  break;
 		if( (ret = insert(         HART_NOT_CLASFD, ppData, *pInserCnt )) != RC_SUCCESS)  break;
-		if( (ret = insert(  HART_UNITCODE_NOT_USED, ppData, *pInserCnt )) != RC_SUCCESS)  break;
+		if( (ret = insert(  HART_NOT_USED, ppData, *pInserCnt )) != RC_SUCCESS)  break;
 		if( (ret = insert(               NaN_value, ppData, *pInserCnt )) != RC_SUCCESS)  break;
 		if( (ret = insert(HART_DEVICESTAT_NOT_USED, ppData, *pInserCnt )) != RC_SUCCESS)  break;	 
 	}

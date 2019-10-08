@@ -1,3 +1,7 @@
+# unique to hipflowapp
+*.log
+HipNativeFlow
+
 # Prerequisites
 *.d
 
@@ -30,3 +34,6 @@
 *.exe
 *.out
 *.app
+/hipflowapp/.vs/Hip_Native/v16
+/hipflowapp/Hip_Native/obj/ARM/DbgFlow
+/.vs

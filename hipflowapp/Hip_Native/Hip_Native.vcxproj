@@ -107,7 +107,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|ARM'">
-    <IncludePath>.\;.\Hip_Server\Common;.\Hip_Server\AppConnect;.\Hip_Server\Realtime;$(IncludePath)</IncludePath>
+    <IncludePath>.\;.\hipserver\hipserver\Common;.\hipserver\hipserver\AppConnect;.\hipserver\hipserver\Realtime;$(IncludePath)</IncludePath>
     <TargetName>HipNativeFlow</TargetName>
     <TargetExt />
   </PropertyGroup>
@@ -117,13 +117,13 @@
     <TargetExt />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|x64'">
-    <IncludePath>.\Hip_Server\Common;.\Hip_Server\AppConnect;.\Hip_Server\Realtime;$(IncludePath)</IncludePath>
+    <IncludePath>.\hipserver\hipserver\Common;.\hipserver\hipserver\AppConnect;.\hipserver\hipserver\Realtime;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|x86'">
-    <IncludePath>.\Hip_Server\Common;.\Hip_Server\AppConnect;.\Hip_Server\Realtime;$(IncludePath)</IncludePath>
+    <IncludePath>.\hipserver\hipserver\Common;.\hipserver\hipserver\AppConnect;.\hipserver\hipserver\Realtime;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|ARM'">
-    <IncludePath>.\;.\Hip_Server\Common;.\Hip_Server\AppConnect;.\Hip_Server\Realtime;$(IncludePath)</IncludePath>
+    <IncludePath>.\;.\hipserver\hipserver\Common;.\hipserver\hipserver\AppConnect;.\hipserver\hipserver\Realtime;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="ads1256_test.cpp" />
@@ -137,14 +137,14 @@
     <ClCompile Include="Data\varient.cpp" />
     <ClCompile Include="Files.cpp" />
     <ClCompile Include="FillDefaultValues.cpp" />
-    <ClCompile Include="Hip_Server\AppConnect\app.cpp" />
-    <ClCompile Include="Hip_Server\AppConnect\apppdu.cpp" />
-    <ClCompile Include="Hip_Server\AppConnect\tppdu.cpp" />
-    <ClCompile Include="Hip_Server\Realtime\toolqueues.cpp" />
-    <ClCompile Include="Hip_Server\Realtime\toolsems.c" />
-    <ClCompile Include="Hip_Server\Realtime\toolsigs.c" />
-    <ClCompile Include="Hip_Server\Realtime\toolthreads.c" />
-    <ClCompile Include="Hip_Server\Realtime\toolutils.c" />
+    <ClCompile Include="hipserver\hipserver\AppConnect\app.cpp" />
+    <ClCompile Include="hipserver\hipserver\AppConnect\apppdu.cpp" />
+    <ClCompile Include="hipserver\hipserver\AppConnect\tppdu.cpp" />
+    <ClCompile Include="hipserver\hipserver\Realtime\toolqueues.cpp" />
+    <ClCompile Include="hipserver\hipserver\Realtime\toolsems.c" />
+    <ClCompile Include="hipserver\hipserver\Realtime\toolsigs.c" />
+    <ClCompile Include="hipserver\hipserver\Realtime\toolthreads.c" />
+    <ClCompile Include="hipserver\hipserver\Realtime\toolutils.c" />
     <ClCompile Include="InsertExtract.cpp" />
     <ClCompile Include="IOthread.cpp" />
     <ClCompile Include="main.cpp" />
@@ -233,22 +233,22 @@
     <ClInclude Include="Files.h" />
     <ClInclude Include="hartmdll.h" />
     <ClInclude Include="hartPhy.h" />
-    <ClInclude Include="Hip_Server\AppConnect\app.h" />
-    <ClInclude Include="Hip_Server\AppConnect\appconnector.h" />
-    <ClInclude Include="Hip_Server\AppConnect\appmsg.h" />
-    <ClInclude Include="Hip_Server\AppConnect\apppdu.h" />
-    <ClInclude Include="Hip_Server\AppConnect\tpdll.h" />
-    <ClInclude Include="Hip_Server\AppConnect\tppdu.h" />
-    <ClInclude Include="Hip_Server\Common\common.h" />
-    <ClInclude Include="Hip_Server\Common\datatypes.h" />
-    <ClInclude Include="Hip_Server\Common\errval.h" />
-    <ClInclude Include="Hip_Server\Common\hartdefs.h" />
-    <ClInclude Include="Hip_Server\Realtime\toolqueues.h" />
-    <ClInclude Include="Hip_Server\Realtime\toolsems.h" />
-    <ClInclude Include="Hip_Server\Realtime\toolsigs.h" />
-    <ClInclude Include="Hip_Server\Realtime\toolthreads.h" />
-    <ClInclude Include="Hip_Server\Realtime\toolutils.h" />
-    <ClInclude Include="Hip_Server\Server\debug.h" />
+    <ClInclude Include="hipserver\hipserver\AppConnect\app.h" />
+    <ClInclude Include="hipserver\hipserver\AppConnect\appconnector.h" />
+    <ClInclude Include="hipserver\hipserver\AppConnect\appmsg.h" />
+    <ClInclude Include="hipserver\hipserver\AppConnect\apppdu.h" />
+    <ClInclude Include="hipserver\hipserver\AppConnect\tpdll.h" />
+    <ClInclude Include="hipserver\hipserver\AppConnect\tppdu.h" />
+    <ClInclude Include="hipserver\hipserver\Common\common.h" />
+    <ClInclude Include="hipserver\hipserver\Common\datatypes.h" />
+    <ClInclude Include="hipserver\hipserver\Common\errval.h" />
+    <ClInclude Include="hipserver\hipserver\Common\hartdefs.h" />
+    <ClInclude Include="hipserver\hipserver\Realtime\toolqueues.h" />
+    <ClInclude Include="hipserver\hipserver\Realtime\toolsems.h" />
+    <ClInclude Include="hipserver\hipserver\Realtime\toolsigs.h" />
+    <ClInclude Include="hipserver\hipserver\Realtime\toolthreads.h" />
+    <ClInclude Include="hipserver\hipserver\Realtime\toolutils.h" />
+    <ClInclude Include="hipserver\hipserver\Server\debug.h" />
     <ClInclude Include="htesttypes.h" />
     <ClInclude Include="InsertExtract.h" />
     <ClInclude Include="lnkctrl.h" />
@@ -267,7 +267,7 @@
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\;.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;.\Commands;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;.\Commands;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>LINUX;_DEBUG;_FLOWDEVICE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CLanguageStandard>Default</CLanguageStandard>
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
@@ -280,7 +280,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\;.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_IS_HART7;LINUX;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CLanguageStandard>Default</CLanguageStandard>
       <CppLanguageStandard>Default</CppLanguageStandard>
@@ -292,17 +292,17 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\;.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;.\Commands;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;.\Commands;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OmitFramePointers>false</OmitFramePointers>
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
       <PreprocessorDefinitions>_IS_HART7;LINUX;NDEBUG;_DEBUG;_FLOWDEVICE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -317,37 +317,37 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\;.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\Common;.\Hip_Server\Realtime;.\Hip_Server\AppConnect;.\Hip_Native\Hip_Server\Common;.\Hip_Server\Common;.\Hip_Server\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
