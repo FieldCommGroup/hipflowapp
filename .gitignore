@@ -37,3 +37,4 @@ HipNativeFlow
 /hipflowapp/.vs/Hip_Native/v16
 /hipflowapp/Hip_Native/obj/ARM/DbgFlow
 /.vs
+/hipflowapp/Hip_Native/bin/ARM/DbgFlow

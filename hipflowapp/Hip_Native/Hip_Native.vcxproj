@@ -108,7 +108,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|ARM'">
     <IncludePath>.\;.\hipserver\hipserver\Common;.\hipserver\hipserver\AppConnect;.\hipserver\hipserver\Realtime;$(IncludePath)</IncludePath>
-    <TargetName>HipNativeFlow</TargetName>
+    <TargetName>hipflowapp</TargetName>
     <TargetExt />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM'">
@@ -124,6 +124,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|ARM'">
     <IncludePath>.\;.\hipserver\hipserver\Common;.\hipserver\hipserver\AppConnect;.\hipserver\hipserver\Realtime;$(IncludePath)</IncludePath>
+    <TargetName>hipflowapp</TargetName>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="ads1256_test.cpp" />
@@ -275,7 +276,7 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>pthread;rt</LibraryDependencies>
-      <OutputFile>$(OutDir)HipNativeFlow</OutputFile>
+      <OutputFile>$(OutDir)hipflowapp</OutputFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM'">
