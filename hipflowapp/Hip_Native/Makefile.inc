@@ -36,11 +36,11 @@ COMMON_HFILES = $(MAIN_DIR)/hipserver/hipserver/Common/common.h      	\
 # First list all .c files that have a corresponding .h file
 # (1a)
 HIP_CFILES =	\
-#			$(MAIN_DIR)/hipserver/hipserver/Realtime/toolqueues		\
-#			$(MAIN_DIR)/hipserver/hipserver/Realtime/toolutils		\
-#			$(MAIN_DIR)/hipserver/hipserver/Realtime/toolsems       \
-#			$(MAIN_DIR)/hipserver/hipserver/Realtime/toolthreads    \
-#           $(MAIN_DIR)/hipserver/hipserver/Realtime/toolsigs
+			$(MAIN_DIR)/hipserver/hipserver/Realtime/toolqueues		\
+			$(MAIN_DIR)/hipserver/hipserver/Realtime/toolutils		\
+			$(MAIN_DIR)/hipserver/hipserver/Realtime/toolsems       \
+			$(MAIN_DIR)/hipserver/hipserver/Realtime/toolthreads    \
+            $(MAIN_DIR)/hipserver/hipserver/Realtime/toolsigs
 
 
 # Then list all .c files that have no corresponding .h file
@@ -52,12 +52,12 @@ HIP_NOH_CFILES =
 # List all HART-IP .cpp files here (without extension)
 # First list all .cpp files that have a corresponding .h file
 # (1c)
-HIP_CPPFILES = $(MAIN_DIR)/hipserver/hipserver/AppConnect/tppdu 		\
-               $(MAIN_DIR)/hipserver/hipserver/AppConnect/app						\
-               $(MAIN_DIR)/hipserver/hipserver/AppConnect/apppdu					\
-               $(MAIN_DIR)/Commands/command					\
-               $(MAIN_DIR)/Data/insert_Extract					\
-               $(MAIN_DIR)/ads1256_test	\
+HIP_CPPFILES = $(MAIN_DIR)/hipserver/hipserver/AppConnect/tppdu 	\
+               $(MAIN_DIR)/hipserver/hipserver/AppConnect/app		\
+               $(MAIN_DIR)/hipserver/hipserver/AppConnect/apppdu	\
+               $(MAIN_DIR)/Commands/command					        \
+               $(MAIN_DIR)/Data/insert_Extract					    \
+               $(MAIN_DIR)/ads1256_test	                            \
                $(MAIN_DIR)/bcm2835	\
                $(MAIN_DIR)/burst	\
                $(MAIN_DIR)/cDatabase	\
@@ -72,6 +72,7 @@ HIP_CPPFILES = $(MAIN_DIR)/hipserver/hipserver/AppConnect/tppdu 		\
                $(MAIN_DIR)/nativeapp	\
                $(MAIN_DIR)/physical	\
                $(MAIN_DIR)/PhysicalAlarms	\
+               $(MAIN_DIR)/PV	\
                $(MAIN_DIR)/sems	\
                $(MAIN_DIR)/timer	\
                $(MAIN_DIR)/timeStamp	\

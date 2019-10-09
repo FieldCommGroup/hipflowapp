@@ -24,8 +24,8 @@
 
 CC        = g++ -c
 CXX        = g++ -c
-CFLAGS     = -g -DLINUX -I$(MAIN_DIR)/Commands -I$(MAIN_DIR)/Data -I$(MAIN_DIR)/hipserver/hipserver/Common   -I$(MAIN_DIR)/hipserver/hipserver/AppConnect  -I$(MAIN_DIR)/hipserver/hipserver/Data
-CXXFLAGS   = -g -DLINUX -I$(MAIN_DIR)/Commands -I$(MAIN_DIR)/Data -I$(MAIN_DIR)/hipserver/hipserver/Common   -I$(MAIN_DIR)/hipserver/hipserver/AppConnect  -I$(MAIN_DIR)/hipserver/hipserver/Data
+CFLAGS     = -g -DLINUX -D_FLOWDEVICE -I$(MAIN_DIR)/Commands -I$(MAIN_DIR)/Data -I$(MAIN_DIR)/hipserver/hipserver/Common   -I$(MAIN_DIR)/hipserver/hipserver/AppConnect  -I$(MAIN_DIR)/hipserver/hipserver/Data  -I$(MAIN_DIR)/hipserver/hipserver/Realtime  -I$(MAIN_DIR)
+CXXFLAGS   = -g -DLINUX -D_FLOWDEVICE -I$(MAIN_DIR)/Commands -I$(MAIN_DIR)/Data -I$(MAIN_DIR)/hipserver/hipserver/Common   -I$(MAIN_DIR)/hipserver/hipserver/AppConnect  -I$(MAIN_DIR)/hipserver/hipserver/Data  -I$(MAIN_DIR)/hipserver/hipserver/Realtime  -I$(MAIN_DIR)
 ECHO       = @echo
 INCL_LIBS  = -lpthread -lrt
 LD         = g++

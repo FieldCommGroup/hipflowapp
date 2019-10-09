@@ -23,7 +23,7 @@
 #include "cDataRaw.h"
 #include "hartPhy.h" 
 #include <string.h>
-//#include "configuration_Default.h"
+#include "configuration_Default.h"
 //
 //#include "hartdefs.h"
 //#include "appconnector.h"
@@ -91,7 +91,7 @@ errVal_t FillDefaultValues()
 	memset(&(NONvolatileData.finalAssembly[0]), 0x00, 3);// dflt 00
 
 	uint8_t buffer[64]; // plenty big
-	strncpy((char*)(NONvolatileData.tag), (char*)pack(&(buffer[0]), (uint8_t*)INIT_TAG, TAG_LEN), 6);     // dflt ff
+	strncpy((char*)(NONvolatileData.tag), (char*)pack(&(buffer[0]), (uint8_t*)INIT_TAG, (int)TAG_LEN), 6);     // dflt ff
 	strncpy((char*)(NONvolatileData.longTag), (char*)INIT_LONG_TAG, 32);// dflt 00
 
 
