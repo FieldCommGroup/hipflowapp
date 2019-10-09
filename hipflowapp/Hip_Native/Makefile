@@ -41,7 +41,7 @@ $(EXEC_TOP): $(COMMON_OBJS)
 	echo
 	echo Building $(EXEC_TOP)
 	echo
-	$(LD) $(CFLAGS) -o hiptp $(COMMON_OBJS) $(INCL_LIBS) -lpthread -lrt
+	$(LD) $(CFLAGS) -o hipflowapp $(COMMON_OBJS) $(INCL_LIBS) -lpthread -lrt
 	echo
 
 # ===============================================================
