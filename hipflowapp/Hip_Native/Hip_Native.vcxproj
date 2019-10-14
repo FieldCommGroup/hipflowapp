@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DbgFlow|ARM64">
+      <Configuration>DbgFlow</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="DbgPress|ARM">
       <Configuration>DbgPress</Configuration>
       <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DbgPress|ARM64">
+      <Configuration>DbgPress</Configuration>
+      <Platform>ARM64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="DbgPress|x64">
       <Configuration>DbgPress</Configuration>
@@ -25,6 +33,10 @@
       <Configuration>DbgFlow</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="RlsFlow|ARM64">
+      <Configuration>RlsFlow</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="RlsFlow|x86">
       <Configuration>RlsFlow</Configuration>
       <Platform>x86</Platform>
@@ -40,6 +52,10 @@
     <ProjectConfiguration Include="RlsPress|ARM">
       <Configuration>RlsPress</Configuration>
       <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RlsPress|ARM64">
+      <Configuration>RlsPress</Configuration>
+      <Platform>ARM64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="RlsPress|x64">
       <Configuration>RlsPress</Configuration>
@@ -65,7 +81,15 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <UseOfStl>libstdc++_static</UseOfStl>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|ARM64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <UseOfStl>libstdc++_static</UseOfStl>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <UseOfStl>libstdc++_static</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM64'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
     <UseOfStl>libstdc++_static</UseOfStl>
   </PropertyGroup>
@@ -73,7 +97,15 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <UseOfStl>libstdc++_static</UseOfStl>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|ARM64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <UseOfStl>libstdc++_static</UseOfStl>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|ARM'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <UseOfStl>libstdc++_static</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|ARM64'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
     <UseOfStl>libstdc++_static</UseOfStl>
   </PropertyGroup>
@@ -111,7 +143,17 @@
     <TargetName>hipflowapp</TargetName>
     <TargetExt />
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|ARM64'">
+    <IncludePath>.\;.\hipserver\hipserver\Common;.\hipserver\hipserver\AppConnect;.\hipserver\hipserver\Realtime;$(IncludePath)</IncludePath>
+    <TargetName>hipflowapp</TargetName>
+    <TargetExt />
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM'">
+    <IncludePath>E:\stevev\Work\Raspberry\include;C:\Work\Rasberry\include\arm-linux-gnueabihf;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;$(IncludePath)</IncludePath>
+    <TargetName>hipnative</TargetName>
+    <TargetExt />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM64'">
     <IncludePath>E:\stevev\Work\Raspberry\include;C:\Work\Rasberry\include\arm-linux-gnueabihf;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;$(IncludePath)</IncludePath>
     <TargetName>hipnative</TargetName>
     <TargetExt />
@@ -123,6 +165,10 @@
     <IncludePath>.\hipserver\hipserver\Common;.\hipserver\hipserver\AppConnect;.\hipserver\hipserver\Realtime;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|ARM'">
+    <IncludePath>.\;.\hipserver\hipserver\Common;.\hipserver\hipserver\AppConnect;.\hipserver\hipserver\Realtime;$(IncludePath)</IncludePath>
+    <TargetName>hipflowapp</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|ARM64'">
     <IncludePath>.\;.\hipserver\hipserver\Common;.\hipserver\hipserver\AppConnect;.\hipserver\hipserver\Realtime;$(IncludePath)</IncludePath>
     <TargetName>hipflowapp</TargetName>
   </PropertyGroup>
@@ -279,7 +325,32 @@
       <OutputFile>$(OutDir)hipflowapp</OutputFile>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|ARM64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\;.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;.\Commands;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>LINUX;_DEBUG;_FLOWDEVICE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CLanguageStandard>Default</CLanguageStandard>
+      <CppLanguageStandard>gnu++11</CppLanguageStandard>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>pthread;rt</LibraryDependencies>
+      <OutputFile>$(OutDir)hipflowapp</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\;.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_IS_HART7;LINUX;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CLanguageStandard>Default</CLanguageStandard>
+      <CppLanguageStandard>Default</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>pthread;rt</LibraryDependencies>
+      <OutputFile>$(OutDir)hipnative</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM64'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_IS_HART7;LINUX;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -316,7 +387,27 @@
       <DebuggerSymbolInformation>OmitAllSymbolInformation</DebuggerSymbolInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|ARM64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\;.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;.\Commands;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OmitFramePointers>false</OmitFramePointers>
+      <CppLanguageStandard>gnu++11</CppLanguageStandard>
+      <PreprocessorDefinitions>_IS_HART7;LINUX;NDEBUG;_DEBUG;_FLOWDEVICE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CLanguageStandard>Default</CLanguageStandard>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>pthread;rt</LibraryDependencies>
+      <DebuggerSymbolInformation>OmitAllSymbolInformation</DebuggerSymbolInformation>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|ARM'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\;.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RlsPress|ARM64'">
     <ClCompile>
       <AdditionalIncludeDirectories>.\;.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>

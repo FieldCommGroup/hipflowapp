@@ -1,46 +1,62 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hip_Native", "Hip_Native\Hip_Native.vcxproj", "{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		DbgFlow|ARM = DbgFlow|ARM
+		DbgFlow|ARM64 = DbgFlow|ARM64
 		DbgFlow|x64 = DbgFlow|x64
 		DbgFlow|x86 = DbgFlow|x86
 		DbgPress|ARM = DbgPress|ARM
+		DbgPress|ARM64 = DbgPress|ARM64
 		DbgPress|x64 = DbgPress|x64
 		DbgPress|x86 = DbgPress|x86
 		RlsFlow|ARM = RlsFlow|ARM
+		RlsFlow|ARM64 = RlsFlow|ARM64
 		RlsFlow|x64 = RlsFlow|x64
 		RlsFlow|x86 = RlsFlow|x86
 		RlsPress|ARM = RlsPress|ARM
+		RlsPress|ARM64 = RlsPress|ARM64
 		RlsPress|x64 = RlsPress|x64
 		RlsPress|x86 = RlsPress|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgFlow|ARM.ActiveCfg = DbgFlow|ARM
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgFlow|ARM.Build.0 = DbgFlow|ARM
+		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgFlow|ARM64.ActiveCfg = DbgFlow|ARM64
+		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgFlow|ARM64.Build.0 = DbgFlow|ARM64
+		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgFlow|ARM64.Deploy.0 = DbgFlow|ARM64
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgFlow|x64.ActiveCfg = DbgFlow|x64
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgFlow|x64.Build.0 = DbgFlow|x64
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgFlow|x86.ActiveCfg = DbgFlow|x86
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgFlow|x86.Build.0 = DbgFlow|x86
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgPress|ARM.ActiveCfg = DbgPress|ARM
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgPress|ARM.Build.0 = DbgPress|ARM
+		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgPress|ARM64.ActiveCfg = DbgPress|ARM64
+		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgPress|ARM64.Build.0 = DbgPress|ARM64
+		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgPress|ARM64.Deploy.0 = DbgPress|ARM64
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgPress|x64.ActiveCfg = DbgPress|x64
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgPress|x64.Build.0 = DbgPress|x64
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgPress|x86.ActiveCfg = DbgPress|x86
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.DbgPress|x86.Build.0 = DbgPress|x86
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsFlow|ARM.ActiveCfg = RlsFlow|ARM
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsFlow|ARM.Build.0 = RlsFlow|ARM
+		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsFlow|ARM64.ActiveCfg = RlsFlow|ARM64
+		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsFlow|ARM64.Build.0 = RlsFlow|ARM64
+		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsFlow|ARM64.Deploy.0 = RlsFlow|ARM64
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsFlow|x64.ActiveCfg = RlsFlow|x64
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsFlow|x64.Build.0 = RlsFlow|x64
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsFlow|x86.ActiveCfg = RlsFlow|x86
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsFlow|x86.Build.0 = RlsFlow|x86
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsPress|ARM.ActiveCfg = RlsPress|ARM
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsPress|ARM.Build.0 = RlsPress|ARM
+		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsPress|ARM64.ActiveCfg = RlsPress|ARM64
+		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsPress|ARM64.Build.0 = RlsPress|ARM64
+		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsPress|ARM64.Deploy.0 = RlsPress|ARM64
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsPress|x64.ActiveCfg = RlsPress|x64
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsPress|x64.Build.0 = RlsPress|x64
 		{1E8B03F5-6131-47FA-BE12-500A8B88B3ED}.RlsPress|x86.ActiveCfg = RlsPress|x86
