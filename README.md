@@ -10,6 +10,80 @@ more...
 
 more ...
 
+## User Guide
+
+Note the --recurse-modules flag that causes a copy of the **hipserver** library code to be pulled as well.
+
+To launch the **hipflowapp**, the command line is:
+
+```text
+sudo ./hipflowapp
+```
+
+There are no command line options.  sudo is required because the app access shared memory requiring elevated privileges.
+
+To terminate the app, type Ctrl-C on the command line.
+
+## Developer Guide
+
+Pull the repository from the bash terminal with this command line:
+
+```text
+   git clone --recurse-submodules https://github.com/FieldCommGroup/hipflowapp
+```
+
+You can build the program with make as foillows:
+
+```text
+cd hipflowapp/hipflowapp/Hip_Native/
+make
+```
+
+Developers wanting to debug one or both applications will launch the programs separately.  In this case, you must launch **hipserver** first, as it owns the message queues.
+
+To debug **hipflowapp,** start it using the IDE of your choice.  Project files for Visual Studio 2017+ are included in the repository. Debugging remotely from Windows using ssh will require a root login from Windows.  The [procedure for configuring Ubuntu](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/doc/Install%20OS.md) supplied in this kit does not include adding a root login on Ubuntu.  
+
+#### Enable root login on Ubuntu
+
+Login as root feature is disabled by default on Ubuntu. First, reset root's password using passwd command. 
+
+```text
+$ sudo passwd
+Enter user1 password:
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+```
+
+Then use su command to login as root using your new root password:
+
+```text
+$ su
+Password:
+$ whoami
+root
+```
+
+#### Enable root login via ssh
+
+login as root remotely via ssh is also disabled by default on Ubuntu. Manually open the sshd configuration file /etc/ssh/sshd\_config and change line: 
+
+FROM: \#PermitRootLogin prohibit-password 
+
+TO: PermitRootLogin yes 
+
+Then restart the ssh daemon:
+
+```text
+$ sudo systemctl restart sshd
+```
+
+After you restart the sshd daemon you will be able to remotely login as a root user:
+
+```text
+$ ssh root@10.0.0.55
+```
+
 ## Developer Guide
 
 Read below to learn how to build and modify this component.
