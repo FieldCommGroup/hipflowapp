@@ -12,15 +12,13 @@ more ...
 
 ## User Guide
 
-Note the --recurse-modules flag that causes a copy of the **hipserver** library code to be pulled as well.
-
 To launch the **hipflowapp**, the command line is:
 
 ```text
 sudo ./hipflowapp
 ```
 
-There are no command line options.  sudo is required because the app access shared memory requiring elevated privileges.
+There are no command line options.  sudo is required because the app accesses shared memory, requiring elevated privileges.
 
 To terminate the app, type Ctrl-C on the command line.
 
@@ -32,7 +30,9 @@ Pull the repository from the bash terminal with this command line:
    git clone --recurse-submodules https://github.com/FieldCommGroup/hipflowapp
 ```
 
-You can build the program with make as foillows:
+Note the --recurse-modules flag that causes a copy of the **hipserver** library code to be pulled as well.
+
+You can build the program with make as follows:
 
 ```text
 cd hipflowapp/hipflowapp/Hip_Native/
@@ -66,7 +66,7 @@ root
 
 #### Enable root login via ssh
 
-login as root remotely via ssh is also disabled by default on Ubuntu. Manually open the sshd configuration file /etc/ssh/sshd\_config and change line: 
+Login as root remotely via ssh is also disabled by default on Ubuntu. Manually open the sshd configuration file /etc/ssh/sshd\_config and change line: 
 
 FROM: \#PermitRootLogin prohibit-password 
 
@@ -84,9 +84,9 @@ After you restart the sshd daemon you will be able to remotely login as a root u
 $ ssh root@10.0.0.55
 ```
 
-## Developer Guide
+#### Configure Visual Studio for remote Debugging
 
-Read below to learn how to build and modify this component.
+In Visual Studio, go to Tools &gt; Options &gt; Cross Platform &gt; Connection manager and add the root ssh login for your Pi.
 
 ### Architecture
 
