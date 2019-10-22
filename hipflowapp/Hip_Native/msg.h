@@ -1,42 +1,17 @@
-/*************************************************************************
- * msg.h
+/*************************************************************************************************
+ * Copyright 2019 FieldComm Group, Inc.
  *
- * Copyright (C) HART Communication Foundation 1998
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This file defines the HART message structure used by the HART Link Layer
- * Control.  
- * 
- */
-
-/***************************************************************************
- * SourceSafe Header
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * $Workfile: msg.h $
- * $Revision: 2 $
- *     $Date: 10/16/98 9:04a $
- *
- ***************************************************************************
- *  $History: msg.h $
- * 
- * *****************  Version 2  *****************
- * User: Wallyp       Date: 10/16/98   Time: 9:04a
- * Updated in $/llc/slave
- * added PSK frame types. interface to xmit message now includes PhL type
- * 
- * *****************  Version 1  *****************
- * User: Wallyp       Date: 9/07/98    Time: 8:12p
- * Created in $/llc/slave
- *
- ***************************************************************************
- *Revision History
- *
- * 02 01June1998 Wally Pratt
- * changed to allow errors to be tracked by field
- *
- *
- * 01 25May1998 Wally Pratt
- * initial revision
- *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 #ifndef _MSG_H

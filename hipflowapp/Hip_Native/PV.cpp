@@ -1,28 +1,17 @@
-/*************************************************************************
- * pv.c
+/*************************************************************************************************
+ * Copyright 2019 FieldComm Group, Inc.
  *
- * Copyright (C) HART Communication Foundation 1998
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * this file includes the processing needed to turn an averaged adc 
- * reading into a pv. includes the call back to update the process
- * pressure value
- *
- * command processing for 1-3, 14, 15, 80-83, 200 included here.
- *
- */
-
-/***************************************************************************
- * SourceSafe Header
- *
- * $Workfile:  $
- * $Revision:  $
- *     $Date:  $
- *
- ***************************************************************************
- *  $History:  $
- * 
- ***************************************************************************
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 #include <string.h>
