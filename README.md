@@ -1,8 +1,6 @@
-README
-======
+# README
 
-https://avatars0.githubusercontent.com/u/26013747?s=50&v=4
-----------------------------------------------------------
+## ![FCG](https://avatars0.githubusercontent.com/u/26013747?s=50&v=4) FieldComm Group
 
 FieldComm Group
 
@@ -182,13 +180,9 @@ these files (there are no .cpp files to match).
 hipflowapp/hipflowapp/Hip_Native/Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-more...
+| This folder holds the base data structures used to hold and record the device’s data set. |   |
+|-------------------------------------------------------------------------------------------|---|
 
-\*\*\*\*
-
-| File | Contents |
-|------|----------|
-|      |          |
 
 #### hipserver
 

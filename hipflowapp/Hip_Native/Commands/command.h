@@ -89,7 +89,9 @@ public: // work
 			configChangeCnt.setValue(localCnt);
 			configChangedBit_Pri = true;
 			configChangedBit_Sec = true;
+#ifdef _DEBUG
 fprintf(stderr,"        SecCCB set.\n");
+#endif
 		}
 	}
 

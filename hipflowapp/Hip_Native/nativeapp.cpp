@@ -375,10 +375,10 @@ int NativeApp::handle_device_message(AppPdu *pPDU)
 	// get the latest device status
 	bool msa = (pPDU->isPrimary()) ? Pri_MSA () : Sec_MSA();// true if current != last cmd
 	bool ccb = (pPDU->isPrimary()) ? configChangedBit_Pri : configChangedBit_Sec;
-	if (! pPDU->isPrimary())
+	/*if (! pPDU->isPrimary())
 	{
 		fprintf(stderr,"        Secondary Master: ccb = %s\n",ccb?"Set":"Clr"); fflush(stderr);
-	}
+	}*/
 	if (ccb)   // this host's ccb is set
 		DS |= 0x40;// set the config changed bit
 	else

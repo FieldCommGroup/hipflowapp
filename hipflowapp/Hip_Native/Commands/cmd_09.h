@@ -222,7 +222,7 @@ void cmd_09::setIndexes(dataItem indexList[])
 bool cmd_09::isTriggered(burstMessage & bMsg)// this is a burstable command
 {
 	bool R = false;
-	printf("  cmd_09");
+	//printf("  cmd_09");
 	/* temp remove temp
 	if ( bMsg.activeIndexCount < 1)
 		return false;// error, we gotta know who to measure
@@ -237,7 +237,7 @@ bool cmd_09::isTriggered(burstMessage & bMsg)// this is a burstable command
 	int U = ItemValue(bMsg.trigLvlUnits, uint8_t);
 	float currentValue = pDV->UnitSet[U].frmStandard(x);// //245 - loop current
 
-	printf("        Cmd 9 curr=%6.2f Hi=%6.2f Lo=%6.2f Mode = %d\n", currentValue, bMsg.risingTrigVal, bMsg.fallingTrigVal, trigMode);
+	//printf("        Cmd 9 curr=%6.2f Hi=%6.2f Lo=%6.2f Mode = %d\n", currentValue, bMsg.risingTrigVal, bMsg.fallingTrigVal, trigMode);
 
 	switch (trigMode)
 	{

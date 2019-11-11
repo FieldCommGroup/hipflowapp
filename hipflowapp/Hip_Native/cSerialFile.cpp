@@ -212,7 +212,10 @@ void serializationFile::Close_File(void)
 	{		
 		fclose(pFD);
 		pFD = NULL;
+
+#ifdef _DEBUG
 		fprintf(stderr, "Closed '%s'\n", sFilespec.c_str() );
+#endif
 	}
 }
 

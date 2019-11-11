@@ -61,7 +61,9 @@ void set_DeviceStatus(unsigned char set)
 	{	
 		configChangedBit_Pri =
 		configChangedBit_Sec = true;
+#ifdef _DEBUG
 fprintf(stderr, "        SecCCB set...\n");
+#endif
 	}
 	volatileData.deviceStatus |= set;
 }

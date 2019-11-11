@@ -78,7 +78,9 @@ uint8_t cmd_38::extractData(uint8_t &ByteCnt, uint8_t *pData)
 		if ( (!fromPrimary) || isVer5Host)
 		{
 			configChangedBit_Sec = false; // clear secondary flag
+#ifdef _DEBUG
 fprintf(stderr, "        SecCCB clr %s.\n",(isVer5Host)?"Version5":"NotV5"); fflush(stderr);
+#endif
 		}
 	}// else do nothing, leave everything as found
 

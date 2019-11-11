@@ -634,8 +634,8 @@ if ((debugUnitchnge != 0) && (debugUnitchnge != NONvolatileData.devVars[0].Units
 					}
 					else
 					{// debugging case
-						if (cmd2Burst == 9)
-							printf("        Cmd 9 shows NOT triggered at UpdatePeriod.\n");
+					//	if (cmd2Burst == 9)
+					//		printf("        Cmd 9 shows NOT triggered at UpdatePeriod.\n");
 					}
 					//else wait for the trigger or max=0 to happen					
 				}// else we be still waiting

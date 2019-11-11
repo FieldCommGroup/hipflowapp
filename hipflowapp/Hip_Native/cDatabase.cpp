@@ -653,7 +653,7 @@ dataItem& getBurstUnit(uint8_t burstMessageNumber)
 		uint8_t dvIdx = ItemValue(burstMsgArray[burstMessageNumber].indexList[0], uint8_t);
 		if (dvIdx > 2)
 		{
-			printf("getBurstUnit for Cmd# 9, Index %d in Msg# %d is made UNUSED.\n",dvIdx, burstMessageNumber);
+			//printf("getBurstUnit for Cmd# 9, Index %d in Msg# %d is made UNUSED.\n",dvIdx, burstMessageNumber);
 			return constUnused;
 		}
 		else
