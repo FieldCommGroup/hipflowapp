@@ -5,14 +5,14 @@
     <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
     <RemoteDebuggerWorkingDirectory>/root/projects/Hip_Native/Wrk</RemoteDebuggerWorkingDirectory>
     <RemoteDebuggingMode>gdbserver</RemoteDebuggingMode>
-    <RemoteDebugTarget>-1320267109;10.0.0.178 (username=, port=22, authentication=Password)</RemoteDebugTarget>
+    <RemoteDebugTarget>-1320267109;10.0.0.188 (username=, port=22, authentication=Password)</RemoteDebugTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|ARM64'">
     <RemoteDebuggerCommand>/root/projects/Hip_Native/bin/ARM/DbgFlow/HipNativeFlow</RemoteDebuggerCommand>
     <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
     <RemoteDebuggerWorkingDirectory>/root/projects/Hip_Native/Wrk</RemoteDebuggerWorkingDirectory>
     <RemoteDebuggingMode>gdbserver</RemoteDebuggingMode>
-    <RemoteDebugTarget>-1320267109;10.0.0.178 (username=, port=22, authentication=Password)</RemoteDebugTarget>
+    <RemoteDebugTarget>-1320267109;10.0.0.188 (username=, port=22, authentication=Password)</RemoteDebugTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM'">
     <RemoteDebuggerCommand>/root/projects/Hip_Native/bin/ARM/Debug/hipnative</RemoteDebuggerCommand>

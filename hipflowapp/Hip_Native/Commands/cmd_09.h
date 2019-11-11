@@ -38,6 +38,7 @@ public: // c.dtor
 public: // work	
 	virtual uint8_t extractData(uint8_t &ByteCnt, uint8_t *pData);
 	virtual uint8_t insert_Data(uint8_t &ByteCnt, uint8_t *pData);
+	virtual bool isTriggered(burstMessage & bMsg);// we're a burstable command
 	
 	int insertUnsupported( uint8_t slotNum, uint8_t **ppData, uint8_t *pInserCnt );
 	int insertSlot       ( uint8_t slotNum, uint8_t **ppData, uint8_t *pInserCnt );
@@ -142,7 +143,7 @@ int cmd_09::insertUnsupported( uint8_t slotNum, uint8_t **ppData, uint8_t *pInse
 	{
 		if( (ret = insert(                 slotNum, ppData, *pInserCnt )) != RC_SUCCESS)  break;
 		if( (ret = insert(         HART_NOT_CLASFD, ppData, *pInserCnt )) != RC_SUCCESS)  break;
-		if( (ret = insert(  HART_NOT_USED, ppData, *pInserCnt )) != RC_SUCCESS)  break;
+		if( (ret = insert(  HART_UNITCODE_NOT_USED, ppData, *pInserCnt )) != RC_SUCCESS)  break;
 		if( (ret = insert(               NaN_value, ppData, *pInserCnt )) != RC_SUCCESS)  break;
 		if( (ret = insert(HART_DEVICESTAT_NOT_USED, ppData, *pInserCnt )) != RC_SUCCESS)  break;	 
 	}
@@ -217,4 +218,69 @@ void cmd_09::setIndexes(dataItem indexList[])
 	}
 };
 
+
+bool cmd_09::isTriggered(burstMessage & bMsg)// this is a burstable command
+{
+	bool R = false;
+	printf("  cmd_09");
+	/* temp remove temp
+	if ( bMsg.activeIndexCount < 1)
+		return false;// error, we gotta know who to measure
+	*/
+	uint8_t slotNumber = ItemValue(bMsg.indexList[0],uint8_t);
+	deviceVar* pDV = deviceVar::devVarPtr(slotNumber);//first one is data item
+
+	float x = ItemValue(pDV->Value, float);// dataitem, type
+	int trigMode = ItemValue(bMsg.TrigLvlMode, int8_t);
+
+	// convert it from standard units to desired units
+	int U = ItemValue(bMsg.trigLvlUnits, uint8_t);
+	float currentValue = pDV->UnitSet[U].frmStandard(x);// //245 - loop current
+
+	printf("        Cmd 9 curr=%6.2f Hi=%6.2f Lo=%6.2f Mode = %d\n", currentValue, bMsg.risingTrigVal, bMsg.fallingTrigVal, trigMode);
+
+	switch (trigMode)
+	{
+	case 0: // continuous
+	{// should never come this way
+		R = true;
+	}
+	break;
+	case 1: // 1=Window,
+	{
+		if (currentValue > bMsg.risingTrigVal || currentValue < bMsg.fallingTrigVal)
+		{
+			R = true;
+		}// else leave it false
+	}
+	break;
+	case 2: // 2=Rising,
+	{
+		if (currentValue > bMsg.risingTrigVal)
+		{
+			R = true;
+		}// else leave it false
+	}
+	break;
+	case 3: // 3=Falling,
+	{
+		if (currentValue < bMsg.fallingTrigVal)
+		{
+			R = true;
+		}// else leave it false
+	}
+	break;
+	case 4: // 4=AnyChangeInMsgVars
+	{// not implemented
+		R = false;
+	}
+	break;
+	default:
+	{// error
+		R = false;
+	}
+	break;
+	}//endswitch
+	return R;
+};
 #endif // CMD_09_H_

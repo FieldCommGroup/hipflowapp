@@ -156,7 +156,7 @@ uint8_t cmd_104::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	if (pDV == NULL)// proly 38 or 48 or unknown UNIT CHANGE!!!!!
 	{
 //printf("    DEBUG:  DevVar Ptr is NULL.\n");
-		if (unt != HART_NOT_USED && !isContinue)
+		if (unt != HART_UNITCODE_NOT_USED && !isContinue)
 		{
 			printf("Null Device Variable Ptr: expected UNUSED got %d  [ bm# %d DevVar# %d ].\n", unt, burstMsgNumber, ItemValue(burstMsgArray[burstMsgNumber].indexList[0], uint8_t));
 			return RC_MULTIPLE_12;// invalid unit
@@ -181,7 +181,7 @@ uint8_t cmd_104::extractData(uint8_t &ByteCnt, uint8_t *pData)
 			}
 			val = pDV->UnitSet[unt].to_Standard(val);
 			// val is now in standard units 
-			tempBurstMsg.trigLvlValue.setValue(val);// so we staore it later in standard units
+			tempBurstMsg.trigLvlValue.setValue(val);// so we store it later in standard units
 
 
 			/*	0	Continuous. The Burst Message is published continuously at (worst case) the Minimum Update Period.
@@ -250,6 +250,8 @@ uint8_t cmd_104::extractData(uint8_t &ByteCnt, uint8_t *pData)
 					return RC_TOO_SML;
 				}
 			}
+			tempBurstMsg.risingTrigVal = hi;
+			tempBurstMsg.fallingTrigVal= lo;
 		}
 	}
 	
@@ -279,6 +281,9 @@ uint8_t cmd_104::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	}
 	// if we get here the contens are valid
 	burstMsgArray[burstMsgNumber] = tempBurstMsg;
+
+	//burstMsgArray[burstMsgNumber].printParts();
+	//tempBurstMsg.printParts();
 
 			 
 	if (ret)

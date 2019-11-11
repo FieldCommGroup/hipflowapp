@@ -36,7 +36,7 @@
 #endif
 
 //This is software +version+ in command 0
-#define SOFTWAREVERSION  (uint8_t)40
+#define SOFTWAREVERSION  (uint8_t)45
 
 extern bool isBIGendian;
 extern const float hartBENaN;
@@ -159,7 +159,8 @@ public:
 
 	void setTrigger() { triggerOnChange =true;    };
 	void clrTrigger() { triggerOnChange  = false; };
-	bool isTriggered(){
+	bool is_Triggered(){
+	//printf("Database is_Triggered.\n");
 		bool r = hasBeenTriggered; 
 		if (triggerOnChange)
 		{
@@ -192,8 +193,8 @@ class deviceVar : public deviceVarUnits
 
 public: // data >>>> volatile
 	dataItem Value;	        // cmd9element_s.dvValue:: float ie digital value; Nott persistent; convert to xV units if required 
-	dataItem quality;       // ie data quality
-	dataItem lim_status;	// ie Limit status  Not persistent; 
+	// unused.... dataItem quality;       // ie data quality
+	// unused.... dataItem lim_status;	// ie Limit status  Not persistent; 
 	dataItem devVar_status;     // ie device family status
 
 	dataItem lastDVcmdCode; // Write Device Variable Command Code	uint8_t  WrDVcmdCd;		// last Write Device Variable Command Code
@@ -267,6 +268,7 @@ public:
 	bool setTriggerValues();// returns true on ERROR
 	bool resetTriggerValues();
 	void updateBurstOperation(void);
+	void printParts(void);
 	burstMessage& operator=(const burstMessage &SRC);
 
 	static  int  step(uint32_t& aTime, unsigned &ret);
@@ -349,7 +351,7 @@ extern burstMessage burstMsgArray[MAX_BURSTMSGS];
 extern burstMessage tempBurstMsg;
 
 extern dataItem responseCode;
-extern dataItem deviceStatus;
+// use getDeviceStatus()....extern dataItem deviceStatus;
 extern dataItem constUnused;
 
 extern dataItem& getBurstUnit(uint8_t burstMessageNumber);

@@ -24,6 +24,8 @@
 #include "command.h"
 #include "hartmdll.h"
 
+extern bool getCmd48Bytes(uint8_t &Byte0, uint8_t &ExDevSt);//  always false
+
 
 class cmd_48 : public cmd_base
 {
@@ -37,8 +39,9 @@ public: // c.dtor
 public: // work	
 	virtual uint8_t extractData(uint8_t &ByteCnt, uint8_t *pData);
 	virtual uint8_t insert_Data(uint8_t &ByteCnt, uint8_t *pData);
+	virtual bool isTriggered(burstMessage & bMsg);// we're a burstable command
 
-	void update_MoreStatus(uint8_t * pData);
+	//void update_MoreStatus(uint8_t * pData);
 };
 
 // extract ByteCnt bytes from data at pData
@@ -73,10 +76,11 @@ uint8_t * pcmd48data; // actually an array
 		y++;
 	}
 
-	if ( ret == RC_SUCCESS )
+	// this now happens at every command response
+	/*if ( ret == RC_SUCCESS )
 	{
 		update_MoreStatus(pcmd48data);
-	}
+	}*/
 
 	return ret;// the response is the same for both transactions
 }
@@ -89,78 +93,62 @@ uint8_t cmd_48::insert_Data(uint8_t &ByteCnt, uint8_t *pData)
 {
 	int ret = 0;
 	ByteCnt = 0; // just in case
-	do // once
+
+	uint8_t byte0, exDevStatus;
+
+	getCmd48Bytes(byte0, exDevStatus);// has its own mutex lock
+
+	*pData++ = byte0; ByteCnt++;// byte 0
+	
+	for (int y = 1; y < 6; y++)// byte 1 thru 5
 	{
-		/*for ( int y = 0; y < CMD48_SIZE && ret == RC_SUCCESS; y++ )
-		{
-			ret = insert(volatileData.cmd48Data[y], &pData, ByteCnt);
-		}*/
-		//we use 0 and EFDS, everything else is zero
-		ret = insert(volatileData.cmd48Data[0], &pData, ByteCnt);
-		if (ret) return ret;
-		for (int y = 1; y < 6; y++)
-		{
-			*pData++ = (uint8_t)0; ByteCnt++;
-		}
-		ret = extended_fld_dev_status.insertSelf(&pData, &ByteCnt) ;
-		if (ret) return ret;
 		*pData++ = (uint8_t)0; ByteCnt++;
-		*pData++ = (uint8_t)0; ByteCnt++;
-
-		/* * * *   volatileData.cmd48Data[] 0 - 13
-		0 - 5	Bits or Enum Only	Device-Specific Status (refer to appropriate device-specific document for detailed information)
-		6	Bits	Extended Device Status (refer to Common Table 17, Extended Device Status Information)
-		7	Bits	Device Operating Mode (refer to Common Table 14, Operating Mode Codes)
-		8 	Bits	Standardized Status 0 (refer to Common Table 29)
-					1:aDeviceVar-Sim-Active - ExDevStat - FuncCheck
-					2:NVM fail              - ExDevStat - Failure
-					4:RAM fail              - ExDevStat - Failure
-					8:WatchDog Triggered    - ExDevStat - Failure
-					10:PwrSupOutOfRange     - ExDevStat - OutOfSpec...etc
-		9	Bits	Standardized Status 1 (refer to Common Table 30)
-		10	Bits	Analog Channel Saturated  (refer to Common Table 27)
-		11	Bits	Standardized Status 2 (refer to Common Table 31)
-		12	Bits	Standardized Status 3 (refer to Common Table 32)
-		13	Bits	Analog Channel Fixed (refer to Common Table 28)
-
-		14 - 24	Bits or Enum Only	Device-Specific Status (refer to appropriate device-specific document for detailed information)
-		* * * */
 	}
-	while(false);// execute once
+	*pData++ = exDevStatus; ByteCnt++;// byte 6 - Extentended Device Status
 
-	if ( ret )// note that insert always returns zero
-	{
-		printf( "Data insertion error in cmd %d. ret = %d.\n", number(), ret);
-	}
-	if (mismatch)// from extraction
-		ret = RC_WARN_14;
+	*pData++ = (uint8_t)0; ByteCnt++;// byte 7 operating mode - requires 0
+	*pData++ = (uint8_t)0; ByteCnt++;// byte 8 standardized Status 0 - we do not monitor so 0x00
+
+	// not allowed -----
+	//bool mismatch = (fromPrimary) ? Pri_MSA() : Sec_MSA();// true if current != last cmd
+	//if (mismatch)
+	//	ret = RC_WARN_14;
 
     return ret;
 };
 
 
-void cmd_48::update_MoreStatus(uint8_t * pData)// pdata is an array of cmd 48 data extracted
+bool cmd_48::isTriggered(burstMessage & bMsg)// this is a burstable command
 {
-	bool match = true;
-	for ( int k = 0; k < 14; k++)
-	{
-		if (pData[k] != volatileData.cmd48Data[k] )
-		{
-			match = false;
-			break; // outa for loop
-		}
-	}
-	if ( match )
-	{// clear MSA bit
-		mismatch = false;
-		if ( fromPrimary ) Pri_MSA(false);
-		else               Sec_MSA(false);
-		// Device Status is set in NativeApp::handle_device_message(AppPdu *pPDU)
-	}
-	else // - leave 'em alone'
-	{
-		mismatch = true;
-	}
-};
+	bool R = false;
+	// is changed is the only one that makes sense and it's not supported so this is ludicrous... 
+	// see More Status Available bit!
+	return R;
+}
+
+
+//void cmd_48::update_MoreStatus(uint8_t * pData)// pdata is an array of cmd 48 data extracted
+//{
+//	bool match = true;
+//	for ( int k = 0; k < 14; k++)
+//	{
+//		if (pData[k] != volatileData.cmd48Data[k] )
+//		{
+//			match = false;
+//			break; // outa for loop
+//		}
+//	}
+//	if ( match )
+//	{// clear MSA bit
+//		mismatch = false;
+//		if ( fromPrimary ) Pri_MSA(false);
+//		else               Sec_MSA(false);
+//		// Device Status is set in NativeApp::handle_device_message(AppPdu *pPDU)
+//	}
+//	else // - leave 'em alone'
+//	{
+//		mismatch = true;
+//	}
+//};
 
 #endif // CMD_48_H_

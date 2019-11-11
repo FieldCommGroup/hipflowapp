@@ -371,6 +371,15 @@ bool burstMessage::resetTriggerValues()
 	return ret;
 }
 
+void burstMessage::printParts(void)
+{
+	int b = ItemValue(message_number, uint8_t);
+	int m = ItemValue(command_number, uint16_t);
+printf("BM# %d has cmd# %d, Mode %hhd, Lvl %f, HiLvl:%f, LoLvl %f\n", b,m,
+	ItemValue(TrigLvlMode, uint8_t),ItemValue(trigLvlValue, float),
+	risingTrigVal, fallingTrigVal);
+}
+
 // resets this burst message in the burst queue
 // does nothing till enabled
 void burstMessage::updateBurstOperation(void)
@@ -540,7 +549,7 @@ int kill_burst(void)
 	return 0;
 }
 
-bool isTriggered(uint32_t  stack_Number)
+bool is_Triggered(uint32_t  stack_Number)
 {// this has to return true on continuous
 	stackStruct_t& burstOne = burstStack[stack_Number];
 	burstMessage & burstMsg = burstMsgArray[burstOne.msg_Number];
@@ -555,7 +564,7 @@ bool isTriggered(uint32_t  stack_Number)
 	{
 		uint16_t  cmdNo = ItemValue(burstMsg.command_number,uint16_t) & 0xffff;
 		cmd_base * pCmd = pGlobalApp->cmd(cmdNo);
-		return pCmd->isTriggered();
+		return pCmd->isTriggered(burstMsg);
 	}
 }
 
@@ -603,20 +612,30 @@ if ((debugUnitchnge != 0) && (debugUnitchnge != NONvolatileData.devVars[0].Units
 				burstMessage & burstMsg = burstMsgArray[burstOne.msg_Number];
 				hartTriggerCodes_t trigger = (hartTriggerCodes_t)
 											ItemValue(burstMsg.TrigLvlMode, uint8_t);
+				uint16_t cmd2Burst = ItemValue(burstMsg.command_number, uint16_t);// for debugginh
+
 				burstOne.remaining50mSticks--;
 				burstOne.remainingMaxSticks--;
 				//  50mS ticks are used for continuous or while a value is triggered
-				if (burstOne.remaining50mSticks <= 0 || trigger != htc_Continuous)
+				if ( burstOne.remaining50mSticks <= 0 )// we only send on 50mS tick boundrys...not-->     || trigger != htc_Continuous)
 				{
-					if (isTriggered(y))// will trigger on continuous, regsardless of cnt
+					if (is_Triggered(y))// will trigger on continuous, regardless of cnt
 					{
-						burstCmd(y);// queue it up...IP can burst several messages in 50 mS
+					//	if (cmd2Burst == 9)
+					//		printf("        Cmd 9 shows IT IS triggered at UpdatePeriod.\n");
+						burstCmd(y);// queue it up...IP can burst several messages in 50 mS..resets both tick counts
 					}
 					else //  trigger is false, leave remaining 0 or negative
-					if (burstOne.remainingMaxSticks == 0)// we must burst here
+					if (burstOne.remainingMaxSticks <= 0)// we must burst here
 					{
-						burstCmd(y);// queue it up...IP can burst several messages in 50 mS
-									// resets Sticks too
+					//	if (cmd2Burst == 9)
+					//		printf("        Cmd 9 shows IT IS triggered at MAX-UPDATE-PERIOD.\n");
+						burstCmd(y);// queue it up...IP can burst several messages in 50 mS..resets both tick counts
+					}
+					else
+					{// debugging case
+						if (cmd2Burst == 9)
+							printf("        Cmd 9 shows NOT triggered at UpdatePeriod.\n");
 					}
 					//else wait for the trigger or max=0 to happen					
 				}// else we be still waiting

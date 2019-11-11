@@ -108,11 +108,11 @@ float zero = 3355444.0,
  *      slope = (24000-240) / (8388607 - 20000) = 0.00283918219603334
  *		value = ( (rawValue-mincounts) * slope ) + minvalue
  */
-//float c_zero = 205000.0,
-//    c_span = (float)0.0000308424756779135,
+//float b_zero = 205000.0,
+//    b_span = (float)0.0000308424756779135,
 //    c_lowerRawValue = 4096.0,
 //    c_upperRawValue = 1048576.0 + 4096.0,
-//    c_lowerTrimPt = 1.0,
+//    b_lowerTrimPt = 1.0,
 //    c_upperTrimPt = 150.0,
 //    c_lastValue = 4096.0;
 
@@ -991,13 +991,13 @@ char writeRawValue(MSG * pMsg) {     /* cmd 200 */
 //
 //    c_lastValue = rawValue;
 //
-//	double localDouble = ((rawValue - c_zero) * c_span) + c_lowerTrimPt;
+//	double localDouble = ((rawValue - b_zero) * b_span) + b_lowerTrimPt;
 //	devVar_SV.Value.setValue(localDouble);
 //	#ifdef hold_DEBUG
 //		printf("  set SV to %f.\n", localDouble);
 //	#endif
 //	//current = cmd9minDV[ELEM_001].dvValue = cmd9minDV[ELEM_247].dvValue =
-//	//((rawValue-c_zero) * c_span) + c_lowerTrimPt;
+//	//((rawValue-b_zero) * b_span) + b_lowerTrimPt;
 //	sv_alarm(localDouble);
 //
 //#ifdef xxxNOW_DONE_IN_PV_ALARM_ABOVE_____FLOWDEVICE	
@@ -1034,13 +1034,13 @@ char writeRawValue(MSG * pMsg) {     /* cmd 200 */
 //
 //#if 0
 //	c_lastValue = rawValue;
-//	double localDouble = ((rawValue - c_zero) * c_span) + c_lowerTrimPt;
+//	double localDouble = ((rawValue - b_zero) * b_span) + b_lowerTrimPt;
 //	devVar_SV.Value.setValue(localDouble);
 //#ifdef hold_DEBUG
 //	printf("  set SV to %f.\n", localDouble);
 //#endif
 //	//current = cmd9minDV[ELEM_001].dvValue = cmd9minDV[ELEM_247].dvValue =
-//	//((rawValue-c_zero) * c_span) + c_lowerTrimPt;
+//	//((rawValue-b_zero) * b_span) + b_lowerTrimPt;
 //
 //#ifdef _FLOWDEVICE	
 //	uint8_t localDevStat = *((uint8_t*)deviceStatus.pRaw);
@@ -1159,7 +1159,7 @@ char rtData::updateCurrent(double raw)
 
 	c_lastValue = raw;
 
-	rtCurrent = ((raw - c_zero) * c_span) + c_lowerTrimPt;
+	rtCurrent = ((raw - b_zero) * b_span) + b_lowerTrimPt;
 	sv_alarm(rtCurrent);
 
 	sem_post(&RTdataSema);

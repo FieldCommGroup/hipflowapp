@@ -37,6 +37,7 @@ extern int init_phy(void);// in physical.cpp
 extern int init_burst(uint8_t myAddr[]); // in burst.cpp
 extern int initBurstStack();
 extern int kill_phy(void);// in physical.cpp
+extern uint8_t getDeviceStatus(void);
 
 
 /***************************************
@@ -338,7 +339,8 @@ errVal_t NativeApp::cleanup()
 int NativeApp::handle_device_message(AppPdu *pPDU)
 {
 	uint8_t *pRC = (uint8_t *)responseCode.pRaw;
-	uint8_t *pDS = (uint8_t *)deviceStatus.pRaw;
+	//uint8_t *pDS = (uint8_t *)deviceStatus.pRaw;
+	uint8_t DS = getDeviceStatus();
 	// note about threading:
 	//  The data write is on this thread so no more commands can be handled
 	//  till the file write is complete, effectivly locking the nonVolatile data.
@@ -370,24 +372,24 @@ int NativeApp::handle_device_message(AppPdu *pPDU)
 	{
 		devicedata.putData();
 	} 
-
-	bool msa = (pPDU->isPrimary()) ? Pri_MSA () : Sec_MSA();
+	// get the latest device status
+	bool msa = (pPDU->isPrimary()) ? Pri_MSA () : Sec_MSA();// true if current != last cmd
 	bool ccb = (pPDU->isPrimary()) ? configChangedBit_Pri : configChangedBit_Sec;
 	if (! pPDU->isPrimary())
 	{
 		fprintf(stderr,"        Secondary Master: ccb = %s\n",ccb?"Set":"Clr"); fflush(stderr);
 	}
 	if (ccb)   // this host's ccb is set
-		*pDS |= 0x40;// set the config changed bit
+		DS |= 0x40;// set the config changed bit
 	else
-		*pDS &= 0xBF;// clr the config changed bit
+		DS &= 0xBF;// clr the config changed bit
 
 	if (msa)   // this host's msa is set
-		*pDS |= 0x10;// set the more status bit
+		DS |= 0x10;// set the more status bit
 	else
-		*pDS &= 0xEF;// clr the more status bit
+		DS &= 0xEF;// clr the more status bit
 			
-	pPDU->SetRCStatus(*pRC, *pDS);
+	pPDU->SetRCStatus(*pRC, DS);
 
 	return 0; // caller calculates checksum and sends reply
 }
@@ -425,23 +427,24 @@ int NativeApp::burstIt(dataItem indexList[], AppPdu *pPDU)
 	pCmd->burstThisCmd(indexList, pPDU);// fills the data
 
 	uint8_t *pRC = (uint8_t *)responseCode.pRaw;
-	uint8_t *pDS = (uint8_t *)deviceStatus.pRaw;
+	//uint8_t *pDS = (uint8_t *)deviceStatus.pRaw;
+	uint8_t DS = getDeviceStatus();
 
 	// a burst pdu can have either master address
 	bool msa = (pPDU->isPrimary()) ? Pri_MSA() : Sec_MSA();
 	bool ccb = (pPDU->isPrimary()) ? configChangedBit_Pri : configChangedBit_Sec;
 
 	if (ccb)   // this host's ccb is set
-		*pDS |= 0x40;// set the config changed bit
+		DS |= 0x40;// set the config changed bit
 	else
-		*pDS &= 0xBF;// clr the config changed bit
+		DS &= 0xBF;// clr the config changed bit
 
 	if (msa)   // this host's msa is set
-		*pDS |= 0x10;// set the more status bit
+		DS |= 0x10;// set the more status bit
 	else
-		*pDS &= 0xEF;// clr the more status bit
+		DS &= 0xEF;// clr the more status bit
 
-	pPDU->SetRCStatus(*pRC, *pDS);
+	pPDU->SetRCStatus(*pRC, DS);
 
 	pPDU->InsertCheckSum();
 

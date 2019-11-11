@@ -28,6 +28,11 @@
 #include "hartPhy.h"
 #include "InsertExtract.h"
 
+#include <mutex>
+
+extern std::mutex al_mutex;
+
+
 /******************  statics ****************************/
 const float    constant_zero = 0.0f;
 const float    constant_nan  = NaN_value;// this no-workee
@@ -64,20 +69,22 @@ bool    writeNeeded = false; // set when config changed in a command
 static bool    moreStatusAvail_Pri  = false;
 static bool    moreStatusAvail_Sec  = false;
 
-// true if the Primary Master's More Status Available is set
-bool Pri_MSA(void) { return moreStatusAvail_Pri; };
+// true if the Primary Master's More Status Available needs to be set in the response
+bool Pri_MSA(void) { return ! PV_cmd48IsSame; };//bit set if no match
 //  @true, sets/clears the Primary's More Status aVAILABLE BIT
-void Pri_MSA(bool b) {
-	moreStatusAvail_Pri = b; };
-// true if the Secondary Master's More Status Available is set
-bool Sec_MSA(void) { return moreStatusAvail_Sec; };
+//void Pri_MSA(bool b) {
+//	moreStatusAvail_Pri = b; };
+// true if the Secondary Master's More Status Availableneeds to be set in the response
+bool Sec_MSA(void) { return !SV_cmd48IsSame; };//bit set if no match
 //  @true, sets the Secondary's More Status available bit
-void Sec_MSA(bool b) {
-	moreStatusAvail_Sec = b;
-};
+//void Sec_MSA(bool b) {
+//	moreStatusAvail_Sec = b;
+//};
 
 bool match48(bool isPri)
 {
+	std::lock_guard<std::mutex> lock(al_mutex); //auto unlock at return
+
 	uint8_t *pMasterData = (isPri)? tempData.Pricmd48TmpData : tempData.Seccmd48TmpData;
 
 	return  (volatileData.cmd48Data[0] == pMasterData[0]) && // Device Specific
@@ -196,30 +203,30 @@ deviceVar* deviceVar::devVarPtr(uint8_t slotNumber)
 		return &(devVarArray[5]);
 	}
 	break;
-	case 244:
+	case 244:	// 0xf4
 	{//Percent Range (Unit Code is "percent"; Device Variable Classification is "Device Variable Not Classified")
 
 		return &(devVarArray[3]);
 	}
 	break;
 	// loop current is not supported as device variable 4     case 4:
-	case 245:
+	case 245:	//0xf5
 	{//Loop Current (Unit Code is "milliamperes"9; Device Variable Classification is "Device Variable Not Classified")
 
 		return &(devVarArray[4]);
 	}
 	break;
-	case 246:
+	case 246:	//0xf6
 	{//Primary Variable
 		return &devVar_PV;
 	}
 	break;
-	case 247:
+	case 247:	//0xf7
 	{//Secondary Variable
 		return &devVar_SV;
 	}
 	break;
-	case 248:
+	case 248:	//0xf8
 	{//Tertiary Variable
 		return &devVar_TV; // (devVarArray[NONvolatileData.devVar_Map[2]])
 	}
@@ -393,8 +400,8 @@ void deviceVar::ctor_Device()
 {
 	Value.set(true, false, ht_float, &(volatileData.devVars[dVN].Value));
 	//cmd9element_s.dvStatus:: this is :1100 0000 quality, 0011 0000 lim_status, 0000 1111 df_status
-	quality.set(true, false, ht_int8, &(volatileData.devVars[dVN].quality));      // ie data quality
-	lim_status.set(true, false, ht_int8, &(volatileData.devVars[dVN].lim_status));// ie Limit status  Not persistent; 
+	// unused.... quality.set(true, false, ht_int8, &(volatileData.devVars[dVN].quality));      // ie data quality
+	// unused.... lim_status.set(true, false, ht_int8, &(volatileData.devVars[dVN].lim_status));// ie Limit status  Not persistent; 
 	devVar_status.set(true, false, ht_int8, &(volatileData.devVars[dVN].devVar_status));  // ie used as Device Variable Status in cmd 9...device family status
 	lastDVcmdCode.set(true, false, ht_int8, &(volatileData.devVars[dVN].WrDVcmdCd));
 	simulateUnits.set(true, false, ht_int8, &(volatileData.devVars[dVN].simulateUnits));
@@ -476,8 +483,8 @@ void deviceVar::ctor_Stnd()
 	}
 
 	//cmd9element_s.dvStatus:: this is :1100 0000 quality, 0011 0000 lim_status, 0000 1111 df_status
-	quality.set(true, false, ht_int8, &(volatileData.devVars[idx].quality));      // ie data quality
-	lim_status.set(true, false, ht_int8, &(volatileData.devVars[idx].lim_status));// ie Limit status  Not persistent; 
+	// unused.... quality.set(true, false, ht_int8, &(volatileData.devVars[idx].quality));      // ie data quality
+	// unused.... lim_status.set(true, false, ht_int8, &(volatileData.devVars[idx].lim_status));// ie Limit status  Not persistent; 
 	devVar_status.set(true, false, ht_int8, &(volatileData.devVars[idx].devVar_status));  // ie used as Device Variable Status in cmd 9...device family status
 	lastDVcmdCode.set(true, false, ht_int8, &(volatileData.devVars[idx].WrDVcmdCd));
 	simulateUnits.set(true, false, ht_int8, &(volatileData.devVars[idx].simulateUnits));
@@ -504,8 +511,8 @@ void deviceVar::ctor_Unsupported()
 	if (dVN == 0xff)  dVN = 5;
 	Value.set(true, false, ht_float, &(volatileData.devVars[dVN].Value));
 	//cmd9element_s.dvStatus:: this is :1100 0000 quality, 0011 0000 lim_status, 0000 1111 df_status
-	quality.set(true, false, ht_int8, &(volatileData.devVars[dVN].quality));      // ie data quality
-	lim_status.set(true, false, ht_int8, &(volatileData.devVars[dVN].lim_status));// ie Limit status  Not persistent; 
+	// unused.... quality.set(true, false, ht_int8, &(volatileData.devVars[dVN].quality));      // ie data quality
+	// unused.... lim_status.set(true, false, ht_int8, &(volatileData.devVars[dVN].lim_status));// ie Limit status  Not persistent; 
 	devVar_status.set(true, false, ht_int8, &(volatileData.devVars[dVN].devVar_status));  // ie used as Device Variable Status in cmd 9...device family status
 	lastDVcmdCode.set(true, false, ht_int8, &(volatileData.devVars[dVN].WrDVcmdCd));
 	simulateUnits.set(true, false, ht_int8, &(volatileData.devVars[dVN].simulateUnits));

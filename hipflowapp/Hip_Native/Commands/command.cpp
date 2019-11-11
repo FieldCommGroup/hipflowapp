@@ -39,9 +39,12 @@ int cmd_base::handleCmd(AppPdu *pPDU)
 
 	pData  = pPDU->DataBytes();
 	dataBC = pPDU->RequestByteCount();
+	fromPrimary = pPDU->isPrimary();
 	rtnCd = extractData(dataBC, pData);
 	dataBC = 0;// in case we had an error or, prep for insertion
-	fromPrimary = pPDU->isPrimary();
+
+	//if (! fromPrimary)
+	//	printf("        Secondary cmd Rcv'd. Cmd %d\n", pPDU->CmdNum());
 
 	pPDU->msg2Ack(); // convert to reply pkt for all commands
 	if (rtnCd == RC_DONOTSEND)
@@ -167,9 +170,9 @@ void cmd_base::triggerOnChanged(dataItem indexList[MAX_CMD_9_RESP])
 	// stubbed out for now
 }
 
-bool cmd_base::isTriggered()
-{
-	// stubbed out for now
+bool cmd_base::isTriggered(burstMessage & bMsg)//enum 0=continuous,1=Window,2=Rising,3=Falling;4=AnyChangeInMsgVars
+{// for non-burst commands...
+	printf("Cmd Base isTriggered.\n");
 	return false;
 }
 

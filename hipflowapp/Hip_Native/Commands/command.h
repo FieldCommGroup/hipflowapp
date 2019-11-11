@@ -79,7 +79,7 @@ public: // work
 
 	virtual uint8_t burstThisCmd(dataItem indexList[], AppPdu *pPDU);
 	virtual void triggerOnChanged( dataItem indexList[MAX_CMD_9_RESP] );
-	virtual bool isTriggered();
+	virtual bool isTriggered(burstMessage & bMsg );
 
 	void    bumpConfigCnt()
 	{		

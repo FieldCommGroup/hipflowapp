@@ -102,11 +102,11 @@ private:
 	float lastValue = 4096.0;
 
 
-	float c_zero = 205000.0;
-	float c_span = (float)0.0000308424756779135;
+	float b_zero = 1000000.0;// new cal 06nov2019...was::>205000.0;
+	float b_span = (float)0.0000308424756779135;
 			float c_lowerRawValue = 4096.0;
 			float c_upperRawValue = 1048576.0 + 4096.0;
-	float c_lowerTrimPt = 1.0;
+	float b_lowerTrimPt = 1.0;
 			float c_upperTrimPt = 150.0;
 	float c_lastValue = 4096.0;
 

@@ -27,7 +27,7 @@
 #include "cDataRaw.h"
 #include "hartPhy.h" 
 #include <string.h>
-#include "configuration_Default.h"
+//#include "configuration_Default.h"
 //
 //#include "hartdefs.h"
 //#include "appconnector.h"
@@ -126,7 +126,7 @@ debugUnitchnge =	NONvolatileData.devVars[0].Units;
 
 	NONvolatileData.devVars[0].minSpan = 200.0;//cmd9element_s.dvMinSpan
 
-	NONvolatileData.devVars[1].upperSensorLimit = 25.0;//cmd9element_s.dvUTL
+	NONvolatileData.devVars[1].upperSensorLimit = 150.0;//cmd9element_s.dvUTL
 	NONvolatileData.devVars[1].lowerSensorLimit = -1.0;//cmd9element_s.dvLTL
 
 	NONvolatileData.devVars[1].minSpan = 2.0;//cmd9element_s.dvMinSpan
@@ -212,12 +212,12 @@ debugUnitchnge =	NONvolatileData.devVars[0].Units;
 	NONvolatileData.devVars[SLOT_244_PERCENT_RANGE_IDX].properties = 0;
 	NONvolatileData.devVars[SLOT_245_LOOP__CURRENT_IDX].properties = 0;
 
-	NONvolatileData.devVars[0].high_alarm = 200000;
+	NONvolatileData.devVars[0].high_alarm = 20000;
 	NONvolatileData.devVars[1].high_alarm = 60;
 	NONvolatileData.devVars[2].high_alarm = HART_NAN;// no totalizer alarms
 	NONvolatileData.devVars[SLOT_UNSUPPORTED_IDX].high_alarm = HART_NAN;
 	NONvolatileData.devVars[0].low_alarm = 2400;
-	NONvolatileData.devVars[1].low_alarm = 30;
+	NONvolatileData.devVars[1].low_alarm =    8;
 	NONvolatileData.devVars[2].low_alarm = HART_NAN;
 	NONvolatileData.devVars[SLOT_UNSUPPORTED_IDX].low_alarm = HART_NAN;
 	

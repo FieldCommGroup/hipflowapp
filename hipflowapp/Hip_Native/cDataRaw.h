@@ -50,10 +50,10 @@ using namespace std;
 #define SLOT_245_LOOP__CURRENT_IDX  (INIT_DEV_VAR_CNT + 1)
 #define SLOT_UNSUPPORTED_IDX        (INIT_DEV_VAR_CNT + 2)
 
-extern bool Pri_MSA(void);// true if the Primary Master's More Status Available is set
-extern void Pri_MSA(bool);//  @true, sets/clears the Primary's More Status available bit
-extern bool Sec_MSA(void);// true if the Secondary Master's More Status Available is set
-extern void Sec_MSA(bool);//  @true, sets the Secondary's More Status aVAILABLE BIT
+extern bool Pri_MSA(void);// true if the Primary Master's More Status Available needs to be set in response
+//extern void Pri_MSA(bool);//  @true, sets/clears the Primary's More Status available bit
+extern bool Sec_MSA(void);// true if the Secondary Master's More Status Available needs to be set in response
+//extern void Sec_MSA(bool);//  @true, sets the Secondary's More Status aVAILABLE BIT
 
 extern bool match48( bool isPri );// returns true if exact match master's
 #define     PV_cmd48IsSame  (match48(true))
@@ -85,13 +85,15 @@ typedef struct DevVarRaw_s  // volatile memory-part of the device variable class
 	//    this is :1100 0000 quality, 
 	//             0011 0000 lim_status, 
 	//             0000 1111 df_status
-	uint8_t  quality;       // ie data quality
-	uint8_t  lim_status;	// ie Limit status  Not persistent; 
+	// unused.... part of devVar_status:::uint8_t  quality;       // ie data quality
+	// unused.... part of devVar_status:::uint8_t  lim_status;	// ie Limit status  Not persistent; 
 	uint8_t  devVar_status;     // ie device variable status
 	// the data written in 79 is required to be available via 534 at some later time
 	// We'll put that data here because it doesn't need to be non-volitile
 	uint8_t  WrDVcmdCd;		// last Write Device Variable Command Code
 	uint8_t  simulateUnits;
+	uint8_t  boolDevVarAlert;  // extendedDeviceSataus has to roll these up so we have to keep per devvar
+
 	float    simValue;
 }
 /* typedef */ DevVarRaw_t;

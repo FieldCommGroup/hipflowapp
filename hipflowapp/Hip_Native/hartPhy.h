@@ -85,7 +85,7 @@
 #define UNITSNAME_TpH	"ton/h"
 #define UNITSMUTL_TpH	907.184740
 
-#define UNITS_NONE		HART_NOT_USED		// unused
+#define UNITS_NONE		HART_UNITCODE_NOT_USED		// unused
 #define UNITSNAME_NONE	"Unused"		// unused
 #define UNITSMUTL_NONE	0.0
 

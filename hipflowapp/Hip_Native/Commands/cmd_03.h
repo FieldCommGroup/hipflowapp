@@ -34,6 +34,7 @@ public: // c.dtor
 public: // work	
 	virtual uint8_t extractData(uint8_t &ByteCnt, uint8_t *pData);
 	virtual uint8_t insert_Data(uint8_t &ByteCnt, uint8_t *pData);
+	virtual bool isTriggered(burstMessage & bMsg);// we're a burstable command
 
 	//virtual uint8_t burstThisCmd(dataItem indexList[], AppPdu *pPDU);
 
@@ -85,5 +86,61 @@ uint8_t cmd_03::insert_Data(uint8_t &ByteCnt, uint8_t *pData)
 //{
 //	uint8_t dbgReply = insert_Data(uint8_t &ByteCnt, uint8_t *pData)
 //}
+
+bool cmd_03::isTriggered(burstMessage & bMsg)// this is a burstable command
+{
+	bool R = false;
+	float x = ItemValue(loopCurrent, float);// dataitem, type
+	deviceVar* pDV = deviceVar::devVarPtr(245);// loopcurrent
+	int trigMode = ItemValue(bMsg.TrigLvlMode, int8_t);
+
+	// convert it from standard units to desired units
+	int U = ItemValue(bMsg.trigLvlUnits, uint8_t);
+	float currentValue = pDV->UnitSet[U].frmStandard(x);// //245 - loop current
+
+	switch (trigMode)
+	{
+	case 0: // continuous
+	{// should never come this way
+		R = true;
+	}
+	break;
+	case 1: // 1=Window,
+	{
+		if (currentValue > bMsg.risingTrigVal || currentValue < bMsg.fallingTrigVal)
+		{
+			R = true;
+		}// else leave it false
+	}
+	break;
+	case 2: // 2=Rising,
+	{
+		if (currentValue > bMsg.risingTrigVal)
+		{
+			R = true;
+		}// else leave it false
+	}
+	break;
+	case 3: // 3=Falling,
+	{
+		if (currentValue < bMsg.fallingTrigVal)
+		{
+			R = true;
+		}// else leave it false
+	}
+	break;
+	case 4: // 4=AnyChangeInMsgVars
+	{// not implemented
+		R = false;
+	}
+	break;
+	default:
+	{// error
+		R = false;
+	}
+	break;
+	}//endswitch
+	return R;
+}
 
 #endif // CMD_03_H_
