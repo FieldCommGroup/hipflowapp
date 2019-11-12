@@ -1,6 +1,10 @@
-# README
+README
+======
 
-## ![FCG](https://avatars0.githubusercontent.com/u/26013747?s=50&v=4) FieldComm Group
+https://avatars0.githubusercontent.com/u/26013747?s=50&v=4
+----------------------------------------------------------
+
+FieldComm Group
 
 FieldComm Group
 
@@ -9,15 +13,15 @@ Kit](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/doc/HAR
 It implements a [HART flow
 device](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/doc/HART-IP%20FlowDevice%20Spec.md)
 on the Raspberry Pi computer. Together with the
-[hipserver](https://github.com/FieldCommGroup/hipserver)component, it forms a
+[hipserver](https://github.com/FieldCommGroup/hipserver) component, it forms a
 fully functional HART-IP device.
-
-more...
 
 Known Issues
 ------------
 
-more ...
+Totalizer implementation for the tertiary variable has not been implemented.
+
+All of the trigger-mode + burst-command combinations have not been tested.
 
 User Guide
 ----------
@@ -33,6 +37,17 @@ memory access to manipulate the AD/DA card resources , thus requiring elevated
 privileges.
 
 To terminate the app, type Ctrl-C on the command line.
+
+Note that the app will immediately exit if the hipserver is not running when the
+hipflowapp is invoked. You can invoke both using:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+sudo ./hipserver ./hipflowapp
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+assuming both executables are in the cwd. See the hipserver documentation for details.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Developer Guide
 ---------------
