@@ -42,18 +42,6 @@ extern   const float hartLENaN;
 #define   HART_NAN    ((isBIGendian)?hartBENaN:hartLENaN)
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-/*** hold internals----
-extern uint32_t time1_32mS; // in global memory
-
-extern uint8_t  extended_fld_dev_status;// in the APP.cpp
-
-const unsigned char devVarSlots = 10;
-
-// in cDatabase.cpp   unsigned char nanarray[4] = { 0x7F, 0xA0, 0x00, 0x00 };//ARM bigendian..always bigendian going on the wire
-// in cDatabase.cpp   unsigned char nanLEarray[4] = { 0x00,  0x00, 0xA0, 0x7F };//little endian..always bigendian going on the wire
-
-******* hold internals----888*/
-
 
 /******************************************************************************
  *pressure data.  first the calibration data
@@ -77,14 +65,6 @@ float zero = 3355444.0,
     lastValue = 845824.0;
 #else
     #ifdef _FLOWDEVICE
-	 /* potentiometer settings */
-	/*float zero = 17536.0,
-		span = (float)0.00286701665772516,
-		lowerRawValue = 20000.0,
-		upperRawValue = 8388607.0,
-		lowerTrimPt = 10.0,
-		upperTrimPt = 24000.0,
-		lastValue = 4096.0;*/
 	#else
 	 /* potentiometer settings */
 	float zero = 20000.0,
@@ -98,23 +78,6 @@ float zero = 3355444.0,
 #endif
 
 	uint8_t PV_analogChannelFlags = 0;// we output on the non-existent analog channel.
-/******************************************************************************
- *current data.  first the calibration data
- *   manual calibration:
- *		min counts   205000
- *		max counts	5036000
- *		min value		1 mA		bright sunlight
- *		max value     150 mA		finger on the lens
- *      slope = (24000-240) / (8388607 - 20000) = 0.00283918219603334
- *		value = ( (rawValue-mincounts) * slope ) + minvalue
- */
-//float b_zero = 205000.0,
-//    b_span = (float)0.0000308424756779135,
-//    c_lowerRawValue = 4096.0,
-//    c_upperRawValue = 1048576.0 + 4096.0,
-//    b_lowerTrimPt = 1.0,
-//    c_upperTrimPt = 150.0,
-//    c_lastValue = 4096.0;
 
 
 /* then the dynamic / device variable data
@@ -123,7 +86,7 @@ float zero = 3355444.0,
  #define UNITS_PV  UNITS_PSI
  #define UNITS_SV  UNITS_F
 #else
-    #ifdef _FLOWDEVICE
+    #ifdef _FLOWDEVICE		/* note that these are the standard units */
      #define UNITS_PV  UNITS_KGpH
      #define UNITS_SV  UNITS_MA
     #else
@@ -1114,7 +1077,7 @@ rtData::rtData()
 	{
 		throw(EXCP_NO_SEMAPHORE);
 	}
-
+	rtFlow = rtCurrent = rtTotalizer=rtPercentRng = 0.0;
 	float zero = 17536.0,
 		span = (float)0.00286701665772516,
 		lowerRawValue = 20000.0,

@@ -53,10 +53,10 @@ Unit::Unit(){};
 Unit::~Unit(){};
 
 
-void Unit::NameUnit(int Unit_Code, string UnitName)
+void Unit::NameUnit(int Unit_Code, string Unit_Name)
 {
 	UnitCode = Unit_Code;
-	UnitName = UnitName;
+	UnitName = Unit_Name;
 }
 
 void Unit::SetCvt(double PreAdd, double Mult, double PostAdd)

@@ -160,27 +160,7 @@ int cmd_09::insertSlot( uint8_t slotNum, uint8_t **ppData, uint8_t *pInserCnt )
 	{
 		return RC_INVALID;
 	}
-//if (slotNum == 249)
-//{
-//	do // once
-//	{
-//		if( (ret = insert( slotNum, ppData, *pInserCnt )) != RC_SUCCESS)  break;
-//fprintf(stderr,">>>> Inserted idx# %d.\n", slotNum);fflush(stderr);
-//fprintf(stderr,"     Ptr will be %p.\n", pDV); fflush(stderr);
-//		if( (ret = pDV->classification.insertSelf( ppData, pInserCnt )) != RC_SUCCESS)  break;
-//fprintf(stderr, ">>>> Inserted classification.\n"); fflush(stderr);
-//		if( (ret = pDV->Units         .insertSelf( ppData, pInserCnt )) != RC_SUCCESS)  break;
-//fprintf(stderr, ">>>> Inserted Units.\n"); fflush(stderr);
-//		if( (ret = pDV->Value         .insertSelf( ppData, pInserCnt )) != RC_SUCCESS)  break;
-//fprintf(stderr, ">>>> Inserted Value.\n"); fflush(stderr);
-//// don't know how this ever compiled...		if( (ret = devVarArray[slotNum].df_status     .insertSelf( ppData, pInserCnt )) != RC_SUCCESS)  break;		 
-//		if ((ret = pDV->devVar_status .insertSelf( ppData, pInserCnt )) != RC_SUCCESS)  break;
-//	}
-//	while(false);// execute once
-//fprintf(stderr, ">>>> Inserted All, returning.\n"); fflush(stderr);
-//}
-//else
-//{
+
 	do // once
 	{
 		double locDbl = RTdata.getDevVar(slotNum);
@@ -222,11 +202,7 @@ void cmd_09::setIndexes(dataItem indexList[])
 bool cmd_09::isTriggered(burstMessage & bMsg)// this is a burstable command
 {
 	bool R = false;
-	//printf("  cmd_09");
-	/* temp remove temp
-	if ( bMsg.activeIndexCount < 1)
-		return false;// error, we gotta know who to measure
-	*/
+	
 	uint8_t slotNumber = ItemValue(bMsg.indexList[0],uint8_t);
 	deviceVar* pDV = deviceVar::devVarPtr(slotNumber);//first one is data item
 

@@ -26,13 +26,6 @@
 #pragma message("In PV.h") 
 #endif
 
-//#include "datatypes.h"
-//#include "errval.h"
-//#include <sys/stat.h>
-//#include <stdio.h>
-//#include <semaphore.h>
-//#include <string>
-
 #include <semaphore.h>
 
 using namespace std;
@@ -111,16 +104,10 @@ private:
 	float c_lastValue = 4096.0;
 
 };
-// these should never be needed
-//void   setFlow(double);
-//void   setCurrent(double);
-//void   setTotal(double);
-//void   setPercent(double);
 
 //instantiates and initializes at startup, dtor at exit
 extern rtData RTdata;
 
-//int init_ProcessVariables(void); in ctor
 #define updatePrimaryVariable( r )   RTdata.updateFlow( r )
 #define updateSecondaryVariable( r ) RTdata.updateCurrent( r )
 

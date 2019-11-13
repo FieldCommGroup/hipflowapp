@@ -76,7 +76,7 @@ uint8_t cmd_103::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	return ret;
 }
 
-// 5-too few; 9 invalid burst sselector;    8 warn-times adjusted; 6-devicespec; 
+// 5-too few; 9 invalid burst selector;    8 warn-times adjusted; 6-devicespec; 
 
 // generate reply
 // add bytes from data to pData, filling ByteCnt with the number added (caller adds RC/DS)

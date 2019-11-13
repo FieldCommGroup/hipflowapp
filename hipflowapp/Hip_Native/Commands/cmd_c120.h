@@ -27,7 +27,7 @@
 
 // global test info
 char testName[15];
-float testNumber; // .0 is none, .1 is xxxa, .2 is xxxb etc
+float testNumber = 0; // .0 is none, .1 is xxxa, .2 is xxxb etc
 
 class cmd_120 : public cmd_base
 {

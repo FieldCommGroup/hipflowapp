@@ -86,10 +86,11 @@ public:
 
 public:
 	dataItem(): isVolatile(false),isConfig(false), isHasValue(false),
-		isChanged_pri(false),isChanged_sec(false),
-		itemType(ht_Unknown),  pRaw(NULL), triggerOnChange(false)  {};
+		isChanged_pri(false),isChanged_sec(false), len(0),
+		itemType(ht_Unknown),  pRaw(NULL), triggerOnChange(false), hasBeenTriggered(false){};
 	dataItem(bool Vol, bool Con, hartTypes_t type, void *data, int sz=1 ): len(sz),isVolatile(Vol),isConfig(Con),
-		isHasValue(false),isChanged_pri(false),isChanged_sec(false),itemType(type),pRaw(data), triggerOnChange(false)
+		isHasValue(false),isChanged_pri(false),isChanged_sec(false),itemType(type),pRaw(data), triggerOnChange(false),
+		hasBeenTriggered(false)
 	{
 		set(Vol, Con, type, data, sz );
 	};
@@ -130,8 +131,6 @@ public:
 
 		dataEqual(SRC.pRaw, SRC.itemType, SRC.len);
 
-//if (itemType == ht_int8 && pRaw != NULL && *((uint8_t*)pRaw)== 250 )
-//printf("DataItem cctor Copied an UNUSED value.\n");
 		return *this;
 	};
 
@@ -253,7 +252,7 @@ public: // we'll start out with everything public and work from there
 	uint32_t maxburstCommIn_50mS_ticks;
 	// Trigger struct:
 	dataItem TrigLvlMode;		//enum 0=continuous,1=Window,2=Rising,3=Falling;4=AnyChangeInMsgVars
-	dataItem trigLvlClass;		//wtf
+	dataItem trigLvlClass;		
 	dataItem trigLvlUnits;
 	dataItem trigLvlValue;
 	float    risingTrigVal;

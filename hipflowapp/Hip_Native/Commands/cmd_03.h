@@ -80,13 +80,6 @@ uint8_t cmd_03::insert_Data(uint8_t &ByteCnt, uint8_t *pData)
     return ret;
 };
 
-// fill the reply data, address has been filled
-// use the default base class version
-//void cmd_03::burstThisCmd(dataItem indexList[], AppPdu *pPDU)
-//{
-//	uint8_t dbgReply = insert_Data(uint8_t &ByteCnt, uint8_t *pData)
-//}
-
 bool cmd_03::isTriggered(burstMessage & bMsg)// this is a burstable command
 {
 	bool R = false;

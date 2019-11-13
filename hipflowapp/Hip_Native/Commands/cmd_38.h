@@ -96,11 +96,6 @@ uint8_t cmd_38::insert_Data(uint8_t &ByteCnt, uint8_t *pData)
 	int ret = 0;
 	ByteCnt = 0; // just in case
 	// latest spec says return the config counter regardlwss of host type
-	//if (isVer5Host)
-	//{
-	//	return RC_SUCCESS;// no response here
-	//}
-	//ret = tempconfigChangeCnt.insertSelf( &pData, &ByteCnt ) ;
 	ret = configChangeCnt.insertSelf( &pData, &ByteCnt ) ;
 
 	if ( ret )

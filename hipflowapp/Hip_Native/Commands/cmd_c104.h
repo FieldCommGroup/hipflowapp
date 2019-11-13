@@ -163,7 +163,6 @@ uint8_t cmd_104::extractData(uint8_t &ByteCnt, uint8_t *pData)
 		}
 	}
 
-//	uint8_t goodUnits = ItemValue(getBurstUnit(burstMsgNumber),uint8_t);
 	if ( mod != 0 && mod != 4 ) // then test for range when mode not continuopus or on change
 	{
 		if (pDV != NULL)
@@ -190,10 +189,9 @@ uint8_t cmd_104::extractData(uint8_t &ByteCnt, uint8_t *pData)
 				3	Falling. The Burst Message is triggered when the source value Falls Below the specified trigger value.
 				4	On-Change. The burst message is triggered when any value in the message changes.
 
-				WAP 19Aug2019 - The device can either burst at transition then each min time after
-				OR check every min time and see if it's outside the range.
+				WAP 19Aug2019 - The device can either burst at transition then each min time after<<<won't pass test!
+				OR check every min time and see if it's outside the range.<<< will pass test
 			*/
-			//printf(" Burst mode %d has not been implemented.\n", mod);
 
 			float hi,lo;
 			float USL, LSL;//val
@@ -281,10 +279,6 @@ uint8_t cmd_104::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	}
 	// if we get here the contens are valid
 	burstMsgArray[burstMsgNumber] = tempBurstMsg;
-
-	//burstMsgArray[burstMsgNumber].printParts();
-	//tempBurstMsg.printParts();
-
 			 
 	if (ret)
 	{

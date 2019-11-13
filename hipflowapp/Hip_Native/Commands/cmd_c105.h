@@ -101,11 +101,7 @@ uint8_t cmd_105::insert_Data(uint8_t &ByteCnt, uint8_t *pData)
 	{
 		pBM->trigLvlUnits = getBurstUnit(burstMsgNumber);
 
-uint8_t localUnits = ItemValue(pBM->trigLvlUnits,uint8_t);
-//if (localUnits == HART_NOT_USED)
-//{
-//	printf("Units in 105 show not-used for command %d\n", ItemValue(burstMsgArray[burstMsgNumber].command_number, uint16_t));
-//}
+		//uint8_t localUnits = ItemValue(pBM->trigLvlUnits,uint8_t);
 		do // once
 		{
 			if (ret = pBM->TrigLvlMode. insertSelf(&pData, &ByteCnt)) break;

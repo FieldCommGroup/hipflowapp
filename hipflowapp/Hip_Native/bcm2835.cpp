@@ -1639,7 +1639,7 @@ int bcm2835_init(void)
 		if (fread(buf, 1, sizeof(buf), fp) == sizeof(buf))
 		{
 			bcm2835_peripherals_base = (uint32_t *)((long)buf[0] << 24 | buf[1] << 16 | buf[2] << 8 | buf[3] << 0);
-			bcmLOGIT( " peripherals_base is now 0x%04x.\n",bcm2835_peripherals_base);
+			bcmLOGIT( " peripherals_base is now 0x%04x.\n",(unsigned)bcm2835_peripherals_base);
 		}
 		// paul 15mar18 add else
 		else

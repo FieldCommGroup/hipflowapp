@@ -190,14 +190,14 @@ FILE* openSystemFile( string& dataFileSpec, string& systemFileSpec )
 
 	if ( sp == NULL ) // failed to open
 	{ 
-		bcmLOGIT("%s failed to open;  superuser required.\n",systemFileSpec.c_str(),errno);
+		bcmLOGIT("%s failed to open;  superuser required.\n",systemFileSpec.c_str());
 		goto openExit;;
 	}// else success, will generate the dataFileSpec & modify group for memory access
 
 	// while we're here and we know we're superuser, change the mod on the memory
 	if (  (r = chmod(PI_MEMORY_PATH, 0660))  )// allow kmem user to write memory too (zero on success)
 	{// failed, errno holds the issue number
-		bcmLOGIT("%s failed to change mode to %0 errno=%d .\n",PI_MEMORY_PATH, PI_MEMORY_PATH, errno);
+		bcmLOGIT("%s failed to change mode to %s errno=%d .\n",PI_MEMORY_PATH, "0660", errno);
 	}
 
 	// we are super user here - we opened the system file

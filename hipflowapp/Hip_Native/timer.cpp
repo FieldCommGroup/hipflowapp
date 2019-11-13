@@ -82,7 +82,7 @@ errVal_t halt_itimer(void)
 	set_timeval(&(inITimer.it_interval), secTime, usecTime);
 	set_timeval(&(inITimer.it_value), secTime, usecTime);
 
-	sprintf(buf, "halt_itimer    new timer: secTime=%d  usecTime=%d", secTime,
+	sprintf(buf, "halt_itimer    new timer: secTime=%u  usecTime=%u", secTime,
 			usecTime);
 	timinglog(buf);
 
@@ -93,7 +93,7 @@ errVal_t halt_itimer(void)
 	}
 	else
 	{
-		dbgp_tmr("Timer Halted (event = 0x%.4X, Time left:\n", saveEvent);
+		dbgp_tmr("Timer Halted (event = 0x%.4hX, Time left:\n", saveEvent);
 		display_timer(&saveITimer);
 	}
 
@@ -118,7 +118,7 @@ errVal_t resume_itimer(void)
 	/* Set value of interval timer from saved old value */
 	inITimer = saveITimer;
 
-	dbgp_tmr("Resuming Timer (event = 0x%.4X, Time left:\n", saveEvent);
+	dbgp_tmr("Resuming Timer (event = 0x%.4hX, Time left:\n", saveEvent);
 	display_timer(&inITimer);
 
 	sprintf(buf, "resume_itimer    new timer: secTime=%d  usecTime=%d",
@@ -192,7 +192,7 @@ errVal_t set_itimer(uint32_t uSec, uint16_t event)
 	usecTime = uSec % USEC_PER_SEC;
 	set_timeval(&(inITimer.it_value), secTime, usecTime);
 
-	sprintf(buf, "set_itimer %d   secTime=%d  usecTime=%d", uSec, secTime,
+	sprintf(buf, "set_itimer %u   secTime=%u  usecTime=%u", uSec, secTime,
 			usecTime);
 	timinglog(buf);
 

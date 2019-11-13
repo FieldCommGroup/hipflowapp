@@ -21,7 +21,7 @@
     <ClCompile Include="memory_glbl.cpp" />
     <ClCompile Include="Files.cpp" />
     <ClCompile Include="IOthread.cpp" />
-    <ClCompile Include="PV.Cpp" />
+    <ClCompile Include="PV.cpp" />
     <ClCompile Include="timeStamp.cpp" />
     <ClCompile Include="PhysicalAlarms.cpp" />
     <ClCompile Include="Data\insert_Extract.cpp" />
@@ -31,14 +31,30 @@
     </ClCompile>
     <ClCompile Include="Units.cpp" />
     <ClCompile Include="FillDefaultValues.cpp" />
-    <ClCompile Include="hipserver\hipserver\AppConnect\app.cpp" />
-    <ClCompile Include="hipserver\hipserver\AppConnect\apppdu.cpp" />
-    <ClCompile Include="hipserver\hipserver\AppConnect\tppdu.cpp" />
-    <ClCompile Include="hipserver\hipserver\Realtime\toolqueues.cpp" />
-    <ClCompile Include="hipserver\hipserver\Realtime\toolsems.c" />
-    <ClCompile Include="hipserver\hipserver\Realtime\toolsigs.c" />
-    <ClCompile Include="hipserver\hipserver\Realtime\toolthreads.c" />
-    <ClCompile Include="hipserver\hipserver\Realtime\toolutils.c" />
+    <ClCompile Include="hipserver\hipserver\Realtime\toolsems.c">
+      <Filter>Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="hipserver\hipserver\Realtime\toolsigs.c">
+      <Filter>Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="hipserver\hipserver\Realtime\toolthreads.c">
+      <Filter>Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="hipserver\hipserver\Realtime\toolutils.c">
+      <Filter>Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="hipserver\hipserver\AppConnect\app.cpp">
+      <Filter>AppConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="hipserver\hipserver\AppConnect\apppdu.cpp">
+      <Filter>AppConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="hipserver\hipserver\Realtime\toolqueues.cpp">
+      <Filter>Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="hipserver\hipserver\AppConnect\tppdu.cpp">
+      <Filter>AppConnect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="AppConnect">
@@ -73,7 +89,6 @@
     <ClInclude Include="cSerialFile.h">
       <Filter>Database</Filter>
     </ClInclude>
-    <ClInclude Include="RunningAverage.h" />
     <ClInclude Include="ADS1256_defs.h">
       <Filter>Includes</Filter>
     </ClInclude>
@@ -326,21 +341,56 @@
     <ClInclude Include="debug.h">
       <Filter>Includes</Filter>
     </ClInclude>
-    <ClInclude Include="hipserver\hipserver\AppConnect\app.h" />
-    <ClInclude Include="hipserver\hipserver\AppConnect\appconnector.h" />
-    <ClInclude Include="hipserver\hipserver\AppConnect\appmsg.h" />
-    <ClInclude Include="hipserver\hipserver\AppConnect\apppdu.h" />
-    <ClInclude Include="hipserver\hipserver\AppConnect\tpdll.h" />
-    <ClInclude Include="hipserver\hipserver\AppConnect\tppdu.h" />
-    <ClInclude Include="hipserver\hipserver\Common\common.h" />
-    <ClInclude Include="hipserver\hipserver\Common\datatypes.h" />
-    <ClInclude Include="hipserver\hipserver\Common\errval.h" />
-    <ClInclude Include="hipserver\hipserver\Common\hartdefs.h" />
-    <ClInclude Include="hipserver\hipserver\Realtime\toolqueues.h" />
-    <ClInclude Include="hipserver\hipserver\Realtime\toolsems.h" />
-    <ClInclude Include="hipserver\hipserver\Realtime\toolsigs.h" />
-    <ClInclude Include="hipserver\hipserver\Realtime\toolthreads.h" />
-    <ClInclude Include="hipserver\hipserver\Realtime\toolutils.h" />
-    <ClInclude Include="hipserver\hipserver\Server\debug.h" />
+    <ClInclude Include="hipserver\hipserver\Realtime\toolsems.h">
+      <Filter>Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\Realtime\toolsigs.h">
+      <Filter>Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\Realtime\toolthreads.h">
+      <Filter>Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\Realtime\toolutils.h">
+      <Filter>Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\AppConnect\app.h">
+      <Filter>AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\AppConnect\appconnector.h">
+      <Filter>AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\AppConnect\appmsg.h">
+      <Filter>AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\AppConnect\apppdu.h">
+      <Filter>AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\Common\common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\Common\datatypes.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\Server\debug.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\Common\errval.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\Common\hartdefs.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="RunningAverage.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\Realtime\toolqueues.h">
+      <Filter>Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\AppConnect\tpdll.h">
+      <Filter>AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="hipserver\hipserver\AppConnect\tppdu.h">
+      <Filter>AppConnect</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -82,7 +82,8 @@ printf("-->> Appconnector generated\n");
 			break;
 		}
 printf("-->> Command Line Handled\n");
-if (NONvolatileData.devVars[0].updatePeriod > 0xc80)printf("Value = %d pre -config.\n", NONvolatileData.devVars[0].updatePeriod);
+if (NONvolatileData.devVars[0].updatePeriod > 0xc80)
+	printf("Value = %lu pre -config.\n", NONvolatileData.devVars[0].updatePeriod);
 
 		// read/set static configuration data
 		if ((errval = app.configure()))
@@ -91,7 +92,8 @@ if (NONvolatileData.devVars[0].updatePeriod > 0xc80)printf("Value = %d pre -conf
 			break;
 		}
 printf("-->> App Configured\n");
-if (NONvolatileData.devVars[0].updatePeriod > 0xc80)printf("Value = %d post-config.\n",NONvolatileData.devVars[0].updatePeriod);
+if (NONvolatileData.devVars[0].updatePeriod > 0xc80)
+	printf("Value = %lu post-config.\n",NONvolatileData.devVars[0].updatePeriod);
 
 		if ((errval = app.initialize()))
 		{ // error returned
@@ -99,7 +101,8 @@ if (NONvolatileData.devVars[0].updatePeriod > 0xc80)printf("Value = %d post-conf
 			break;
 		}
 printf("-->> App Initialized\n");
-if (NONvolatileData.devVars[0].updatePeriod > 0xc80)printf("Value = %d post-init.\n", NONvolatileData.devVars[0].updatePeriod);
+if (NONvolatileData.devVars[0].updatePeriod > 0xc80)
+	printf("Value = %lu post-init.\n", NONvolatileData.devVars[0].updatePeriod);
 
 		// start working, infinite loop
 		printf("hello from %s!\n", app.getFullName());

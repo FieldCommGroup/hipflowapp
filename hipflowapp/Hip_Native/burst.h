@@ -53,7 +53,7 @@ typedef struct stackStruct_s
 	uint32_t  sentCnt;
 	// don't know what this was for::> char (*serviceFunc)(MSG * pMsg);
 	stackStruct_s():is_enabled(false), msg_Number(-1), remaining50mSticks(0), 
-					sentCnt(0){};
+		remainingMaxSticks(0), sentCnt(0){};
 }stackStruct_t;
 
 extern stackStruct_t burstStack[MAX_BURSTMSGS];

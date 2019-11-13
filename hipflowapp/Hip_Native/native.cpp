@@ -16,34 +16,22 @@
  *****************************************************************/
 
 #include "native.h"
-
-//#include <errno.h>
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <unistd.h>
-//
-//#include "datatypes.h"
 #include "debug.h" // holds dbg logs
 #include "errval.h"
-//#include "hthreads.h"
 #include "sems.h"
-//#include "tooldef.h"
-//#include "timer.h"
-////#include "serport.h"
 #include "cDataRaw.h"
 #include "hartPhy.h" 
 #include <string.h>
 #include "configuration_Default.h"
-//#include "PV.h"
 
 #include "hartdefs.h"
 #include "appconnector.h"
 #include "apppdu.h"
 #include "PhysicalAlarms.h"
 
-//extern AppConnector<AppPdu> *pAppConnector;
+
 extern int init_ProcessVariables(void);/*  instead of all PV.h  */
-//extern  uint8_t *pack(uint8_t *dest, const uint8_t *source, int nChar);// in database.cpp
+
 extern int initBurstStack(); // in burst.cpp
 extern errVal_t FillDefaultValues(); // in FillDefaultValues.cpp
 /*
@@ -51,9 +39,7 @@ extern errVal_t FillDefaultValues(); // in FillDefaultValues.cpp
  */
 NativeData::NativeData():myAddr( {0,0,0,0,0} )
 {
-	//strcpy(port, "/dev/ttyS0");
-	//pollAddress = -1;	// error condition
-	
+// nothing else required	
 }
 
 NativeData::~NativeData()
@@ -101,7 +87,6 @@ void NativeData::handleDataDependencies()
 {
 	GenerateMyAddress();
 	initBurstStack();
-	//NONvolatileRaw,burstMsg_Raw_t brstMsgs[MAX_BURSTMSGS];
 }
 
 void NativeData::GenerateMyAddress()
@@ -118,71 +103,8 @@ errVal_t NativeData::initialize()
 {
 	errVal_t ret = NO_ERROR;
 	int r = 0;
-	// data has been configured, generate data acquisition 
-
-	//if ( (r=init_ProcessVariables()) ) // had an error
-	//{
-	//	fprintf(stderr,"Process Variables failed to initialize!\n");
-	//	ret = (errVal_t)r;
-	//}
-
+	//no-op
 	return ret;
-
-
-#if 0 // these don't work anymore...
-	errVal_t retval;
-	uint8_t status;
-	const char *mainThrName = "Main Thread";
-	do
-	{
-		retval = tp_create_semaphores(TRUE);
-		if (retval == SEM_ERROR)
-		{
-			fprintf(p_toolLogPtr, "\nSemaphore Error!!!\n");
-			break;
-		}
-
-		/* Create main thread to do misc. setups */
-		status = pthread_create(&mainThrID, NULL, mainThrFunc,
-				(void *) mainThrName);
-		if (retval != NO_ERROR)
-		{
-			fprintf(p_toolLogPtr, "\nError Creating %s!!\n", mainThrName);
-			break;
-		}
-
-		/* Wait till all necessary setup has been done by the
-		 * main thread before transferring control to the master state machine
-		 */
-		dbgp_sem("Waiting for semInit\n");
-		status = sem_wait(p_semInit);
-		if (status == LINUX_ERROR)
-		{
-			fprintf(p_toolLogPtr, "Error getting semaphore p_semInit\n");
-			break;
-		}dbgp_sem("Got semInit\n");
-
-		//initialize_htest_queues();	// not sure that this is required for TP Master
-
-	} while (FALSE); /* Run the loop at most once */
-
-	if ((status != NO_ERROR) || (sysError))
-	{
-		if (status != LICENSE_ERROR)
-		{
-			printf("\n\n");
-			printf("System Error!!\n");
-			printf("   Terminating......\n\n\n");
-		}
-		status = LINUX_ERROR;
-//		sleep(2);
-//		cleanup();
-//		exit(1);
-	} /* if (retVal = ERROR) */
-
-//	dbgp_dvlp("Going to %s prompt...\n\n", TOOL_NAME);
-	return (errVal_t) status;
-#endif //0
 }
 
 
@@ -198,33 +120,8 @@ errVal_t NativeData::cleanup()
 	{
 		sem_post(p_semStopMain);
 	}
-#if 0
-	/* Wait for main thread to terminate */
-	if (mainThrID != (pthread_t) NULL)
-	{
-		errVal = pthread_join(mainThrID, NULL);
 
-		if (errVal == NO_ERROR)
-		{
-			/* Reset ID to prevent accidental misuse */
-			mainThrID = (pthread_t) NULL;
-		}
-		else
-		{
-			fprintf(stderr, "Error %d in pthread_join() for Main Thread: %s\n",
-					errVal, "Unknownerror"/*strerror(errVal)*/);
-		}
-
-	}
-
-
-	delete_threads();
-#endif
 	delete_semaphores();
-//serial	close_fsk_port();
-// let the enclosing app do this	close_toolLog();
-
-	//printf("\n%s Done!\n", TOOL_NAME);
 
 	return retval;
 }

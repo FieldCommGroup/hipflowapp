@@ -90,14 +90,6 @@ bool match48(bool isPri)
 	return  (volatileData.cmd48Data[0] == pMasterData[0]) && // Device Specific
 		    (volatileData.cmd48Data[6] == pMasterData[6]) && // EFDS
 		    (volatileData.cmd48Data[8] == pMasterData[8]) ;  // Simulation active
-	//for (int k = 0; k < CMD48_SIZE; k++)
-	//{//     rcv'd data           actual data
-	//	if (pCmdDataInUse[k] != volatileData.cmd48Data[k])
-	//	{
-	//		match = false;
-	//		break; // outa for loop
-	//	}
-	//}
 }
 //dataItem(bool isVolatile, bool isConfig, hartTypes_t type, void *data); ptr into a data struct
 
@@ -437,21 +429,6 @@ void deviceVar::ctor_Device()
 			DevVar2UnitFill();
 		}
 		break;
-		//case 3:
-		//{
-		//	DevVar3UnitFill();
-		//}
-		//break;
-		//case 244:
-		//{
-		//	DevVarPRUnitFill();// %Range
-		//}
-		//break;
-		//case 245:
-		//{
-		//	DevVarLCUnitFill();
-		//}
-		//break;
 		default:
 		{
 			DevVarBadUnitFill();
@@ -787,11 +764,10 @@ uint8_t dataItem::insertSelf( uint8_t **ppData, uint8_t *pInserCnt )
 	return ret;
 }
 
-
-
+/*  Note that this app doesn't need all the different data types.
+    Your app might need some that aren't implemented yet.       */
 uint8_t dataItem::extractSelf( uint8_t **ppData, uint8_t *pInserCnt, uint8_t& /*in+out*/ changeCnt )
 {
-
 	uint8_t ret = -1;
 	int i;// these are static so they aren't continuously being implemented
 	static uint8_t  data_ui8Arr[128];

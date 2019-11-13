@@ -21,7 +21,7 @@
 #include "command.h"
 #include "PV.h"
  
-cmd_base::cmd_base(int num) :  cmdNumber(num)
+cmd_base::cmd_base(int num) :  cmdNumber(num), fromPrimary(true)
 {
 }
 

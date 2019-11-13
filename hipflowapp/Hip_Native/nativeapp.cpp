@@ -51,97 +51,21 @@ extern uint8_t getDeviceStatus(void);
 // parse command line args and set class attributes reflecting them
 errVal_t NativeApp::commandline(int argc, char *argv[])
 {
-errVal_t errval = NO_ERROR;
+	errVal_t errval = NO_ERROR;
 
-// If command line options are present, errval is initialized
-// to an error value. It is then set to NO_ERROR only if all
-// command line options are found to be valid.
-if (argc > 1)
-{
-	errval = INVALID_INPUT_ERROR;
-}
-else
-{
-	appFullName = argv[0];
-}
-#ifdef _NATIVE_HAS_NO_OPTIONS  /* these are left for an example if options are required later */
-for (uint8_t i = 1; i < argc; i++)
-{
-	char c0 = argv[i][0];
-
-	if (c0 == '-')
+	// If command line options are present, errval is initialized
+	// to an error value. It is then set to NO_ERROR only if all
+	// command line options are found to be valid.
+	if (argc > 1)
 	{
-		/* Flag error if parameter value after the command line
-		 * option is missing or if there is no space between the
-		 * option and its value.
-		 */
-		if (strlen(argv[i]) != 2)
-		{
-			fprintf(stderr, "\nERROR:\n");
-			fprintf(stderr,
-				" Invalid command format (missing space or value)\n");
-			break;
-		}
-
-		char c1 = argv[i][1];
-
-		switch (c1)
-		{
-		case 'h':
-			// -h  Print command usage information
-			/* Do nothing for -h option.
-			 * This function returns an error value unless specifically
-			 * set to NO_ERROR. The calling function (main()) prints the
-			 * help menu whenever this function returns a value other
-			 * than NO_ERROR.
-			 */
-			fprintf(stderr, "%s\n\n", GetName());
-			fprintf(stderr, "Usage:\n");
-			fprintf(stderr, " %s [Option(s)]\n\n", GetName());
-			fprintf(stderr, "Options:\n");
-			fprintf(stderr, " -h Print command usage information and quit.\n");
-			fprintf(stderr, " -v Print version number and quit.\n");
-			fprintf(stderr, " -p <path> The default is /dev/ttyS0.\n");
-			exit(0);
-			break;
-
-		case 'v':
-
-			// app name and version
-			printf("%s %s\n", GetName(), GetVersion());
-			exit(0);
-			break;
-
-		case 'p':
-			// -p <path>
-			if (++i < argc)
-			{
-				//strcpy(serialPort, argv[i]);
-				//master.setPort(serialPort);
-				errval = NO_ERROR;
-			}
-			break;
-
-		default:
-			// Invalid command line option
-			fprintf(stderr, "\nERROR:\n");
-			fprintf(stderr, " Invalid command line option\n");
-			break;
-		} // switch (c1)
-	} // if (c0 == '-')
+		errval = INVALID_INPUT_ERROR;
+	}
 	else
 	{
-		fprintf(stderr, "\nERROR:\n");
-		fprintf(stderr, " Invalid command usage\n");
+		appFullName = argv[0];
 	}
 
-	if (errval != NO_ERROR)
-	{
-		break;
-	}
-} // for (uint8_t i = 1; i < argc; i++)
-#endif
-return (errval);
+	return (errval);
 }
 
 // read a file and/or set static data items
@@ -186,9 +110,6 @@ errVal_t NativeApp::initialize()
 	printf("\n\n");
 	printf("****** Starting %s %s ******\n\n", appname, appversion);
 
-// BURSTOFF	pBurstPdu = pAppConnector->getNewPDU();		// supposed to copy address
-// BURSTOFF	pBurstPdu->processPdu(); // execute stuff like we just received the pdu
-
 	errVal_t errval = devicedata.initialize();// does nothing now
 
 	if (errval == NO_ERROR)
@@ -213,13 +134,7 @@ errVal_t NativeApp::initialize()
 errVal_t NativeApp::ready()
 {// 
 	errVal_t errval = NO_ERROR;
-	
-	// we now start the physical layer data acquisition in initialize()
-	// we have nothing else to do at connection time
-	// future:
-	// we need to verify all is functional and return NO_ERROR or, 
-	//                   if non functional, return an error
-	
+	// we're always ready ;)
 	return errval;
 }
 
@@ -247,7 +162,6 @@ int NativeApp::handleMessage(AppPdu *pPDU)
 	r = pPDU->processPdu( ); // internal DriverMsg to MSG data transfer
 	r = pPDU->evalMsg();     // FOR_US || NOT_OURS...doesn't check checksum
 #ifdef _DEBUG
-
 	if (pPDU->CmdNum() == 109)
 	{
 		unsigned U = GetTickCount(); U &= 0xFFFFFF;
@@ -264,10 +178,9 @@ int NativeApp::handleMessage(AppPdu *pPDU)
 #endif
 	if (pPDU->IsSTX()) pAppConnector->incStx();
 	do
-	{
+	{	// see line 174 in burst.cpp for cmd 120 handling info
 		if ( r == FOR_US || pPDU->CmdNum() == 120)  // it is addressed to us so process the message 
 		{// handle
-//			r = slave_app(pPDU->nMSG());// loads data base with request, refills pkt w/ resp
 			r = handle_device_message(pPDU);// -1 at do not reply;  0 with BC/RC/DS all set (no other return values)
 			if ( r == NOT_OURS )// a do-not-respond
 			{
@@ -292,25 +205,16 @@ int NativeApp::handleMessage(AppPdu *pPDU)
 		// TJ 20may2019 - caller only supports NO_ERROR & FATAL_ERROR, all else is discarded like -1
 		{
 		// timj 30jul2019 - hip_server clients must respond to wrong address
-			//pPDU->clear();
-			//dbgp_log("-------- NotOurs via address\n",0);
-			//return r;// return not ours to skip the send_message
 			uint8_t commerr = 0x84;             // Comm Error 0x80 + Communication Failure 0x04
 			TpPdu tppdu(pPDU->GetPduBuffer());
 			tppdu.ProcessErrResponse(0x84);    // forms error response in place..using resrved comm err
 			return NO_ERROR;
 		}
-		/* evalMsg only returns good or bad  
-		else
-		if ( r == ERROR_OCCURRED )// in eval
-		{				
-			pPDU->setErrorPkt(); // - always returns 0
-		}// fall thru to return & send_message
-		*/
+		// evalMsg only returns good or bad  
 	}
 	while(false);// execute once
 
-	return 0;
+	return NO_ERROR;
 }
 
 // stop threads, delete semaphores and allocated memory
@@ -412,15 +316,6 @@ int NativeApp::burstIt(dataItem indexList[], AppPdu *pPDU)
 	//we need an address
 	if (pCmd->number() == 9)// the only burst cmd w/ indexes
 	{
-		/*cmd_09* pNine = dynamic_cast<cmd_09*>(pCmd);
-		if (pNine == NULL)
-		{
-			printf("Burst command pointer did not cast to command.\n ");
-		}
-		else
-		{
-			pNine->setIndexes(indexList);
-		}*/
 		pCmd->setIndexes(indexList);
 	}
 	

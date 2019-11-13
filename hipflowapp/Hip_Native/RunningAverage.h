@@ -53,8 +53,10 @@ public:
 		pRndBuff = new circular_buffer<C>(initialSize);
 		C local = 0L; //force it to be a numeric or have an operator=...optimized out in Release
 	};
+
 	virtual ~running_average() {	std::lock_guard<std::mutex> lock(mutex_); 
 									delete pRndBuff;   pRndBuff = NULL;           };
+	// no cctor nor op= ...never do that.
 
 #define DOTHEMATH  ((double)runningTotal/(double)(pRndBuff->size()))
 	// get the value

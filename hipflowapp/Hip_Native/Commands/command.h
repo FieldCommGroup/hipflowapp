@@ -64,7 +64,6 @@ public: // work
 	// return a return-code , >1  if no response required
 	int  handleCmd(AppPdu *pPDU);
 	int setRespCode(uint8_t RespCode);// returns a return-code (see above)
-	// bool isWarning(int RespCode);//false is an error, just checks agaist spec 307
 	// use macro isWarning( ResponseCode )
 
 	virtual void setIndexes(dataItem indexList[]) {}; // only implemented in burst commands with indexes

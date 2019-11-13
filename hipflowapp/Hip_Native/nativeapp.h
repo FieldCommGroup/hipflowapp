@@ -43,10 +43,9 @@ class NativeApp: public App
 	bool   deviceISbursting = false;
 
 public:
-	NativeApp(const char *name, const char *ver) : App(name, ver, HART_IP)//  native app...
+	NativeApp(const char *name, const char *ver) : App(name, ver, HART_IP), appFullName("")//  native app...
 	{
 		configured = false;
-		appFullName = "";// will have full path
 	}
 	;
 	virtual ~NativeApp()

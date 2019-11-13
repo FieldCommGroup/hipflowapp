@@ -67,7 +67,7 @@ public:		// ctor, dtor
 	~Unit();
 
 public:  // setup
-	void NameUnit(int Unit_Code, string UnitName);
+	void NameUnit(int Unit_Code, string Unit_Name);
 	void SetCvt(double PreAdd, double Mult, double PostAdd);
 
 public:  // usage

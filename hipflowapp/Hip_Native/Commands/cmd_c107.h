@@ -72,40 +72,7 @@ uint8_t cmd_107::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	{
 		return RC_MULTIPLE_9;//Invalid Burst Message
 	}
-#if 0 /* change extraction to into a temoporary */
-	burstMessage * pBM = &(burstMsgArray[burstMsgNumber]);
-	pBM->emptyTheList();// clear all the indexes to UNUSED
 
-	// slot zero CANNOT be 250 not-used
-	if (*pData >= 250)
-	{
-		return RC_INDEX_DISALLOWED;//19
-	}
-	int idxNumber = 0;
-	while (idxNumber < MAX_CMD_9_RESP && ret == RC_SUCCESS && ByteCnt > 0)
-	{
-		tmp = *pData++; ByteCnt--;
-		if (tmp != HART_NOT_USED)
-		{
-			if (NULL == deviceVar::devVarPtr(tmp))
-			{
-				return RC_INVALID;
-			}// else insert it
-			pBM->indexList[idxNumber++].setValue( tmp );
-		}
-		else
-		{	//insert & exit
-			pBM->indexList[idxNumber++].setValue( tmp );
-			while (idxNumber < MAX_CMD_9_RESP)
-			{
-				uint8_t toMakeCompilerHappy = HART_NOT_USED;
-				pBM->indexList[idxNumber++].setValue(toMakeCompilerHappy);
-			}
-			break; // outta while
-		
-		}
-	}//wend
-#else
 	uint8_t localArray[9];
 	memset(localArray, HART_NOT_USED, sizeof(localArray));
 
@@ -137,7 +104,6 @@ uint8_t cmd_107::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	{
 		pBM->indexList[idxNumber].setValue(localArray[idxNumber]);
 	}
-#endif
 
 	return ret;
 }

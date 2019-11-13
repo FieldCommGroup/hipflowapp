@@ -4,10 +4,6 @@ README
 https://avatars0.githubusercontent.com/u/26013747?s=50&v=4
 ----------------------------------------------------------
 
-FieldComm Group
-
-FieldComm Group
-
 **hipflowapp** is one component of the [HART-IP Developer
 Kit](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/doc/HART-IP%20FlowDevice%20Spec.md).
 It implements a [HART flow
@@ -20,6 +16,12 @@ Known Issues
 ------------
 
 Totalizer implementation for the tertiary variable has not been implemented.
+
+On-Change burst trigger infrastructure and implementation does not exist.
+
+Support for several data types have been left blank because they are not needed
+in this implementation. They may be needed in some other implementations. (e.g.
+cDatabase.cpp)
 
 All of the trigger-mode + burst-command combinations have not been tested.
 
@@ -127,6 +129,12 @@ $ ssh root@10.0.0.55
 
 In Visual Studio, go to Tools \> Options \> Cross Platform \> Connection manager
 and add the root ssh login for your Pi.
+
+The Visual Studio DbgFlow configuration sets the \_DEBUG definition. That makes
+the Flow device report as a HART 5 device allowing it to work with the HART OPC
+Server and, therefore, the SDC625. The RlsFlow configuration does not define
+\_DEBUG and the device will report itself as a HART 7 device with the requisite
+changes in command zero.
 
 ### Architecture
 

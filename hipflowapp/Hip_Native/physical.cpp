@@ -39,9 +39,9 @@
 
 extern void* run_io(void * pArgs); // phy thread in IOthread.cpp
        void* run_data(void * pArgs);// forward declaration
-//extern char updatePrimaryVariable(double rawValue);// in PV.Cpp
-//extern char updateSecondaryVariable(double rawValue);// in PV.Cpp
-extern char initPressure(void);// in PV.Cpp
+//extern char updatePrimaryVariable(double rawValue);// in PV.cpp
+//extern char updateSecondaryVariable(double rawValue);// in PV.cpp
+extern char initPressure(void);// in PV.cpp
 
 extern unsigned debuggingBurstCnt;
 extern float pressure,current;

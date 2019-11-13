@@ -18,35 +18,18 @@
  *
  */
 
-//#include "native.h"
-//
-//#include "debug.h" // holds dbg logs
 #include "errval.h"
-//#include "hthreads.h"
-//#include "sems.h"
 #include "cDataRaw.h"
 #include "hartPhy.h" 
 #include <string.h>
-//#include "configuration_Default.h"
-//
-//#include "hartdefs.h"
-//#include "appconnector.h"
-//#include "apppdu.h"
 #include "PhysicalAlarms.h"
-//
-//extern AppConnector<AppPdu> *pAppConnector;
-//extern int init_ProcessVariables(void);/*  instead of all PV.h  */
+
 extern  uint8_t *pack(uint8_t *dest, const uint8_t *source, int nChar);// in database.cpp
-//extern int initBurstStack(); // in burst.cpp
 
 using namespace std;
 
-
-
 ////debug code
 extern uint8_t debugUnitchnge;
-
-
 
 // fill all non volatile with default values and save 'em to the open file
 // close the file on exit
@@ -101,13 +84,9 @@ errVal_t FillDefaultValues()
 
 /* the following are the data that the PV has that doesn't pertain to any other */
 	NONvolatileData.transferFunction = 0;
-	//NONvolatileData.  rangeValueUnits;
 	// analog_io collection
 	NONvolatileData.alarmSelectionCode = 250; // an enum table 6
 	NONvolatileData.analogChannelFlags = 0; // table 26	input channel
-
-	//  main measurement
-	//NONvolatileData.devVars[0].Units	;		  //cmd9element_s.dvUnits:: ie digital units
 
 
 	NONvolatileData.rangeValueUnits = UNITS_KGpH;

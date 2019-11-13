@@ -200,7 +200,7 @@
     <ClCompile Include="nativeapp.cpp" />
     <ClCompile Include="physical.cpp" />
     <ClCompile Include="PhysicalAlarms.cpp" />
-    <ClCompile Include="PV.Cpp" />
+    <ClCompile Include="PV.cpp" />
     <ClCompile Include="sems.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="timeStamp.cpp" />

@@ -76,12 +76,6 @@ uint8_t * pcmd48data; // actually an array
 		y++;
 	}
 
-	// this now happens at every command response
-	/*if ( ret == RC_SUCCESS )
-	{
-		update_MoreStatus(pcmd48data);
-	}*/
-
 	return ret;// the response is the same for both transactions
 }
 
@@ -109,11 +103,6 @@ uint8_t cmd_48::insert_Data(uint8_t &ByteCnt, uint8_t *pData)
 	*pData++ = (uint8_t)0; ByteCnt++;// byte 7 operating mode - requires 0
 	*pData++ = (uint8_t)0; ByteCnt++;// byte 8 standardized Status 0 - we do not monitor so 0x00
 
-	// not allowed -----
-	//bool mismatch = (fromPrimary) ? Pri_MSA() : Sec_MSA();// true if current != last cmd
-	//if (mismatch)
-	//	ret = RC_WARN_14;
-
     return ret;
 };
 
@@ -121,34 +110,12 @@ uint8_t cmd_48::insert_Data(uint8_t &ByteCnt, uint8_t *pData)
 bool cmd_48::isTriggered(burstMessage & bMsg)// this is a burstable command
 {
 	bool R = false;
-	// is changed is the only one that makes sense and it's not supported so this is ludicrous... 
+	// is changed is the only one that makes sense and it's not supported right now... 
 	// see More Status Available bit!
 	return R;
 }
 
 
-//void cmd_48::update_MoreStatus(uint8_t * pData)// pdata is an array of cmd 48 data extracted
-//{
-//	bool match = true;
-//	for ( int k = 0; k < 14; k++)
-//	{
-//		if (pData[k] != volatileData.cmd48Data[k] )
-//		{
-//			match = false;
-//			break; // outa for loop
-//		}
-//	}
-//	if ( match )
-//	{// clear MSA bit
-//		mismatch = false;
-//		if ( fromPrimary ) Pri_MSA(false);
-//		else               Sec_MSA(false);
-//		// Device Status is set in NativeApp::handle_device_message(AppPdu *pPDU)
-//	}
-//	else // - leave 'em alone'
-//	{
-//		mismatch = true;
-//	}
-//};
+
 
 #endif // CMD_48_H_

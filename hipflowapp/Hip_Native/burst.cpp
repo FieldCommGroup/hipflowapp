@@ -57,10 +57,6 @@ void burstDeactivate(uint8_t Msg_Number)
 	burstStack[Msg_Number].is_enabled = false;
 	sem_post(&burstSemaphore) ;
 }
-//int activateBurstMsg(uint8_t burstMsgNum)
-//{// put it on all the appropriate lists
-//	return -1;//fail
-//}
 
 extern float testNumber;
 /*  step times is to coerce the current time settings int the closest spec's window 
@@ -101,7 +97,7 @@ void testStep(void)
 	for (int y = 0; y < NUM_PAIRS; y++)
 	{
 		rc = burstMessage::step(testValue[y], retVal);
-		printf(" test %9d and got %9d expected %9d with RC %d\n", testValue[y], retVal, expectedV[y], rc);
+		printf(" test %9u and got %9u expected %9u with RC %u\n", testValue[y], retVal, expectedV[y], rc);
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -175,7 +171,10 @@ int burstMessage::step(uint32_t& aTime, unsigned &ret)
 	if (aTime <= ONE_MINUTE)
 	{// find closest
 		unsigned lower = 0;
-		int start = (testNumber > 103.05 && testNumber < 103.15)?3:0;/////////////////////deal with the old test to see if there is any other issue
+		/* I move the start limit for particular CAL test 103a to .5 sec since the test has not been updated to the HART-IP level specs ( .05 sec )
+			This is so we can pass that part and verify that test points further down in the test pass OK. testNumber variable is normally 0
+		    actual testNumber is received from command 120 (which is addressed to someone else) we also use it to deliniate the terminal output for tests*/
+		int start = (testNumber > 103.05 && testNumber < 103.15)?3:0;//////deal with the old test to see if there is any other issue
 		for( int i = start; legalValues[i] != 0; i++ )
 		{
 			if (aTime <= legalValues[i])// makes legalValues[i] the higher
@@ -184,11 +183,6 @@ int burstMessage::step(uint32_t& aTime, unsigned &ret)
 				{
 					isChng = true;
 				} // else not changed
-				//else
-				//if (lower == 0 )
-				//{
-				//	i--; // so i+1 will == 0
-				//}
 				ret = setStep(aTime, lower, legalValues[i]);// was [i+1]
 				break; // outta for loop
 			}
@@ -199,7 +193,7 @@ int burstMessage::step(uint32_t& aTime, unsigned &ret)
 		}//next
 		if (ret == 0)
 		{
-			printf("ERROR: time value %d not found.\n", aTime);
+			printf("ERROR: time value %lu not found.\n", aTime);
 			ret = 0;
 			isChng = true;
 		}// else ret is the value to use (in mS)
@@ -292,7 +286,7 @@ burstMessage::burstMessage(uint8_t x)// array position
 		maxBurstCommPeriod.setValue(constant_ui32);
 		// Trigger struct:
 		TrigLvlMode.set(false, false, ht_int8, &(tempBMraw.TrMode));	//enum 0=continuous,1=window; 2=rising,3=falling; 4=anychange in any var in variable
-		trigLvlClass.set(false, false, ht_int8, &(tempBMraw.TrClas));	//wtf
+		trigLvlClass.set(false, false, ht_int8, &(tempBMraw.TrClas));	
 		trigLvlUnits.set(false, false, ht_int8, &(tempBMraw.TrUnit));
 		trigLvlValue.set(false, false, ht_float, &(tempBMraw.TrVal));
 		resetTriggerValues();
@@ -321,7 +315,7 @@ burstMessage::burstMessage(uint8_t x)// array position
 		maxBurstCommPeriod.setValue(constant_ui32);
 		// Trigger struct:
 		TrigLvlMode.set(false, true, ht_int8, &(NONvolatileData.brstMsgs[x].TrMode));	//enum 0=continuous,1=window; 2=rising,3=falling; 4=anychange in any var in variable
-		trigLvlClass.set(false, true, ht_int8, &(NONvolatileData.brstMsgs[x].TrClas));	//wtf
+		trigLvlClass.set(false, true, ht_int8, &(NONvolatileData.brstMsgs[x].TrClas));	
 		trigLvlUnits.set(false, true, ht_int8, &(NONvolatileData.brstMsgs[x].TrUnit));
 		trigLvlValue.set(false, true, ht_float, &(NONvolatileData.brstMsgs[x].TrVal));
 		resetTriggerValues();
@@ -336,9 +330,10 @@ burstMessage::burstMessage(uint8_t x)// array position
 		risingTrigVal = 0.0;
 		fallingTrigVal = 0.0;
 	}
+	burstCommIn_50mS_ticks = maxburstCommIn_50mS_ticks = 0;
 }
 
-
+// this is a no-op function used for debugging only (it allows us to see embedded values)
 bool burstMessage::setTriggerValues()// returns true on ERROR
 {
 	uint8_t Mode = ItemValue(TrigLvlMode, uint8_t);
@@ -354,19 +349,10 @@ extern void prDiff(int L);
 // returns true if something changed, false if 
 bool burstMessage::resetTriggerValues()
 {
-	/*bool ret =
-		ItemValue(TrigLvlMode, uint8_t)  != constant_ui8 ||
-		ItemValue(trigLvlClass, uint8_t) != constant_ui8 ||
-		ItemValue(trigLvlUnits, uint8_t) != constant_NotUsed ||
-		ItemValue(trigLvlValue, float)   != constant_nan;...never true...*/
-	/*if (ret)
-	{*/
-	bool ret  = TrigLvlMode.setValue(constant_ui8);// continuous
+	bool ret  = TrigLvlMode. setValue(constant_ui8);// continuous
 		 ret |= trigLvlClass.setValue(constant_ui8);// not classified
-
 		 ret |= trigLvlUnits.setValue(constant_NotUsed);// not used
 		 ret |= trigLvlValue.setValue(constant_nan);//  NaN	
-	//}
 
 	return ret;
 }
@@ -375,7 +361,7 @@ void burstMessage::printParts(void)
 {
 	int b = ItemValue(message_number, uint8_t);
 	int m = ItemValue(command_number, uint16_t);
-printf("BM# %d has cmd# %d, Mode %hhd, Lvl %f, HiLvl:%f, LoLvl %f\n", b,m,
+printf("BM# %d has cmd# %d, Mode %hhu, Lvl %f, HiLvl:%f, LoLvl %f\n", b,m,
 	ItemValue(TrigLvlMode, uint8_t),ItemValue(trigLvlValue, float),
 	risingTrigVal, fallingTrigVal);
 }
@@ -455,9 +441,6 @@ int deinit_burst(void) // see below
 #include "app.h"
 
 #include "memory_glbl.h"
-//#include "DevicePDU.h"
-//#include "messaging.h"
-//#include "processInfc.h"
 
 using namespace std;
 
@@ -525,10 +508,6 @@ void burstCmd(uint8_t stackLoc )
 	pBurstPdu->setCommandNumber(cmdNo) ;// put it in the packet
 	pBurstPdu->SetByteCount( 0 );
 
-	//if (trigger != htc_Continuous)
-	//{
-	//	fprintf(stderr, "                    Triggered command 0x%02x.\n", cmdNo);
-	//}
 	pGlobalApp->burstIt(burstMsg.indexList, pBurstPdu);
 
 	// reset the time

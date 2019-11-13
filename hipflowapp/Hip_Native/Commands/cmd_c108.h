@@ -40,20 +40,6 @@ public: // work
 
 };
 
-
-
-
-////debug code
-//extern uint8_t debugUnitchnge;
-//
-//void prDiff(int L) {
-//	if ((debugUnitchnge != 0) && (debugUnitchnge != NONvolatileData.devVars[0].Units))
-//		printf(">>Change %d\n", L);
-//}
-/////////////////// end debug code
-
-
-
 // extract ByteCnt bytes from data at pData
 // return zero on success, response code on error
 uint8_t cmd_108::extractData(uint8_t &ByteCnt, uint8_t *pData)
