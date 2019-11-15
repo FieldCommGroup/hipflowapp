@@ -147,7 +147,7 @@ typedef struct volatileRaw_s
 	uint8_t  totStatus;
 	uint8_t  totAddStatus;
 
-	DevVarRaw_t devVars[NUMBER_OF_DEVICE_VARIABLES];
+	DevVarRaw_t devVars[NUMBER_OF_DEVICE_VARIABLES];// note that 3&4 are not used, the percentRange&loopCurrent
 	uint8_t  cmd48Data[CMD48_SIZE];
 }
 /* typedef */ volatileRaw;

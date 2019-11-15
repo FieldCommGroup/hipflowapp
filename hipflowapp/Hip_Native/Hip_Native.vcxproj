@@ -392,7 +392,7 @@
       <AdditionalIncludeDirectories>.\;.\Common;.\hipserver\hipserver\Realtime;.\hipserver\hipserver\AppConnect;.\Hip_Native\hipserver\hipserver\Common;.\hipserver\hipserver\Common;.\hipserver\hipserver\Server;..\Hip_Native;..\..\Hip_Native;.\Commands;C:\Work\Rasberry\include\arm-linux-gnueabihf\bits;C:\Work\Rasberry\include\arm-linux-gnueabihf;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OmitFramePointers>false</OmitFramePointers>
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
-      <PreprocessorDefinitions>_IS_HART7;LINUX;NDEBUG;_FLOWDEVICE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_IS_HART_7;LINUX;NDEBUG;_FLOWDEVICE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CLanguageStandard>Default</CLanguageStandard>
       <DebugInformationFormat>None</DebugInformationFormat>
       <CompileAs>CompileAsCpp</CompileAs>

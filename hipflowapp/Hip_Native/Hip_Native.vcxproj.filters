@@ -7,7 +7,6 @@
     <ClCompile Include="native.cpp" />
     <ClCompile Include="sems.cpp" />
     <ClCompile Include="timer.cpp" />
-    <ClCompile Include="commandSet.cpp" />
     <ClCompile Include="InsertExtract.cpp" />
     <ClCompile Include="cDatabase.cpp">
       <Filter>Database</Filter>
@@ -54,6 +53,9 @@
     </ClCompile>
     <ClCompile Include="hipserver\hipserver\AppConnect\tppdu.cpp">
       <Filter>AppConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="commandSet.cpp">
+      <Filter>Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

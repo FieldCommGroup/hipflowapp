@@ -8,10 +8,10 @@
     <RemoteDebugTarget>-1320267109;10.0.0.188 (username=, port=22, authentication=Password)</RemoteDebugTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgFlow|ARM64'">
-    <RemoteDebuggerCommand>/root/projects/Hip_Native/bin/ARM/DbgFlow/HipNativeFlow</RemoteDebuggerCommand>
+    <RemoteDebuggerCommand>/root/projects/Hip_Native/bin/ARM64/DbgFlow/hipflowapp</RemoteDebuggerCommand>
     <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
     <RemoteDebuggerWorkingDirectory>/root/projects/Hip_Native/Wrk</RemoteDebuggerWorkingDirectory>
-    <RemoteDebuggingMode>gdbserver</RemoteDebuggingMode>
+    <RemoteDebuggingMode>gdb</RemoteDebuggingMode>
     <RemoteDebugTarget>-1320267109;10.0.0.188 (username=, port=22, authentication=Password)</RemoteDebugTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DbgPress|ARM'">
@@ -23,5 +23,9 @@
     <RemoteDebuggerCommand>/root/projects/Hip_Native/bin/ARM/Debug/hipnative</RemoteDebuggerCommand>
     <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
     <RemoteDebuggerWorkingDirectory>/root/projects/Hip_Native/bin/ARM/Debug/</RemoteDebuggerWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RlsFlow|ARM64'">
+    <RemoteDebuggingMode>gdbserver</RemoteDebuggingMode>
+    <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

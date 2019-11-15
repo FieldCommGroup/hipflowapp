@@ -163,9 +163,6 @@ int cmd_09::insertSlot( uint8_t slotNum, uint8_t **ppData, uint8_t *pInserCnt )
 
 	do // once
 	{
-		double locDbl = RTdata.getDevVar(slotNum);
-		// unit conversion if required goes here
-		pDV->Value.setValue(locDbl);// bad slot numbers get set to NaN
 		if( (ret = insert( slotNum, ppData, *pInserCnt )) != RC_SUCCESS)  break;
 		if( (ret = pDV->classification.insertSelf( ppData, pInserCnt )) != RC_SUCCESS)  break;
 		if( (ret = pDV->Units         .insertSelf( ppData, pInserCnt )) != RC_SUCCESS)  break;

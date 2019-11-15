@@ -1105,11 +1105,14 @@ char rtData::updateFlow(double raw)
 	lastValue = raw;
 
 	rtFlow = (raw - zero) * span + lowerTrimPt;
+	float local = (float)rtFlow;// we lose precision here
+	volatileData.devVars[rtFlowSlot].Value = local;
 	pv_alarm(rtFlow);// handles all status
 
 	float rtPercentRng = 100.0 * (rtFlow - ItemValue(lowerRangeValue, float)) /
 		//	(cmd15Data.upperRangeValue - cmd15Data.lowerRangeValue);
 		(ItemValue(upperRangeValue, float) - ItemValue(lowerRangeValue, float));
+	volatileData.percentRange = rtPercentRng;
 
 	sem_post(&RTdataSema);
 
@@ -1120,9 +1123,11 @@ char rtData::updateCurrent(double raw)
 {
 	sem_wait(&RTdataSema);
 
-	c_lastValue = raw;
+	c_lastValue = (float)raw;
 
 	rtCurrent = ((raw - b_zero) * b_span) + b_lowerTrimPt;
+	float local = (float)rtCurrent;// we lose precision here
+	volatileData.devVars[rtCurrentSlot].Value = local;
 	sv_alarm(rtCurrent);
 
 	sem_post(&RTdataSema);
@@ -1136,7 +1141,8 @@ char rtData::updateTotal(double raw)
 	sem_wait(&RTdataSema);
 	// find out if/what/ how to total
 	// add/subtract from total
-	// do alarms
+	// do alarms / other actions
+	//volatileData.devVars[rtTotalizerSlot].Value = local;
 	sem_post(&RTdataSema);
 	return 0;
 }

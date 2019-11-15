@@ -27,6 +27,7 @@
 #endif
 
 #include <semaphore.h>
+#include "cDataRaw.h"	// we gotta fill the vars
 
 using namespace std;
 
@@ -66,6 +67,12 @@ class rtData
 	double rtTotalizer;
 	double rtPercentRng;
 	
+	// hard coded, private mapping for whois DevVar
+	int rtFlowSlot       = 0;//246
+	int rtCurrentSlot    = 1;// &247
+	int rtTotalizerSlot  = 2;// &248
+	int rtPercentRngSlot = 244;
+
 	sem_t    RTdataSema;    // control access to RT data for reading/writing 
 
 public:

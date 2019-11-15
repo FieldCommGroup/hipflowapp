@@ -36,7 +36,7 @@
 #endif
 
 //This is software +version+ in command 0
-#define SOFTWAREVERSION  (uint8_t)48
+#define SOFTWAREVERSION  (uint8_t)50
 
 extern bool isBIGendian;
 extern const float hartBENaN;
