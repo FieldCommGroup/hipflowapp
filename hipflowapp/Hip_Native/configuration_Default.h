@@ -34,7 +34,7 @@
 #endif
 
 #ifdef NDEBUG
-#define _IS_HART_7
+// this needs to be defin3ed on the command line (ie property box) #define _IS_HART_7
 #endif
 
 /* some of these may change from NV memory...eg INIT_CONFIG_CNT*/

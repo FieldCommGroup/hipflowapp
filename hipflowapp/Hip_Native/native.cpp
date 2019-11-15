@@ -32,7 +32,7 @@
 
 extern int init_ProcessVariables(void);/*  instead of all PV.h  */
 
-extern int initBurstStack(); // in burst.cpp
+extern void initBurstStack(); // in burst.cpp
 extern errVal_t FillDefaultValues(); // in FillDefaultValues.cpp
 /*
  * There should only be one TP Master Stack object per executable

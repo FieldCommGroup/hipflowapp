@@ -35,7 +35,7 @@ extern int kill_burst(void);
 
 extern int init_phy(void);// in physical.cpp
 extern int init_burst(uint8_t myAddr[]); // in burst.cpp
-extern int initBurstStack();
+extern void initBurstStack();
 extern int kill_phy(void);// in physical.cpp
 extern uint8_t getDeviceStatus(void);
 

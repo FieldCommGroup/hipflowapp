@@ -341,6 +341,8 @@ bool burstMessage::setTriggerValues()// returns true on ERROR
 	uint8_t MsgN = ItemValue(message_number, uint8_t);
 	uint16_t Cmd = ItemValue(command_number, uint8_t);
 	float   Trig = ItemValue(trigLvlValue, float);
+	// get rid of compiler warnings::
+	(void)Mode;(void)Unit;(void)MsgN;(void)Cmd;(void)Trig;
 	return false;
 }
 
@@ -424,7 +426,7 @@ void burstMessage::updateBurstOperation(void)
 	return;
 }
 
-int deinit_burst(void) // see below
+void deinit_burst(void) // see below
 {
 	sem_destroy(&burstSemaphore);
 }
@@ -451,7 +453,7 @@ void* run_burst(void * pArgs);// forward declaration
 bool burstEnabled = false;
 static uint8_t addrBytes[5];
 
-int initBurstStack()
+void initBurstStack()
 {
 	burstMessage  *pBmsg = NULL;
 	stackStruct_t *pStkStruct;
@@ -468,6 +470,8 @@ int initBurstStack()
 			pBmsg->updateBurstOperation();// now initializes all the refstruct
 		}
 	}
+	// remove warning for debug info:
+	(void)pStkStruct;
 }
 
 int init_burst(uint8_t myAddr[])
@@ -514,6 +518,7 @@ void burstCmd(uint8_t stackLoc )
 	burstOne.sentCnt++;// only used for debugging
 	burstStack[stackLoc].remaining50mSticks = burstMsg.burstCommIn_50mS_ticks;
 	burstStack[stackLoc].remainingMaxSticks = burstMsg.maxburstCommIn_50mS_ticks;
+	(void)trigger;
 }
 
 int kill_burst(void)
@@ -580,7 +585,7 @@ if ((debugUnitchnge != 0) && (debugUnitchnge != NONvolatileData.devVars[0].Units
 
 		sem_wait(&burstSemaphore);
 
-		for (int y = 0; y < MAX_BURSTMSGS; y++)// decrement everybodies count
+		for (uint8_t y = 0; y < MAX_BURSTMSGS; y++)// decrement everybodies count
 		{
 			stackStruct_t& burstOne = burstStack[y];
 			if (burstOne.msg_Number > MAX_BURSTMSGS )
@@ -618,11 +623,14 @@ if ((debugUnitchnge != 0) && (debugUnitchnge != NONvolatileData.devVars[0].Units
 					}
 					//else wait for the trigger or max=0 to happen					
 				}// else we be still waiting
+				// get rid of unused warning::>
+				(void)trigger;(void)cmd2Burst;
 			}// @ not enabled just continue
 		}// next burst stack
 		sem_post(&burstSemaphore);
 	}// wend
-
+	// get rif unused warn9ing:
+	(void)cycleCnt;
 	// time to go		
 	(*pMyDie) = false;	
 

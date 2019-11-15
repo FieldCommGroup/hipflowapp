@@ -85,12 +85,12 @@ public:
 	void       *pRaw;			// pointer into a raw data type, requires a cast
 
 public:
-	dataItem(): isVolatile(false),isConfig(false), isHasValue(false),
-		isChanged_pri(false),isChanged_sec(false), len(0),
-		itemType(ht_Unknown),  pRaw(NULL), triggerOnChange(false), hasBeenTriggered(false){};
+	dataItem(): len(0), isVolatile(false),isConfig(false), isHasValue(false),
+		isChanged_pri(false),isChanged_sec(false), triggerOnChange(false), hasBeenTriggered(false), 
+		itemType(ht_Unknown),  pRaw(NULL){};
 	dataItem(bool Vol, bool Con, hartTypes_t type, void *data, int sz=1 ): len(sz),isVolatile(Vol),isConfig(Con),
-		isHasValue(false),isChanged_pri(false),isChanged_sec(false),itemType(type),pRaw(data), triggerOnChange(false),
-		hasBeenTriggered(false)
+		isHasValue(false),isChanged_pri(false),isChanged_sec(false), triggerOnChange(false),
+		hasBeenTriggered(false),itemType(type),pRaw(data)
 	{
 		set(Vol, Con, type, data, sz );
 	};
@@ -129,7 +129,7 @@ public:
 		triggerOnChange = SRC.triggerOnChange;
 		hasBeenTriggered= false;
 
-		dataEqual(SRC.pRaw, SRC.itemType, SRC.len);
+		dataEqual(SRC.pRaw, SRC.itemType, (uint8_t)SRC.len);
 
 		return *this;
 	};
