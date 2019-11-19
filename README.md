@@ -1,9 +1,8 @@
-README
-======
+# README
 
-https://avatars0.githubusercontent.com/u/26013747?s=50&v=4
-----------------------------------------------------------
+![](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/media/FCG_logo_horizontal_color_lg600px.png)
 
+## README
 **hipflowapp** is one component of the [HART-IP Developer
 Kit](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/doc/HART-IP%20FlowDevice%20Spec.md).
 It implements a [HART flow
@@ -12,8 +11,7 @@ on the Raspberry Pi computer. Together with the
 [hipserver](https://github.com/FieldCommGroup/hipserver) component, it forms a
 fully functional HART-IP device.
 
-Known Issues
-------------
+## Known Issues
 
 Totalizer implementation for the tertiary variable has not been implemented.
 
@@ -25,55 +23,59 @@ cDatabase.cpp)
 
 All of the trigger-mode + burst-command combinations have not been tested.
 
-User Guide
-----------
+## User Guide
 
-To launch the **hipflowapp**, the command line is:
+Launch the flow device using the following command lines:
+```
+cd ~user1/flowdevice
+sudo ./hipserver ./hipflowapp
+```
+assuming both executables are in the current working directory. See the [**hipserver**](https://github.com/FieldCommGroup/hipserver) documentation for details on that component.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-sudo ./hipflowapp
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+There are no command line options. 
 
-There are no command line options. sudo is required because the app uses direct
-memory access to manipulate the AD/DA card resources , thus requiring elevated
-privileges.
+sudo is required because the app uses direct
+memory access to manipulate the AD/DA card resources, which needs elevated privileges.
 
 To terminate the app, type Ctrl-C on the command line.
 
+## Developer Guide
+### Launching the programs for development
+
+Developers wanting to debug one or both applications will launch the programs
+separately. In this case, you must launch **hipserver** first, as it owns the
+message queues that communicate with the app.
+```
+sudo ./hipserver
+```
+
+To launch the **hipflowapp**, run this command line from a separate terminal:
+
+``` 
+sudo ./hipflowapp
+```
+
 Note that the app will immediately exit if the hipserver is not running when the
-hipflowapp is invoked. You can invoke both using:
+hipflowapp is invoked.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-sudo ./hipserver ./hipflowapp
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-assuming both executables are in the cwd. See the hipserver documentation for details.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Developer Guide
----------------
+### Pull from the repository
 
 Pull the repository from the bash terminal with this command line:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   git clone --recurse-submodules https://github.com/FieldCommGroup/hipflowapp
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
+git clone --recurse-submodules https://github.com/FieldCommGroup/hipflowapp
+```
 
 Note the --recurse-modules flag that causes a copy of the **hipserver** library
 code to be pulled as well.
 
 You can build the program with make as follows:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 cd hipflowapp/hipflowapp/Hip_Native/
 make
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Developers wanting to debug one or both applications will launch the programs
-separately. In this case, you must launch **hipserver** first, as it owns the
-message queues.
-
+```
+### Debugging
 To debug **hipflowapp,** start it using the IDE of your choice. Project files
 for Visual Studio 2017+ are included in the repository. Debugging remotely from
 Windows using ssh will require a root login from Windows. The [procedure for
@@ -86,22 +88,22 @@ supplied in this kit does not include adding a root login on Ubuntu.
 Login as root feature is disabled by default on Ubuntu. First, reset root's
 password using passwd command.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 $ sudo passwd
 Enter user1 password:
 Enter new UNIX password:
 Retype new UNIX password:
 passwd: password updated successfully
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 Then use su command to login as root using your new root password:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 $ su
 Password:
 $ whoami
 root
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 #### Enable root login via ssh
 
@@ -114,16 +116,16 @@ TO: PermitRootLogin yes
 
 Then restart the ssh daemon:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 $ sudo systemctl restart sshd
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 After you restart the sshd daemon you will be able to remotely login as a root
 user:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 $ ssh root@10.0.0.55
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 #### Configure Visual Studio for remote Debugging
 
@@ -138,12 +140,10 @@ changes in command zero.
 
 ### Architecture
 
-**hipflowapp** more...
-
 The following diagram shows how the **hipflowapp** is related to the other
 components.
 
-![](media/05b9fc6b8559a0536b9e8e1531e07c84.png)
+![Flow Device Components](.gitbook/assets/flowcomponent.png)
 
 ### Repository Contents
 
@@ -158,15 +158,15 @@ solution file. The Hip_Native source code file contains the folders:
 
 To pull from the repository, use
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 git clone --recurse-submodules https://github.com/FieldCommGroup/hipflowapp
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 #### Hip_Native folder
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 hipflowapp/hipflowapp/Hip_Native
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 This folder contains a Visual Studio 2017 project for the **hipflowapp**. It
 uses the remote build and debugging facility of Visual Studio to construct and
@@ -179,42 +179,39 @@ leave a binary executable file named hipflowapp in the folder.
 Some of the interesting files are described below.
 
 | File                                          | Contents                                                                                                       |
-|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| Hip_Native.vcxproj bcm2835.cpp commandSet.cpp | Visual Studio project file Low level driver code from Mike McCauley Holds the commands and selects the handler |
-|                                               |                                                                                                                |
+|----|----|
+| Hip_Native.vcxproj   | Visual Studio project file   |
+| bcm2835.cpp|Low level driver code from Mike McCauley |
+| commandSet.cpp|Holds the commands and selects the handler |
+
 
 #### Commands Folder
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 hipflowapp/hipflowapp/Hip_Native/Commands
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
-This folder contains a dot-h file for each of the commands in the device (some
+This folder contains a .h file for each of the commands in the device (some
 of which may not be implemented). The command implementation is contained in
 these files (there are no .cpp files to match).
 
-| File Cmd_xxxx.h | Contents Command implementation |
-|-----------------|---------------------------------|
-|                 |                                 |
-
 #### Data Folder
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 hipflowapp/hipflowapp/Hip_Native/Data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
-| This folder holds the base data structures used to hold and record the device’s data set. |   |
-|-------------------------------------------------------------------------------------------|---|
+This folder contains the base data structures used to hold and record the device’s data set.
 
 
 #### hipserver
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 hipflowapp/hipflowapp/Hip_Native/hipserver
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
-This folder is a git "submodule". It contains library code used for
-communication with the server component. the "--recurse-submodules" flag on the
+This folder is a git submodule. It contains library code used for
+communication with the server component. The "--recurse-submodules" flag on the
 git clone statement above, causes a named version of the
 [hipserver](https://github.com/FieldCommGroup/hipserver)repository to be placed
 under Hip_Native folder. The Visual Studio build and make build facilities both
