@@ -39,6 +39,12 @@ memory access to manipulate the AD/DA card resources, which needs elevated privi
 
 To terminate the app, type Ctrl-C on the command line.
 
+To restore the device to factory settings, terminate the flow device and type:
+```
+sudo rm -rf /ect/native_dev
+```
+This removes the folder containing the device's configuration.  The folder will be recreated with the factory settings the next time the device is started.
+
 ## Developer Guide
 ### Launching the programs for development
 
@@ -68,6 +74,7 @@ git clone --recurse-submodules https://github.com/FieldCommGroup/hipflowapp
 
 Note the --recurse-modules flag that causes a copy of the **hipserver** library
 code to be pulled as well.
+### Buiding with make
 
 You can build the program with make as follows:
 
@@ -75,12 +82,11 @@ You can build the program with make as follows:
 cd hipflowapp/hipflowapp/Hip_Native/
 make
 ```
+The Makefile is configured to build a HART7 device.
 ### Debugging
 To debug **hipflowapp,** start it using the IDE of your choice. Project files
-for Visual Studio 2017+ are included in the repository. Debugging remotely from
-Windows using ssh will require a root login from Windows. The [procedure for
-configuring
-Ubuntu](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/doc/Install%20OS.md)
+for Visual Studio 2017 are included in the repository. Debugging remotely from Windows using ssh will require a root login from Windows. The [procedure for
+configuring Ubuntu](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/doc/Install%20OS.md)
 supplied in this kit does not include adding a root login on Ubuntu.
 
 #### Enable root login on Ubuntu
@@ -132,11 +138,8 @@ $ ssh root@10.0.0.55
 In Visual Studio, go to Tools \> Options \> Cross Platform \> Connection manager
 and add the root ssh login for your Pi.
 
-The Visual Studio DbgFlow configuration sets the \_DEBUG definition. That makes
-the Flow device report as a HART 5 device allowing it to work with the HART OPC
-Server and, therefore, the SDC625. The RlsFlow configuration does not define
-\_DEBUG and the device will report itself as a HART 7 device with the requisite
-changes in command zero.
+The Visual Studio **DbgFlow** configuration makes
+the Flow device report as a HART 5 device, allowing it to work with the HART OPC Server and therefore, the SDC625. The **RlsFlow** configuration defines _IS_HART7 on the compiler options, so the device will report itself as a HART 7 device with the requisite changes in command zero.
 
 ### Architecture
 
