@@ -34,7 +34,7 @@
 #endif
 
 #ifdef NDEBUG
-// this needs to be defin3ed on the command line (ie property box) #define _IS_HART_7
+// this needs to be defin3ed on the command line (ie property box) #define _IS_HART7
 #endif
 
 /* some of these may change from NV memory...eg INIT_CONFIG_CNT*/
@@ -72,11 +72,11 @@
 #define INIT_POLLADDR		0x00
 #define INIT_REQ_PREAMBL	0x00
 #define INIT_MASTER_PREAMBL	0x00
-#ifdef _IS_HART_7
+#ifdef _IS_HART7
 #define INIT_UNIV_REV		0x07
 #define INIT_BURST_ENABLE   0x04
 #else
-  #ifdef _IS_HART_6
+  #ifdef _IS_HART6
 #define INIT_UNIV_REV		0x06
 #define INIT_BURST_ENABLE   0x04
   #else  /* must be hart 5 */

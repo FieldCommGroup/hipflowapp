@@ -25,8 +25,8 @@
 
 CC        = g++ -c
 CXX        = g++ -c
-CFLAGS     = -g -D_IS_HART_7 -DLINUX -D_FLOWDEVICE -I$(MAIN_DIR)/Commands -I$(MAIN_DIR)/Data -I$(MAIN_DIR)/hipserver/hipserver/Common   -I$(MAIN_DIR)/hipserver/hipserver/AppConnect  -I$(MAIN_DIR)/hipserver/hipserver/Data  -I$(MAIN_DIR)/hipserver/hipserver/Realtime  -I$(MAIN_DIR)  -std=gnu++11 
-CXXFLAGS   = -g  -D_IS_HART_7 -DLINUX -D_FLOWDEVICE -I$(MAIN_DIR)/Commands -I$(MAIN_DIR)/Data -I$(MAIN_DIR)/hipserver/hipserver/Common   -I$(MAIN_DIR)/hipserver/hipserver/AppConnect  -I$(MAIN_DIR)/hipserver/hipserver/Data  -I$(MAIN_DIR)/hipserver/hipserver/Realtime  -I$(MAIN_DIR) -std=gnu++11 
+CFLAGS     = -g -D_IS_HART7 -DLINUX -D_FLOWDEVICE -I$(MAIN_DIR)/Commands -I$(MAIN_DIR)/Data -I$(MAIN_DIR)/hipserver/hipserver/Common   -I$(MAIN_DIR)/hipserver/hipserver/AppConnect  -I$(MAIN_DIR)/hipserver/hipserver/Data  -I$(MAIN_DIR)/hipserver/hipserver/Realtime  -I$(MAIN_DIR)  -std=gnu++11 
+CXXFLAGS   = -g  -D_IS_HART7 -DLINUX -D_FLOWDEVICE -I$(MAIN_DIR)/Commands -I$(MAIN_DIR)/Data -I$(MAIN_DIR)/hipserver/hipserver/Common   -I$(MAIN_DIR)/hipserver/hipserver/AppConnect  -I$(MAIN_DIR)/hipserver/hipserver/Data  -I$(MAIN_DIR)/hipserver/hipserver/Realtime  -I$(MAIN_DIR) -std=gnu++11 
 ECHO       = @echo
 INCL_LIBS  = -lpthread -lrt
 LD         = g++ 
