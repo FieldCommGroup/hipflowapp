@@ -15,13 +15,17 @@ fully functional HART-IP device.
 
 Totalizer implementation for the tertiary variable has not been implemented.
 
-On-Change burst trigger infrastructure and implementation does not exist.
+On-Change burst trigger infrastructure and implementation do not exist.
 
 Support for several data types have been left blank because they are not needed
 in this implementation. They may be needed in some other implementations. (e.g.
 cDatabase.cpp)
 
 All of the trigger-mode + burst-command combinations have not been tested.
+
+There is no provision for the device to recover automatically from a power cycle.
+
+There is no provision for the device to be placed into write-protect mode.
 
 ## User Guide
 
@@ -130,7 +134,7 @@ After you restart the sshd daemon you will be able to remotely login as a root
 user:
 
 ```
-$ ssh root@10.0.0.55
+$ ssh root@xxx.xxx.xxx.xxx
 ```
 
 #### Configure Visual Studio for remote Debugging
