@@ -4,9 +4,9 @@
 
 ## README
 **hipflowapp** is one component of the [HART-IP Developer
-Kit](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/doc/HART-IP%20FlowDevice%20Spec.md).
+Kit](https://github.com/FieldCommGroup/HART-IP-Developer-Kit).
 It implements a [HART flow
-device](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/doc/HART-IP%20FlowDevice%20Spec.md)
+device](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/doc/hart-ip-flowdevice-spec.md)
 on the Raspberry Pi computer. Together with the
 [hipserver](https://github.com/FieldCommGroup/hipserver) component, it forms a
 fully functional HART-IP device.
