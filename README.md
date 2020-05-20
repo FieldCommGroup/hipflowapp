@@ -2,7 +2,7 @@
 
 ## ![FCG](https://avatars0.githubusercontent.com/u/26013747?s=50&v=4) FieldComm Group
 
-## README
+## hipflowapp
 **hipflowapp** is one component of the [HART-IP Developer
 Kit](https://github.com/FieldCommGroup/HART-IP-Developer-Kit).
 It implements a [HART flow
