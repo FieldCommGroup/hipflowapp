@@ -1,6 +1,6 @@
 # README
 
-![](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/media/FCG_logo_horizontal_color_lg600px.png)
+## ![FCG](https://avatars0.githubusercontent.com/u/26013747?s=50&v=4) FieldComm Group
 
 ## README
 **hipflowapp** is one component of the [HART-IP Developer
