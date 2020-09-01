@@ -26,7 +26,10 @@
 #pragma message("In cDatabase.h") 
 #endif
 
-#include "./hipserver/hipserver/Common/datatypes.h"
+//#include "./hipserver/hipserver/Common/datatypes.h"
+
+#include "datatypes.h"
+
 // VS can't find this for some reason   #include "datatypes.h"
 #include "cDataRaw.h"
 #include "Units.h"

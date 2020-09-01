@@ -62,7 +62,7 @@ uint8_t cmd_18::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	}
 	if (!isError(ret) && chngCnt != 0)// something changed in this extraction
 	{
-		printf("Cmd 18 shows something changed, tag byte 0 = 0x%02x, sent byte 0 = 0x02x\n", NONvolatileData.tag[0], dbgChar);
+		printf("Cmd 18 shows something changed, tag byte 0 = 0x%02x, sent byte 0 = 0x%02x\n", NONvolatileData.tag[0], dbgChar);
 		bumpConfigCnt();
 	}
 	return ret;

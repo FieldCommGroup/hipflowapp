@@ -193,7 +193,7 @@ int burstMessage::step(uint32_t& aTime, unsigned &ret)
 		}//next
 		if (ret == 0)
 		{
-			printf("ERROR: time value %lu not found.\n", aTime);
+			printf("ERROR: time value %u not found.\n", aTime);
 			ret = 0;
 			isChng = true;
 		}// else ret is the value to use (in mS)

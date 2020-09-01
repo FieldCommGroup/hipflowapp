@@ -62,15 +62,15 @@ errVal_t NativeData::configure()
 	struct stat sb;
 	errVal_t retval = NO_ERROR;
 
-	int ret = Open_File(CONFIG_FILENAME);
+	int ret = Open_File((char*)CONFIG_FILENAME);
 
-	if ( CheckFile(CONFIG_FILENAME) && ! ret)// it exists, has data, and is closed
+	if ( CheckFile((char*)CONFIG_FILENAME) && ! ret)// it exists, has data, and is closed
 	{
 		retval = getData();
 		handleDataDependencies();
 	}
 	else
-	if( CheckFile(CONFIG_FILENAME) && ret > 0 )// it exists, is empty and is closed
+	if( CheckFile((char *)CONFIG_FILENAME) && ret > 0 )// it exists, is empty and is closed
 	{
 		retval = fileFillDefault();// generate and save default values to new file
 		handleDataDependencies();

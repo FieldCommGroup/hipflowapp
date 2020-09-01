@@ -61,7 +61,7 @@ uint8_t cmd_11::extractData(uint8_t &ByteCnt, uint8_t *pData)
 		else // it came out OK
 		if ( incoming[i] != NONvolatileData.tag[i])
 		{
-			fprintf(stderr, "Cmd 11 tag mismatch.tag:0x02X, cmp:0x02X\n", NONvolatileData.tag[i], incoming[i]);
+			fprintf(stderr, "Cmd 11 tag mismatch.tag:0x%02X, cmp:0x%02X\n", NONvolatileData.tag[i], incoming[i]);
 			return RC_DONOTSEND;// not our tag
 		}
 		//else nop...// still good and equal, keep extracting

@@ -122,7 +122,7 @@ uint8_t cmd_09::insert_Data(uint8_t &ByteCnt, uint8_t *pData)
 
 	if ( ret ) // has an error
 	{
-		printf( "Data insertion error in cmd %d. ret = %d slot 0x02X.\n", number(), ret, slot[i]);
+		printf( "Data insertion error in cmd %d. ret = %d slot 0x%02X.\n", number(), ret, slot[i]);
 	}
 	else // insertion went fine
 	if (istruncated)

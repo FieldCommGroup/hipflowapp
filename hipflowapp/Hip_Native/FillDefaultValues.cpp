@@ -23,6 +23,7 @@
 #include "hartPhy.h" 
 #include <string.h>
 #include "PhysicalAlarms.h"
+#include "configuration_Default.h"
 
 extern  uint8_t *pack(uint8_t *dest, const uint8_t *source, int nChar);// in database.cpp
 
@@ -110,10 +111,10 @@ debugUnitchnge =	NONvolatileData.devVars[0].Units;
 
 	NONvolatileData.devVars[1].minSpan = 2.0;//cmd9element_s.dvMinSpan
 
-	NONvolatileData.devVars[2].upperSensorLimit = 1.8E308;//cmd9element_s.dvUTL
+	NONvolatileData.devVars[2].upperSensorLimit = 1.7E308;//cmd9element_s.dvUTL
 	NONvolatileData.devVars[2].lowerSensorLimit = 0.0;//cmd9element_s.dvLTL
 
-	NONvolatileData.devVars[2].minSpan = 1.8E308;//cmd9element_s.dvMinSpan
+	NONvolatileData.devVars[2].minSpan = 1.7E308;//cmd9element_s.dvMinSpan
 
 	NONvolatileData.devVars[SLOT_UNSUPPORTED_IDX].upperSensorLimit = HART_NAN;//cmd9element_s.dvUTL
 	NONvolatileData.devVars[SLOT_UNSUPPORTED_IDX].lowerSensorLimit = HART_NAN;//cmd9element_s.dvLTL
