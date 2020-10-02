@@ -27,7 +27,7 @@
 #include <locale>
 #include <codecvt>
 
-#define SCAN_FUNC  		sscanf
+#define SCAN_FUNC  		sscanf	/* no safe function for this, manually inspect usage */
 
 #define FORTH_PARAM  
 
@@ -230,6 +230,7 @@ CValueVarient::operator char(void)
 		} break;
 	case isWideString:
 		{
+			// user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%hhd",&cVal) <= 0) {  cVal = 0;  }
 		} break;
 
@@ -274,6 +275,7 @@ CValueVarient::operator unsigned char(void)
 		} break;
 	case isWideString:
 		{
+			// user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%hhu",&uVal) <= 0) {  uVal = 0;  }
 		} break;
 
@@ -327,6 +329,7 @@ CValueVarient::operator short(void)
 		} break;
 	case isWideString:
 		{
+			// user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%hd",&cVal) <= 0) {  cVal = 0;  }
 		} break;
 
@@ -371,6 +374,7 @@ CValueVarient::operator unsigned short(void)
 		} break;
 	case isWideString:
 		{
+			// user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%hu",&uVal) <= 0) {  uVal = 0;  }
 		} break;
 
@@ -430,6 +434,7 @@ CValueVarient::operator double(void)
 		} break;
 	case isWideString:
 		{
+			// user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%lf",&fVal) <= 0) {  fVal = 0;  }
 		} break;
 
@@ -480,7 +485,7 @@ CValueVarient::operator float(void)
 	case isFloatConst:
 		{	fVal =  (float)vValue.fFloatConst;} break;  // warning C4018: '>=' : signed/unsigned mismatch <HOMZ: added cast>
 	case isString:
-		{// never works::	if ( sscanf(sStringVal.c_str(),"%f",&fVal) <= 0) {  fVal = 0.0;  }
+		{// never works::	if ( sscanf_s(sStringVal.c_str(),"%f",&fVal) <= 0) {  fVal = 0.0;  }
 			fVal = (float)atof(sStringVal.c_str()); // warning C4018: '>=' : signed/unsigned mismatch <HOMZ: added cast>
 		} break;
 	case isWideString:
@@ -539,6 +544,7 @@ CValueVarient::operator int(void)
 		} break;
 	case isWideString:
 		{
+			// user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%d",&iVal) <= 0) {  iVal = 0;  }
 		} break;
 
@@ -585,6 +591,7 @@ CValueVarient::operator unsigned int(void)
 		} break;
 	case isWideString:
 		{
+			// user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%u",&uVal) <= 0) {  uVal = 0;  }
 		} break;
 
@@ -636,10 +643,13 @@ CValueVarient::operator INT_LL(void)
 	case isFloatConst:
 		{	iVal =  (INT_LL) vValue.fFloatConst;} break;
 	case isString:
+		// user cannot enter the format
 		{	if ( sscanf(sStringVal.c_str(),"%lld",&iVal) <= 0) {  iVal = 0;  }
 		} break;
 	case isWideString:
+		// user cannot enter the format
 		{
+			// user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%lld",&iVal) <= 0) {  iVal = 0;  }
 		} break;
 
@@ -686,10 +696,13 @@ CValueVarient::operator unsigned INT_LL(void)
 	case isFloatConst:
 		{	uVal =  (unsigned INT_LL) vValue.fFloatConst;} break;
 	case isString:
+		// user cannot enter the format
 		{	if ( sscanf(sStringVal.c_str(),"%llu",&uVal) <= 0) {  uVal = 0;  }
 		} break;
 	case isWideString:
+		// user cannot enter the format
 		{
+			// user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%llu",&uVal) <= 0) {  uVal = 0;  }
 		} break;
 

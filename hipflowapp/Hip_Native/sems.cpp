@@ -31,6 +31,7 @@
 #include "debug.h"
 //#include "hthreads.h"
 #include "sems.h"
+#include "safe_lib.h"
 
 /************
  *  Globals
@@ -101,14 +102,14 @@ void copy_flags_to_sh(uint8_t *p_flags)
 void copy_info_from_sh(DEVDATA *p_devInfo)
 {
 	sem_wait(p_semQInfoSh);
-	memcpy(p_devInfo, &shrdVar.queueSh.info, sizeof(DEVDATA));
+	memcpy_s(p_devInfo, sizeof(DEVDATA), &shrdVar.queueSh.info, sizeof(DEVDATA));
 	sem_post(p_semQInfoSh);
 }
 
 void copy_info_to_sh(DEVDATA *p_devInfo)
 {
 	sem_wait(p_semQInfoSh);
-	memcpy(&shrdVar.queueSh.info, p_devInfo, sizeof(DEVDATA));
+	memcpy_s(&shrdVar.queueSh.info, sizeof(DEVDATA), p_devInfo, sizeof(DEVDATA));
 	sem_post(p_semQInfoSh);
 }
 
@@ -116,14 +117,14 @@ void copy_rcvMsg_from_sh(htest_msg_t *p_msg)
 {
 	/* The value of queue is assumed to be valid. */
 	sem_wait(p_semQRcvSh);
-	memcpy(p_msg, &shrdVar.queueSh.rcvMsg, sizeof(htest_msg_t));
+	memcpy_s(p_msg, sizeof(htest_msg_t), &shrdVar.queueSh.rcvMsg, sizeof(htest_msg_t));
 	sem_post(p_semQRcvSh);
 }
 
 void copy_rcvMsg_to_sh(htest_msg_t *p_msg)
 {
 	sem_wait(p_semQRcvSh);
-	memcpy(&shrdVar.queueSh.rcvMsg, p_msg, sizeof(htest_msg_t));
+	memcpy_s(&shrdVar.queueSh.rcvMsg, sizeof(htest_msg_t), p_msg, sizeof(htest_msg_t));
 	sem_post(p_semQRcvSh);
 }
 
@@ -131,14 +132,14 @@ void copy_sndMsg_from_sh(htest_msg_t *p_msg)
 {
 	/* The value of queue is assumed to be valid. */
 	sem_wait(p_semQSndSh);
-	memcpy(p_msg, &shrdVar.queueSh.sndMsg, sizeof(htest_msg_t));
+	memcpy_s(p_msg, sizeof(htest_msg_t), &shrdVar.queueSh.sndMsg, sizeof(htest_msg_t));
 	sem_post(p_semQSndSh);
 }
 
 void copy_sndMsg_to_sh(htest_msg_t *p_msg)
 {
 	sem_wait(p_semQSndSh);
-	memcpy(&shrdVar.queueSh.sndMsg, p_msg, sizeof(htest_msg_t));
+	memcpy_s(&shrdVar.queueSh.sndMsg, sizeof(htest_msg_t), p_msg, sizeof(htest_msg_t));
 	sem_post(p_semQSndSh);
 }
 

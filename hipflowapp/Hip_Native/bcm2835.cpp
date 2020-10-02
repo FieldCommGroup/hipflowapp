@@ -24,6 +24,8 @@
 #include "Files.h"
 #include <string>
 
+#include "safe_lib.h"
+
 using namespace std;
 
 const void * mapFailed = (void*)MAP_FAILED;
@@ -74,7 +76,7 @@ static uint8_t debug = 0;
 void nop() {};
 
 #ifdef _DEBUG
-	#define bcmLOGIT( C... )   printf( C )
+	#define bcmLOGIT( C... )   printf_s( C )  // no user access to these data or format strings
 #else
 	#define bcmLOGIT( C... )   nop()
 #endif
@@ -1629,7 +1631,8 @@ int bcm2835_init(void)
     /* Figure out the base and size of the peripheral address block
     // using the device-tree. Required for RPi2, optional for RPi 1
     */
-    if ((fp = fopen(BMC2835_RPI2_DT_FILENAME , "rb")))
+    if((fp = fopen(BMC2835_RPI2_DT_FILENAME, "rb"))) // user cannot modify filename and file cannot be opened more than once simultaneously.
+
     {
         unsigned char buf[4];
 		if (fseek(fp, BMC2835_RPI2_DT_PERI_BASE_ADDRESS_OFFSET, SEEK_SET) )

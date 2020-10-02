@@ -28,6 +28,8 @@
 #include "hartPhy.h"
 #include "InsertExtract.h"
 
+#include "safe_lib.h"
+
 #include <mutex>
 
 extern std::mutex al_mutex;
@@ -804,7 +806,7 @@ uint8_t dataItem::extractSelf( uint8_t **ppData, uint8_t *pInserCnt, uint8_t& /*
 		break;
 		case ht_int16:
 		{
-			assert(len == 1);
+			assert(len == 1);  // no side effect
 			//ret = extract( ((uint16_t *) pRaw)[i], ppData, *pInserCnt );
 			ret = extract( data_ui16, ppData, *pInserCnt );
 			if (!ret && data_ui16 != *((uint16_t *)pRaw) )
@@ -827,7 +829,7 @@ uint8_t dataItem::extractSelf( uint8_t **ppData, uint8_t *pInserCnt, uint8_t& /*
 		break;
 		case ht_int32:
 		{
-			assert(len == 1);
+			assert(len == 1);  // no side effect
 			//ret = extract( ((uint32_t *) pRaw)[i], ppData, *pInserCnt );
 			ret = extract(data_ui32, ppData, *pInserCnt);
 			if (!ret && data_ui32 != *((uint32_t *)pRaw))
@@ -862,7 +864,7 @@ uint8_t dataItem::extractSelf( uint8_t **ppData, uint8_t *pInserCnt, uint8_t& /*
 		break;
 		case ht_float:
 		{
-			assert(len == 1);
+			assert(len == 1);  // no side effect
 			// ret = extract( ((float *) pRaw)[i], ppData, *pInserCnt );
 			ret = extract(data_float, ppData, *pInserCnt);
 			if (!ret && data_float != *((float *)pRaw))
@@ -1717,7 +1719,7 @@ void dataItem::dataEqual(void* pOtherRaw, hartTypes_t otherType, uint8_t SLen)
 		uint8_t *pDst = (uint8_t *)pRaw;
 		*pDst = 0;
 		uint8_t *pDatum = static_cast<uint8_t*>(pOtherRaw);;
-		memcpy(pDst, pDatum, SLen);
+		memcpy_s(pDst, SLen, pDatum, SLen);
 	}
 	break;
 	default:

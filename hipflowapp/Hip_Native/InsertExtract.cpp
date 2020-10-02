@@ -19,6 +19,7 @@
  */
 
  #include <string.h>
+#include "safe_lib.h"
 
  #include "InsertExtract.h"
  
@@ -27,7 +28,7 @@
 
 // common code -  add expectedCnt bytes from d to pData, incrementing dataCnt & pData
 uint8_t AddIt(uint8_t& dataCnt, uint8_t **ppData, uint8_t* d, uint8_t expectedCnt)
-{	memcpy(*ppData, d, expectedCnt);
+{	memcpy_s(*ppData, expectedCnt, d, expectedCnt);
     dataCnt += expectedCnt;
     *ppData += expectedCnt;
     return 0;
@@ -35,7 +36,7 @@ uint8_t AddIt(uint8_t& dataCnt, uint8_t **ppData, uint8_t* d, uint8_t expectedCn
 
 // common code -  extract expectedCnt bytes from pData to d, decrementing dataCnt & incrementing pData
 uint8_t extractIt(uint8_t& dataCnt, uint8_t **ppData, uint8_t* d, uint8_t expectedCnt)
-{    memcpy(d, *ppData, expectedCnt);
+{    memcpy_s(d, expectedCnt, *ppData, expectedCnt);
     dataCnt -= expectedCnt;
     *ppData += expectedCnt;
     return 0;
@@ -52,7 +53,7 @@ uint8_t insert( uint8_t  x, uint8_t **ppData, uint8_t& dataCnt)
 uint8_t insert( uint16_t x, uint8_t **ppData, uint8_t& dataCnt)
 {
 	x = REVERSE_S(x);
-	memcpy((*ppData), &x, sizeof(uint16_t));
+	memcpy_s((*ppData), sizeof(uint16_t), &x, sizeof(uint16_t));
 	dataCnt += (uint8_t)sizeof(uint16_t);
 	(*ppData) += sizeof(uint16_t);
 
@@ -80,7 +81,7 @@ uint8_t insert( uint32_t x, uint8_t **ppData, uint8_t& dataCnt)
 	uint16_t g = (uint16_t)((x >> 16) & 0xffff);// hi word
 	uint16_t h = (uint16_t)(x & 0xffff);
 	x = (((uint32_t)REVERSE_S(h)) << 16) | (uint32_t)REVERSE_S(g);
-	memcpy( (*ppData), &x, sizeof(uint32_t) );
+	memcpy_s( (*ppData), sizeof(uint32_t), &x, sizeof(uint32_t) );
 	dataCnt += (uint8_t)sizeof(uint32_t);
 	(*ppData) += sizeof(uint32_t);
 
@@ -99,7 +100,7 @@ uint8_t insert(  int16_t x, uint8_t **ppData, uint8_t& dataCnt)
 {
 	uint16_t X = (uint16_t)x;
 	uint16_t rev = REVERSE_S(X);
-	memcpy( (*ppData), &rev, sizeof(uint16_t) );
+	memcpy_s( (*ppData), sizeof(uint16_t), &rev, sizeof(uint16_t) );
 	dataCnt += (uint8_t)sizeof(uint16_t);
 	return 0; //SUCCESS
 }
@@ -225,7 +226,7 @@ uint8_t extract( float   & x, uint8_t **ppData, uint8_t& dataCnt) // these trans
 
 	ret = extractIt(dataCnt, ppData, dest, len);
 
-	memcpy( &t, dest, len);
+	memcpy_s( &t, len, dest, len);
 
 	t = REVERSE_L( t );
 

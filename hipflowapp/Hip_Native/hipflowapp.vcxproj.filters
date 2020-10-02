@@ -1,0 +1,720 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{0bf17c5f-e2ec-4cef-9686-20a36c833720}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{10dc665b-ea68-46d6-a2c3-d4e8d858b695}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{316e6f9a-06da-4374-8684-e161fd6c19f4}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{7439e956-fe05-46ff-be6c-79bd31eab356}</UniqueIdentifier>
+      <Extensions>vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="hipserver">
+      <UniqueIdentifier>{6f607f86-c183-4b5c-ace4-336959910332}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hipserver\AppConnect">
+      <UniqueIdentifier>{6efe7b17-7ed2-4b99-b7e7-2cd0de9fd3b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hipserver\Common">
+      <UniqueIdentifier>{6180a9b1-0210-4393-9e49-3d178623347d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hipserver\safestringlib">
+      <UniqueIdentifier>{2ebe00a0-639a-47fb-9460-5d37891d9107}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hipserver\Realtime">
+      <UniqueIdentifier>{f1b20be8-1d58-4f1e-aa05-99293527671e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="hipflowapp-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="hipflowapp-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="..\Hip_Native\Makefile.inc">
+      <Filter>Header files</Filter>
+    </None>
+    <None Include="..\Hip_Native\Makefile_macros.inc">
+      <Filter>Header files</Filter>
+    </None>
+    <None Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_lib_errno.h.in">
+      <Filter>hipserver\safestringlib</Filter>
+    </None>
+    <None Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_types.h.in">
+      <Filter>hipserver\safestringlib</Filter>
+    </None>
+    <None Include="..\Hip_Native\hipserver\hipserver\safestringlib\README.md">
+      <Filter>hipserver\safestringlib</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Hip_Native\ADS1256_defs.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\bcm2835.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\burst.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\cDatabase.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\cDataRaw.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\CircularBuffer.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\commandSet.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\configuration_Default.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\cSerialFile.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\debug.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\delay.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Files.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hartmdll.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hartPhy.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\htesttypes.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\InsertExtract.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\lnkctrl.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\memory_glbl.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\msg.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\native.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\nativeapp.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\PhysicalAlarms.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\PV.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\RunningAverage.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\sems.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\shared.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\timer.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\tooldef.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Units.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_00.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_01.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_02.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_03.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_06.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_07.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_08.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_09.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_11.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_12.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_13.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_14.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_15.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_16.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_17.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_18.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_19.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_20.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_21.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_22.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_35.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_38.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_44.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_48.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_50.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_51.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_52.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_53.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_54.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_79.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_95.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c103.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c104.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c105.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c107.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c108.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c109.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c120.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c534.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2560.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2561.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2562.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2563.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2688.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2689.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2690.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2692.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2693.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2864.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Commands\command.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Data\AllDataObjects.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Data\DataObject.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Data\DataObjectBase.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Data\DataObjectConfig.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Data\DataSet.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Data\insert_Extract.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Data\PrimativeDataDesc.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Data\variableFactory.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\Data\varient.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\AppConnect\app.h">
+      <Filter>hipserver\AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\AppConnect\appconnector.h">
+      <Filter>hipserver\AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\AppConnect\appmsg.h">
+      <Filter>hipserver\AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\AppConnect\apppdu.h">
+      <Filter>hipserver\AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\AppConnect\tpdll.h">
+      <Filter>hipserver\AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\AppConnect\tppdu.h">
+      <Filter>hipserver\AppConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Common\common.h">
+      <Filter>hipserver\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Common\Common2Server.h">
+      <Filter>hipserver\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Common\datatypes.h">
+      <Filter>hipserver\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Common\errval.h">
+      <Filter>hipserver\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Common\hartdefs.h">
+      <Filter>hipserver\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Realtime\toolqueues.h">
+      <Filter>hipserver\Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Realtime\toolsems.h">
+      <Filter>hipserver\Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Realtime\toolsigs.h">
+      <Filter>hipserver\Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Realtime\toolthreads.h">
+      <Filter>hipserver\Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Realtime\toolutils.h">
+      <Filter>hipserver\Realtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_lib.h">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_lib_errno.h">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_mem_lib.h">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_str_lib.h">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_types.h">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\snprintf_s.h">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\sprintf_s.h">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\mem_primitives_lib.h">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\safe_mem_constraint.h">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\safe_str_constraint.h">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\safeclib_private.h">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Hip_Native\bcm2835.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\burst.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\cDatabase.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\commandSet.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\cSerialFile.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\Files.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\FillDefaultValues.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\InsertExtract.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\IOthread.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\main.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\memory_glbl.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\native.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\nativeapp.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\physical.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\PhysicalAlarms.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\PV.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\sems.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\timer.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\timeStamp.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\Units.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\Commands\command.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\Data\insert_Extract.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\Data\varient.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\AppConnect\app.cpp">
+      <Filter>hipserver\AppConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\AppConnect\apppdu.cpp">
+      <Filter>hipserver\AppConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\AppConnect\tppdu.cpp">
+      <Filter>hipserver\AppConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\Realtime\toolqueues.cpp">
+      <Filter>hipserver\Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\Realtime\toolsems.c">
+      <Filter>hipserver\Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\Realtime\toolsigs.c">
+      <Filter>hipserver\Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\Realtime\toolthreads.c">
+      <Filter>hipserver\Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\Realtime\toolutils.c">
+      <Filter>hipserver\Realtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\abort_handler_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\ignore_handler_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\mem_primitives_lib.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memcmp_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memcmp16_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memcmp32_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memcpy_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memcpy16_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memcpy32_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memmove_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memmove16_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memmove32_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memset_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memset16_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memset32_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memzero_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memzero16_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memzero32_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\safe_mem_constraint.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\safe_str_constraint.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\snprintf_support.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\sprintf_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\stpcpy_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\stpncpy_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcasecmp_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcasestr_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcat_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcmp_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcmpfld_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcpy_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcpyfld_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcpyfldin_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcpyfldout_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcspn_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strfirstchar_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strfirstdiff_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strfirstsame_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strisalphanumeric_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strisascii_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strisdigit_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strishex_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strislowercase_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strismixedcase_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strispassword_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strisuppercase_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strlastchar_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strlastdiff_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strlastsame_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strljustify_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strncat_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strncpy_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strnlen_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strnterminate_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strpbrk_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strprefix_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strremovews_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strspn_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strstr_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strtok_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strtolowercase_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strtouppercase_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strzero_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wcpcpy_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wcscat_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wcscpy_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wcsncat_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wcsncpy_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wcsnlen_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wmemcmp_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wmemcpy_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wmemmove_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wmemset_s.c">
+      <Filter>hipserver\safestringlib</Filter>
+    </ClCompile>
+    <ClCompile Include="ads1256_test.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -38,7 +38,7 @@ using namespace std::__cxx11;
 extern void nop();
 
 #ifdef _DEBUG
-	#define bcmLOGIT( C... )   printf( C )
+	//#define bcmLOGIT( C... )   printf( C )
 #else
 	#define bcmLOGIT( C... )   nop()
 #endif

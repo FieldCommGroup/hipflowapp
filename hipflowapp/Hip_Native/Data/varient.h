@@ -245,14 +245,14 @@ inline ostream &operator<<(ostream& ostr, CValueVarient& vv )
 			
 				if (vv.vIsDouble)
 				{
-			//	sprintf(tmpbuff,"const d %.15f (0x%a)",z,z);
+			//	sprintf_s(tmpbuff,"const d %.15f (0x%a)",z,z);
 			//	ostr << tmpbuff; break;
 			//ostr << "const d " << z << " (0x" << hex <<vv.vValue.fFloatConst<<dec<<")";break;
 			ostr << "const d " << z ;break;
 				}
 				else
 				{
-			//	sprintf(tmpbuff,"const f %.6f (0x%a)",y,y);
+			//	sprintf_s(tmpbuff,"const f %.6f (0x%a)",y,y);
 			//	ostr << tmpbuff; break;
 			//ostr << "const f " << y << " (0x" << hex <<vv.vValue.fFloatConst<<dec<<")";break;
 			ostr << "const f " << y ;break;

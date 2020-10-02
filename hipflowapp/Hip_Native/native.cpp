@@ -62,7 +62,7 @@ errVal_t NativeData::configure()
 	struct stat sb;
 	errVal_t retval = NO_ERROR;
 
-	int ret = Open_File((char*)CONFIG_FILENAME);
+	int ret = Open_File((char*)CONFIG_FILENAME, sizeof(CONFIG_FILENAME));
 
 	if ( CheckFile((char*)CONFIG_FILENAME) && ! ret)// it exists, has data, and is closed
 	{

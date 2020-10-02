@@ -24,6 +24,7 @@
 #include <errno.h>
 #include <string.h> // to get error string
 #include "debug.h"  /* use tim's logit */
+#include "safe_lib.h"
 
 extern const float hartLENaN;
 extern  bool       writeNeeded; // cDatabase.h
@@ -50,7 +51,7 @@ bool serializationFile::CheckFile(char* filespec)
 	{
 		return false;
 	}
-	if ( (pSF = fopen(filespec, "r+"))  ) // read and write
+	if ( (pSF = fopen(filespec, "r+"))  ) // read and write	: no user access
 	{
 		fclose(pSF);
 		sFilespec = filespec;
@@ -66,13 +67,14 @@ bool serializationFile::CheckFile(char* filespec)
 //          1 on didn't exist, we made it, it's empty but open
 //         -1 on doesn't exist and we failed to make it:closed
 //
-int serializationFile::Open_File(char* filespec)
+int serializationFile::Open_File(char* filespec, int filespecLen)
 {
 	struct stat sb;
 	int ret = -1;
 
 	char* pFspec = (filespec)?filespec:const_cast<char*>(sFilespec.c_str());// if null spec, use recorded
-
+	filespecLen = (filespec)?filespecLen:sFilespec.capacity();
+	
 	if ( pFD )// if there is a file open;
 	{
 		Close_File();
@@ -80,7 +82,7 @@ int serializationFile::Open_File(char* filespec)
 
 	while ( pFD == NULL ) // allow for retry
 	{
-		if (  (pFD = fopen(pFspec, "r+"))  ) // read and write
+		if ((pFD = fopen(pFspec, "r+"))) // read and write 	: no user access
 		{// not null - it exists
 			if (stat(pFspec, &sb) == -1) 
 			{/* check the value of errno */
@@ -126,7 +128,7 @@ int serializationFile::Open_File(char* filespec)
 		}
 		else
 		{ //make it;
-			if ( make_file(pFspec) )// couldn't make it
+			if ( make_file(pFspec, filespecLen) )// couldn't make it
 			{
 				ret = -1;
 				break; // outa retry loop
@@ -143,10 +145,10 @@ int serializationFile::Open_File(char* filespec)
 
 
 // This this leaves the file closed (0) or non-existent on failure (-1)
-int serializationFile::make_file(char * filespec)
+int serializationFile::make_file(char * filespec, int filespecLen)
 {
 	struct stat sb;
-	int i, y = strlen(filespec) + 1;
+	int i, y = strnlen_s(filespec, filespecLen) + 1;
 	int ret = 0; // successfull made it, -1 on failed
 
 	char filepath[y];filepath[0] = '\0';
@@ -156,9 +158,9 @@ int serializationFile::make_file(char * filespec)
 	{
 		if ( (filespec[i] == '\\') || (filespec[i] == '/') || i == 0 )
 		{
-			strcpy(filepath, filespec);
+			strcpy_s(filepath, y, filespec);
 			filepath[i] = '\0';
-			strcpy(filename,&(filespec[i+1]) );
+			strcpy_s(filename,y, &(filespec[i+1]) );
 			break; // outa for loop
 		}
 	}
@@ -186,7 +188,7 @@ int serializationFile::make_file(char * filespec)
 
 	if ( ret == 0 )
 	{
-		if ( ! (pFD = fopen(filespec, "w+")) ) // open for rd/wr, create if not there
+		if (!(pFD = fopen(filespec, "w+"))) // open for rd/wr, create if not there	: no user access
 		{// null:> return failed	
 			fprintf(stderr, "Failed to create file '%s'.. Error: %s\n", filespec, strerror(errno));
 			ret = -1;

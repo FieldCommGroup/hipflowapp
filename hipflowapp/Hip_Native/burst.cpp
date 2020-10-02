@@ -21,6 +21,8 @@
 #include <map>
 using namespace std;
 
+#include "safe_lib.h"
+
 #include "burst.h"
 #include "cDatabase.h"
 #include "nativeapp.h"
@@ -477,7 +479,7 @@ void initBurstStack()
 int init_burst(uint8_t myAddr[])
 {
 	int r;
-	memcpy(addrBytes, myAddr, 5);
+	memcpy_s(addrBytes, TPHDR_ADDRLEN_UNIQ, myAddr, TPHDR_ADDRLEN_UNIQ);
 	pBurstPdu = new AppPdu;
 
 	*(pBurstPdu->Delim()) = TPDELIM_BACK_UNIQ; // be sure the burst frame is bursting
