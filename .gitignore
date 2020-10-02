@@ -40,3 +40,6 @@ HipNativeFlow
 /hipflowapp/Hip_Native/bin/ARM/DbgFlow
 /hipflowapp/Hip_Native/bin/ARM64/DbgFlow/hipflowapp
 /hipflowapp/Hip_Native/obj/ARM64/DbgFlow
+/hipflowapp/Hip_Native/.visualgdb/CodeDB/hipflowapp-Debug-VisualGDB
+/hipflowapp/Hip_Native/.vs/hipflowapp/v16
+/hipflowapp/Hip_Native/VisualGDB/Debug
