@@ -39,12 +39,15 @@ COMMON_OBJS  = $(HIP_OBJS) $(COMMON_HFILES)
 EXEC_TOP = all
 
 $(EXEC_TOP): $(COMMON_OBJS)
-	echo
+	echo	
+	cd hipserver/hipserver/safestringlib && $(MAKE)
+	cd ../../..
 	echo Building $(EXEC_TOP)
 	echo
 	$(LD) $(CFLAGS) -o hipflowapp $(COMMON_OBJS) $(INCL_LIBS) -lpthread -lrt
 	echo
 
+		
 # ===============================================================
 
 .PHONY: clean
@@ -54,7 +57,8 @@ clean:
 	$(RM) -f $(EXEC_TOP)       >  /dev/null 2>&1
 	$(RM) -f *.gch             >  /dev/null 2>&1
 	$(RM) -fr $(HIP_OBJS)	   >  /dev/null 2>&1
-
+	cd hipserver/hipserver/safestringlib && $(MAKE) clean
+	cd ../../..
 
 .PHONY: cleanall
 cleanall:
