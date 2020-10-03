@@ -68,7 +68,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(ProjectDir)//hipserver/hipserver/AppConnect;$(ProjectDir)//hipserver/hipserver/Common;$(ProjectDir)//hipserver/hipserver/Realtime;$(ProjectDir)//hipserver/hipserver/safestringlib/include;$(ProjectDir);$(ProjectDir)/Commands;$(ProjectDir)/Data;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG=1;_IS_HART7;LINUX;;_FLOWDEVICE;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG=1;_IS_HART7;LINUX;_FLOWDEVICE;_FLOWAPP;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <CPPLanguageStandard>
       </CPPLanguageStandard>
     </ClCompile>
@@ -84,7 +84,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugRPi|VisualGDB'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(ProjectDir)//hipserver/hipserver/AppConnect;$(ProjectDir)//hipserver/hipserver/Common;$(ProjectDir)//hipserver/hipserver/Realtime;$(ProjectDir)//hipserver/hipserver/safestringlib/include;$(ProjectDir);$(ProjectDir)/Commands;$(ProjectDir)/Data;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG=1;_IS_HART7;LINUX;;_FLOWDEVICE;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG=1;_IS_HART7;LINUX;_FLOWDEVICE;_FLOWAPP;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <CPPLanguageStandard>
       </CPPLanguageStandard>
     </ClCompile>
@@ -101,7 +101,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugU12|VisualGDB'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(ProjectDir)//hipserver/hipserver/AppConnect;$(ProjectDir)//hipserver/hipserver/Common;$(ProjectDir)//hipserver/hipserver/Realtime;$(ProjectDir)//hipserver/hipserver/safestringlib/include;$(ProjectDir);$(ProjectDir)/Commands;$(ProjectDir)/Data;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG=1;_IS_HART7;LINUX;;_FLOWDEVICE;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG=1;_IS_HART7;LINUX;_FLOWDEVICE;_FLOWAPP;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <CPPLanguageStandard>
       </CPPLanguageStandard>
     </ClCompile>
