@@ -37,11 +37,8 @@ using namespace std::__cxx11;
 
 extern void nop();
 
-#ifdef _DEBUG
-	//#define bcmLOGIT( C... )   printf( C )
-#else
-	#define bcmLOGIT( C... )   nop()
-#endif
+//#define bcmLOGIT( C... )   printf( C ) // debug output
+#define bcmLOGIT( C... )   nop()
 
 #define  NATIVE_RANGES_FILE   "/var/data/NativeDevice/ranges"
 #define  PI_MEMORY_PATH       "/dev/mem"

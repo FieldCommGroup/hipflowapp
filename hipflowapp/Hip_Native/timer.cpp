@@ -255,14 +255,15 @@ void timinglogmsg(const char *text, uint8_t rspCount, BYTE *rspMsg)
 #if (TIMING_LOG)
 
 	uint8_t i;
-	char buf[500], buf2[500];
+	const int bufsiz = 500;
+	char buf[bufsiz], buf2[bufsiz];
 
 	for (i = 0; i < rspCount; i++)
 	{
-		sprintf_s(buf+3*i, 500, "%02x ", rspMsg[i]);
+		sprintf_s(buf + 3*i, bufsiz, "%02x ", rspMsg[i]);
 	}
 
-	sprintf_s(buf2, 500, "%s: %s", text, buf);
+	sprintf_s(buf2, bufsiz, "%s: %s", text, buf);
 	timinglog(buf2);
 
 #endif /* (TIMING_LOG) */

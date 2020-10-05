@@ -235,11 +235,7 @@ uint8_t c_insert_Extract::extract( float   & x, uint8_t **ppData, uint8_t& dataC
 
 	x = *((float*) &t);
 
-	//uint16_t g = (uint16_t)((x >> 16) & 0xffff);// hi word
-	//uint16_t h = (uint16_t)(x & 0xffff);
-	//x = (((uint32_t)REVERSE_S(h)) << 16) | (uint32_t)REVERSE_S(g);
-	//memcpy_s( (*ppData), &x, sizeof(uint32_t) );
-	//dataCnt += sizeof(uint32_t);
+	dataCnt += len;
 
 	return ret; //SUCCESS
 }
