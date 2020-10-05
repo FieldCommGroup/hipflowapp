@@ -63,15 +63,12 @@ void handle_sigint(int32_t sigNum)
 int main(int argc, char *argv[])
 {
 	errVal_t errval = NO_ERROR;
-fprintf(stderr, "-->> Main Entry as version %d\n", SOFTWAREVERSION); fflush(stderr);
 
 	NativeApp app(TOOL_NAME, TOOL_VERS);
 	pGlobalApp = &app;
-printf("-->> App Instantiated\n");
 
 	AppConnector<AppPdu> globalAppConnector; // ctor sets config, incl address
 	pAppConnector = &globalAppConnector;
-printf("-->> Appconnector generated\n");
 
 	do
 	{
@@ -81,9 +78,6 @@ printf("-->> Appconnector generated\n");
 					app.GetName());
 			break;
 		}
-printf("-->> Command Line Handled\n");
-if (NONvolatileData.devVars[0].updatePeriod > 0xc80)
-	printf("Value = %lu pre -config.\n", NONvolatileData.devVars[0].updatePeriod);
 
 		// read/set static configuration data
 		if ((errval = app.configure()))
@@ -91,24 +85,19 @@ if (NONvolatileData.devVars[0].updatePeriod > 0xc80)
 			printf("Configure %s failed. Exiting!\n", app.GetName());
 			break;
 		}
-printf("-->> App Configured\n");
-if (NONvolatileData.devVars[0].updatePeriod > 0xc80)
-	printf("Value = %lu post-config.\n",NONvolatileData.devVars[0].updatePeriod);
-
+		
 		if ((errval = app.initialize()))
 		{ // error returned
 			printf("%s failed to initialize. Exiting!\n", app.GetName());
 			break;
 		}
-printf("-->> App Initialized\n");
-if (NONvolatileData.devVars[0].updatePeriod > 0xc80)
-	printf("Value = %lu post-init.\n", NONvolatileData.devVars[0].updatePeriod);
 
 		// start working, infinite loop
 		printf("hello from %s!\n", app.getFullName());
 		pAppConnector->run(&app); // ends on abortApp
 		printf("%s is finished. Exiting!\n", app.GetName());
-		sleep(5);// supposed to be seconds
+		sleep(5);// seconds
+		
 	} while (false);
 
 	app.cleanup();

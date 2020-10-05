@@ -31,7 +31,8 @@ COMMON_HFILES = $(MAIN_DIR)/hipserver/hipserver/Common/common.h      	\
                 $(MAIN_DIR)/hipserver/hipserver/Common/errval.h      	\
                 $(MAIN_DIR)/hipserver/hipserver/Common/hartdefs.h    	\
                 $(MAIN_DIR)/hipserver/hipserver/AppConnect/tpdll.h		\
-                $(MAIN_DIR)/hipserver/hipserver/AppConnect/appconnector.h
+                $(MAIN_DIR)/hipserver/hipserver/AppConnect/appconnector.h \
+				$(MAIN_DIR)/hipserver/hipserver/safestringlib/include/safe_lib.h 
 
 # List all HART-IP .c files (without extension)
 # First list all .c files that have a corresponding .h file

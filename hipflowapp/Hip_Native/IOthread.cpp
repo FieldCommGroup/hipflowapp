@@ -65,13 +65,13 @@ int y;
     bcm2835_gpio_set_pud(DRDY, BCM2835_GPIO_PUD_UP);    	
     //ADS1256_WriteReg(REG_MUX,0x01);
     //ADS1256_WriteReg(REG_ADCON,0x20);
-   // ADS1256_CfgADC(ADS1256_GAIN_1, ADS1256_15SPS);
-   id = ADS1256_ReadChipID();
-   printf("\r\n");
-   printf("ID=   ");  
+	//ADS1256_CfgADC(ADS1256_GAIN_1, ADS1256_15SPS);
+	id = ADS1256_ReadChipID(); 
 	if (id != 3)
 	{
-		printf("Error, ASD1256 Chip ID = 0x%d\r\n", (int)id);	
+#ifdef _DEBUG
+		printf("Error, ASD1256 Chip ID = 0x%d\r\n", (int)id);
+#endif
 		while(! *(pShared->pDieCmd) )// for proper shutdown (a little dirty...I know.)
 		{
 			timespec x; x.tv_sec = 1; x.tv_nsec =0;
@@ -81,9 +81,13 @@ int y;
 	}
 	else
 	{
+#ifdef _DEBUG		
 		printf("Ok, ASD1256 Chip ID = 0x%d\n", (int)id);
+#endif
 	}
+	
 #ifdef _PRESSUREDEVICE
+
   	ADS1256_CfgADC(ADS1256_GAIN_4, ADS1256_15SPS);
 #else
   #ifdef _FLOWDEVICE

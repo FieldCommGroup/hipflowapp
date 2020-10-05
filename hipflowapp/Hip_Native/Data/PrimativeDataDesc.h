@@ -86,13 +86,13 @@ public:
 		case ht_int56:
 		case ht_int64:
 		{
-			assert(0);// unimplemented data class
+			assert(0);// unimplemented data class   // no assert side effect 
 		}
 		break;
 		case ht_Unknown:
 		default:
 		{
-			assert(0);// unknown data class
+			assert(0);// unknown data class   // no assert side effect 
 		}
 		break;
 		}// endswitch

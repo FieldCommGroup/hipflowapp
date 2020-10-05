@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugRPi|VisualGDB">
+      <Configuration>DebugRPi</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugU12|VisualGDB">
+      <Configuration>DebugU12</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|VisualGDB">
+      <Configuration>Debug</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|VisualGDB">
+      <Configuration>Release</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{910B5067-A805-4195-B066-4D60593A0A2D}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugRPi|VisualGDB'" Label="Configuration" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugU12|VisualGDB'" Label="Configuration" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+    <RemoteBuildHost>10.0.0.160</RemoteBuildHost>
+    <ToolchainID>com.sysprogs.toolchain.default-gcc</ToolchainID>
+    <GNUCompilerType>GCC</GNUCompilerType>
+    <RemoteBuildTool>Ninja</RemoteBuildTool>
+    <PreserveSubdirectoriesForObjectFiles>false</PreserveSubdirectoriesForObjectFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugRPi|VisualGDB'">
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+    <RemoteBuildHost>10.0.0.158</RemoteBuildHost>
+    <ToolchainID>com.sysprogs.toolchain.default-gcc</ToolchainID>
+    <GNUCompilerType>GCC</GNUCompilerType>
+    <RemoteBuildTool>Ninja</RemoteBuildTool>
+    <PreserveSubdirectoriesForObjectFiles>false</PreserveSubdirectoriesForObjectFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugU12|VisualGDB'">
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+    <RemoteBuildHost>10.0.0.245</RemoteBuildHost>
+    <ToolchainID>com.sysprogs.toolchain.default-gcc</ToolchainID>
+    <GNUCompilerType>GCC</GNUCompilerType>
+    <RemoteBuildTool>Ninja</RemoteBuildTool>
+    <PreserveSubdirectoriesForObjectFiles>false</PreserveSubdirectoriesForObjectFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <RemoteBuildHost>10.0.0.160</RemoteBuildHost>
+    <ToolchainID>com.sysprogs.toolchain.default-gcc</ToolchainID>
+    <GNUCompilerType>GCC</GNUCompilerType>
+    <RemoteBuildTool>Ninja</RemoteBuildTool>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)//hipserver/hipserver/AppConnect;$(ProjectDir)//hipserver/hipserver/Common;$(ProjectDir)//hipserver/hipserver/Realtime;$(ProjectDir)//hipserver/hipserver/safestringlib/include;$(ProjectDir);$(ProjectDir)/Commands;$(ProjectDir)/Data;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;_IS_HART7;LINUX;_FLOWDEVICE;_FLOWAPP;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CPPLanguageStandard>
+      </CPPLanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>pthread;rt;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <LinkerScript />
+      <VerboseMode>
+      </VerboseMode>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugRPi|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)//hipserver/hipserver/AppConnect;$(ProjectDir)//hipserver/hipserver/Common;$(ProjectDir)//hipserver/hipserver/Realtime;$(ProjectDir)//hipserver/hipserver/safestringlib/include;$(ProjectDir);$(ProjectDir)/Commands;$(ProjectDir)/Data;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;_IS_HART7;LINUX;_FLOWDEVICE;_FLOWAPP;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CPPLanguageStandard>
+      </CPPLanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>pthread;rt;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <LinkerScript>
+      </LinkerScript>
+      <VerboseMode>
+      </VerboseMode>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugU12|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)//hipserver/hipserver/AppConnect;$(ProjectDir)//hipserver/hipserver/Common;$(ProjectDir)//hipserver/hipserver/Realtime;$(ProjectDir)//hipserver/hipserver/safestringlib/include;$(ProjectDir);$(ProjectDir)/Commands;$(ProjectDir)/Data;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;_IS_HART7;LINUX;_FLOWDEVICE;_FLOWAPP;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CPPLanguageStandard>
+      </CPPLanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>pthread;rt;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <LinkerScript>
+      </LinkerScript>
+      <VerboseMode>
+      </VerboseMode>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_lib_errno.h.in" />
+    <None Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_types.h.in" />
+    <None Include="..\Hip_Native\hipserver\hipserver\safestringlib\README.md" />
+    <None Include="..\Hip_Native\Makefile.inc" />
+    <None Include="..\Hip_Native\Makefile_macros.inc" />
+    <None Include="hipflowapp-Debug.vgdbsettings" />
+    <None Include="hipflowapp-Release.vgdbsettings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Hip_Native\ADS1256_defs.h" />
+    <ClInclude Include="..\Hip_Native\bcm2835.h" />
+    <ClInclude Include="..\Hip_Native\burst.h" />
+    <ClInclude Include="..\Hip_Native\cDatabase.h" />
+    <ClInclude Include="..\Hip_Native\cDataRaw.h" />
+    <ClInclude Include="..\Hip_Native\CircularBuffer.h" />
+    <ClInclude Include="..\Hip_Native\commandSet.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_00.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_01.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_02.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_03.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_06.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_07.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_08.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_09.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_11.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_12.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_13.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_14.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_15.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_16.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_17.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_18.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_19.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_20.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_21.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_22.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_35.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_38.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_44.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_48.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_50.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_51.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_52.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_53.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_54.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_79.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_95.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c103.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c104.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c105.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c107.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c108.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c109.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c120.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_c534.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2560.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2561.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2562.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2563.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2688.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2689.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2690.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2692.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2693.h" />
+    <ClInclude Include="..\Hip_Native\Commands\cmd_k2864.h" />
+    <ClInclude Include="..\Hip_Native\Commands\command.h" />
+    <ClInclude Include="..\Hip_Native\configuration_Default.h" />
+    <ClInclude Include="..\Hip_Native\cSerialFile.h" />
+    <ClInclude Include="..\Hip_Native\Data\AllDataObjects.h" />
+    <ClInclude Include="..\Hip_Native\Data\DataObject.h" />
+    <ClInclude Include="..\Hip_Native\Data\DataObjectBase.h" />
+    <ClInclude Include="..\Hip_Native\Data\DataObjectConfig.h" />
+    <ClInclude Include="..\Hip_Native\Data\DataSet.h" />
+    <ClInclude Include="..\Hip_Native\Data\insert_Extract.h" />
+    <ClInclude Include="..\Hip_Native\Data\PrimativeDataDesc.h" />
+    <ClInclude Include="..\Hip_Native\Data\variableFactory.h" />
+    <ClInclude Include="..\Hip_Native\Data\varient.h" />
+    <ClInclude Include="..\Hip_Native\debug.h" />
+    <ClInclude Include="..\Hip_Native\delay.h" />
+    <ClInclude Include="..\Hip_Native\Files.h" />
+    <ClInclude Include="..\Hip_Native\hartmdll.h" />
+    <ClInclude Include="..\Hip_Native\hartPhy.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\AppConnect\app.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\AppConnect\appconnector.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\AppConnect\appmsg.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\AppConnect\apppdu.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\AppConnect\tpdll.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\AppConnect\tppdu.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Common\common.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Common\Common2Server.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Common\datatypes.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Common\errval.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Common\hartdefs.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Realtime\toolqueues.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Realtime\toolsems.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Realtime\toolsigs.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Realtime\toolthreads.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\Realtime\toolutils.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_lib.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_lib_errno.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_mem_lib.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_str_lib.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\safe_types.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\snprintf_s.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\include\sprintf_s.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\mem_primitives_lib.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\safeclib_private.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\safe_mem_constraint.h" />
+    <ClInclude Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\safe_str_constraint.h" />
+    <ClInclude Include="..\Hip_Native\htesttypes.h" />
+    <ClInclude Include="..\Hip_Native\InsertExtract.h" />
+    <ClInclude Include="..\Hip_Native\lnkctrl.h" />
+    <ClInclude Include="..\Hip_Native\memory_glbl.h" />
+    <ClInclude Include="..\Hip_Native\msg.h" />
+    <ClInclude Include="..\Hip_Native\native.h" />
+    <ClInclude Include="..\Hip_Native\nativeapp.h" />
+    <ClInclude Include="..\Hip_Native\PhysicalAlarms.h" />
+    <ClInclude Include="..\Hip_Native\PV.h" />
+    <ClInclude Include="..\Hip_Native\RunningAverage.h" />
+    <ClInclude Include="..\Hip_Native\sems.h" />
+    <ClInclude Include="..\Hip_Native\shared.h" />
+    <ClInclude Include="..\Hip_Native\timer.h" />
+    <ClInclude Include="..\Hip_Native\tooldef.h" />
+    <ClInclude Include="..\Hip_Native\Units.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Hip_Native\bcm2835.cpp" />
+    <ClCompile Include="..\Hip_Native\burst.cpp" />
+    <ClCompile Include="..\Hip_Native\cDatabase.cpp" />
+    <ClCompile Include="..\Hip_Native\commandSet.cpp" />
+    <ClCompile Include="..\Hip_Native\Commands\command.cpp" />
+    <ClCompile Include="..\Hip_Native\cSerialFile.cpp" />
+    <ClCompile Include="..\Hip_Native\Data\insert_Extract.cpp" />
+    <ClCompile Include="..\Hip_Native\Data\varient.cpp" />
+    <ClCompile Include="..\Hip_Native\Files.cpp" />
+    <ClCompile Include="..\Hip_Native\FillDefaultValues.cpp" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\AppConnect\app.cpp" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\AppConnect\apppdu.cpp" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\AppConnect\tppdu.cpp" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\Realtime\toolqueues.cpp" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\Realtime\toolsems.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\Realtime\toolsigs.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\Realtime\toolthreads.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\Realtime\toolutils.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\abort_handler_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\ignore_handler_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memcmp16_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memcmp32_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memcmp_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memcpy16_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memcpy32_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memcpy_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memmove16_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memmove32_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memmove_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memset16_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memset32_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memset_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memzero16_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memzero32_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\memzero_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\mem_primitives_lib.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\safe_mem_constraint.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\safe_str_constraint.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\snprintf_support.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\sprintf_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\stpcpy_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\stpncpy_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcasecmp_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcasestr_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcat_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcmpfld_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcmp_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcpyfldin_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcpyfldout_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcpyfld_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcpy_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strcspn_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strfirstchar_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strfirstdiff_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strfirstsame_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strisalphanumeric_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strisascii_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strisdigit_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strishex_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strislowercase_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strismixedcase_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strispassword_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strisuppercase_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strlastchar_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strlastdiff_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strlastsame_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strljustify_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strncat_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strncpy_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strnlen_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strnterminate_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strpbrk_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strprefix_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strremovews_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strspn_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strstr_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strtok_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strtolowercase_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strtouppercase_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\strzero_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wcpcpy_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wcscat_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wcscpy_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wcsncat_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wcsncpy_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wcsnlen_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wmemcmp_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wmemcpy_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wmemmove_s.c" />
+    <ClCompile Include="..\Hip_Native\hipserver\hipserver\safestringlib\safeclib\wmemset_s.c" />
+    <ClCompile Include="..\Hip_Native\InsertExtract.cpp" />
+    <ClCompile Include="..\Hip_Native\IOthread.cpp" />
+    <ClCompile Include="..\Hip_Native\main.cpp" />
+    <ClCompile Include="..\Hip_Native\memory_glbl.cpp" />
+    <ClCompile Include="..\Hip_Native\native.cpp" />
+    <ClCompile Include="..\Hip_Native\nativeapp.cpp" />
+    <ClCompile Include="..\Hip_Native\physical.cpp" />
+    <ClCompile Include="..\Hip_Native\PhysicalAlarms.cpp" />
+    <ClCompile Include="..\Hip_Native\PV.cpp" />
+    <ClCompile Include="..\Hip_Native\sems.cpp" />
+    <ClCompile Include="..\Hip_Native\timer.cpp" />
+    <ClCompile Include="..\Hip_Native\timeStamp.cpp" />
+    <ClCompile Include="..\Hip_Native\Units.cpp" />
+    <ClCompile Include="ads1256_test.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

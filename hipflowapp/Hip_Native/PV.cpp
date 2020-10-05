@@ -23,7 +23,7 @@
 
 #include "cDatabase.h"
 #include "PV.h"
-
+#include "safe_lib.h"
 
 
 /*******  externs *******/
@@ -282,7 +282,7 @@ char readDVwStatus(MSG * pMsg )   /* cmd 9 */
 	uint32_t dummyCnt = 0;
 	cmd9element_t *pElem = NULL;
 	bool isProtected = false;// true if it's a live data element
-	memcpy(reqBytes, pData, 8);// we'll only look at the first reqCnt  of 'em
+	memcpy_s(reqBytes, pData, 8);// we'll only look at the first reqCnt  of 'em
 
     if (reqCnt < 1 )     
 	{
@@ -360,7 +360,7 @@ char readDVwStatus(MSG * pMsg )   /* cmd 9 */
 		uint16_t h = (uint16_t)(y & 0xffff);
 		y = (((uint32_t)REVERSE_S(h)) << 16) | (uint32_t)REVERSE_S(g);
 	}
-	memcpy(pData, &y, sizeof(uint32_t) );
+	memcpy_s(pData, &y, sizeof(uint32_t) );
 	dataCnt += sizeof(uint32_t);
 
 	pMsg->byteCount = dataCnt + 2;
@@ -421,7 +421,7 @@ char readSnsrInfo(MSG * pMsg )         /* cmd 14 */
    /* for ( i = 0; i < sizeof( cmd14Data ); i++ ) {
         *pData++ = *pSource++;
     }*/
-	memcpy(pData,(uint8_t*)&cmd14Data, 4); // first 4 bytes
+	memcpy_s(pData,(uint8_t*)&cmd14Data, 4); // first 4 bytes
 	pData += 4;
 	dummyCnt=4;// for debugging
 	insert(cmd14Data.upperSensorLimit, &pData, dummyCnt);
@@ -513,7 +513,7 @@ char readDVinfo(MSG * pMsg )  /* cmd 54 */
 	{
 		getSema();
 	}
-	// endian issues...memcpy(pData, pElem, sizeof(cmd9element_t) );
+	// endian issues...memcpy_s(pData, pElem, sizeof(cmd9element_t) );
 	uint8_t   temp32[4]; 
 	uint8_t * pTemp = &(temp32[0]);
 

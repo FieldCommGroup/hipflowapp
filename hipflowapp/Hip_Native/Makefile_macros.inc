@@ -25,9 +25,9 @@
 
 CC        = g++ -c
 CXX        = g++ -c
-CFLAGS     = -g -D_IS_HART7 -DLINUX -D_FLOWDEVICE -I$(MAIN_DIR)/Commands -I$(MAIN_DIR)/Data -I$(MAIN_DIR)/hipserver/hipserver/Common   -I$(MAIN_DIR)/hipserver/hipserver/AppConnect  -I$(MAIN_DIR)/hipserver/hipserver/Data  -I$(MAIN_DIR)/hipserver/hipserver/Realtime  -I$(MAIN_DIR)  -std=gnu++11 
-CXXFLAGS   = -g  -D_IS_HART7 -DLINUX -D_FLOWDEVICE -I$(MAIN_DIR)/Commands -I$(MAIN_DIR)/Data -I$(MAIN_DIR)/hipserver/hipserver/Common   -I$(MAIN_DIR)/hipserver/hipserver/AppConnect  -I$(MAIN_DIR)/hipserver/hipserver/Data  -I$(MAIN_DIR)/hipserver/hipserver/Realtime  -I$(MAIN_DIR) -std=gnu++11 
+CFLAGS     = -g -D_IS_HART7 -DLINUX -D_FLOWDEVICE -D_FLOWAPP -I$(MAIN_DIR)/Commands -I$(MAIN_DIR)/Data -I$(MAIN_DIR)/hipserver/hipserver/Common   -I$(MAIN_DIR)/hipserver/hipserver/AppConnect -I$(MAIN_DIR)/hipserver/hipserver/Realtime -I$(MAIN_DIR)/hipserver/hipserver/safestringlib/include -I$(MAIN_DIR)  -std=gnu++11
+CXXFLAGS   = $(CFLAGS)
 ECHO       = @echo
-INCL_LIBS  = -lpthread -lrt
+INCL_LIBS  = -lpthread -lrt hipserver/hipserver/safestringlib/libsafestring.a
 LD         = g++ 
 RM         = @rm

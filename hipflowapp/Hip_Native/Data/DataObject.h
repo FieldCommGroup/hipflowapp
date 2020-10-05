@@ -93,7 +93,7 @@ public: // ctor / dtor
 	restoreSelf(uint8_t* pD, int L)
 	{
 		if (pTheArray != 0)
-			memcpy(pTheArray, pD, L);
+			memcpy_s(pTheArray, L, pD, L);
 		else
 			theData = *((RAW_TYPE*)pD);
 	};
@@ -106,7 +106,7 @@ public: // ctor / dtor
 	virtual void
 	setSelfValue(RAW_TYPE* newArr, uint8_t newLen)
 	{
-		memcpy(pTheArray, newArr, newLen);
+		memcpy_s(pTheArray, newLen, newArr, newLen);
 	};
 
 	virtual CValueVarient	
@@ -126,7 +126,7 @@ do_ConfigureArray(bool is_Config, uint8_t datasize)
 {
 	do_Configure(is_Config);
 	pTheArray = new RAW_TYPE[datasize];
-	assert(pTheArray != NULL);
+	assert(pTheArray != NULL);  // no assert side effect 
 };
 
 #endif // _C_DATAOBJECT_H

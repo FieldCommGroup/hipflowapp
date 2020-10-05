@@ -175,7 +175,7 @@ FILE* openSystemFile( string& dataFileSpec, string& systemFileSpec )
 	uid_t  myuid = getuid();
 
 	//will try to open the dataFileSpec as read-only file.
-	if (  (fp = fopen(dataFileSpec.c_str() , "rb"))  )
+	if((fp = fopen(dataFileSpec.c_str(), "rb")))	// no user access
 	{ 
 		return fp;//     at success  returns the file pointer.
 	}// else failed, we apparently have never run as su
@@ -186,7 +186,7 @@ FILE* openSystemFile( string& dataFileSpec, string& systemFileSpec )
 		goto openExit;;
 	}// else failed not there...  will try to open the systemFileSpec as a read-only file.
 	
-	sp = fopen(systemFileSpec.c_str() , "rb");
+	sp = fopen(systemFileSpec.c_str() , "rb");	// no user access
 
 	if ( sp == NULL ) // failed to open
 	{ 
@@ -217,7 +217,7 @@ FILE* openSystemFile( string& dataFileSpec, string& systemFileSpec )
 	}
 
 	// open dataFileSpec for writing
-	if (  (fp = fopen(dataFileSpec.c_str() , "wb+"))  )
+	if((fp = fopen(dataFileSpec.c_str(), "wb+")))	// no user access
 	{ // success,  copy the systemFileSpec to the dataFileSpec
 		if ( cpfile(fp, sp) )// true on success
 		{// copied,  

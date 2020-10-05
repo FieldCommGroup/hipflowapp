@@ -74,7 +74,7 @@ public: // ctor/dtor
 	~serializationFile();
 
 public:
-int Open_File(char* filespec); //  returns 0 on existing file ready
+int Open_File(char* filespec, int filespecLen=0); //  returns 0 on existing file ready
 							   //          1 on didn't exist, we made it, it's empty but open
 							   //         -1 on doesn't exist and we failed to make it
 void Close_File(void);
@@ -83,7 +83,7 @@ errVal_t getData(void);// non volatile only
 errVal_t putData(void);
 
 protected: // helpers
-	int make_file(char* filespec );
+	int make_file(char* filespec, int filespecLen );
 };
 
 

@@ -71,7 +71,6 @@ errVal_t NativeApp::commandline(int argc, char *argv[])
 // read a file and/or set static data items
 errVal_t NativeApp::configure()
 {
-	printf("- - - - Native App in Configure.\n");
 	// doesn't appear to work ... const float    constant_nan = NaN_value;
 	float *pFlt    = const_cast<float*>(&constant_nan);
 	uint8_t *a_flt = (uint8_t*)(pFlt);
@@ -279,10 +278,8 @@ int NativeApp::handle_device_message(AppPdu *pPDU)
 	// get the latest device status
 	bool msa = (pPDU->isPrimary()) ? Pri_MSA () : Sec_MSA();// true if current != last cmd
 	bool ccb = (pPDU->isPrimary()) ? configChangedBit_Pri : configChangedBit_Sec;
-	/*if (! pPDU->isPrimary())
-	{
-		fprintf(stderr,"        Secondary Master: ccb = %s\n",ccb?"Set":"Clr"); fflush(stderr);
-	}*/
+
+
 	if (ccb)   // this host's ccb is set
 		DS |= 0x40;// set the config changed bit
 	else
@@ -309,7 +306,6 @@ int NativeApp::burstIt(dataItem indexList[], AppPdu *pPDU)
 	if (pCmd == NULL)
 	{// command not supported
 		printf("Burst command %d is not implemented.\n", cmdNum); 
-	fprintf(stderr, "                    Burst command %d is not implemented.\n", cmdNum);
 		return CMD_ERROR;
 	}
 	// else...we got one
@@ -322,7 +318,6 @@ int NativeApp::burstIt(dataItem indexList[], AppPdu *pPDU)
 	pCmd->burstThisCmd(indexList, pPDU);// fills the data
 
 	uint8_t *pRC = (uint8_t *)responseCode.pRaw;
-	//uint8_t *pDS = (uint8_t *)deviceStatus.pRaw;
 	uint8_t DS = getDeviceStatus();
 
 	// a burst pdu can have either master address
@@ -365,10 +360,9 @@ errVal_t NativeApp::start_system(void)
 			// leave ret 
 		}
 		//else // all-is-well
-		//{
-		//	// and anything else that is required to pump messages
-			ret = NO_ERROR;
-		//}
+
+		// and anything else that is required to pump messages
+		ret = NO_ERROR;
 	}
 	// else return the phy error 
 	return ret;
@@ -415,7 +409,7 @@ errVal_t NativeApp::getLowMAC(uint8_t *pArr)
 				return LINUX_ERROR;
 			}
 
-			strcpy(ifr.ifr_name, ifa->ifa_name);
+			strcpy_s(ifr.ifr_name, IFNAMSIZ, ifa->ifa_name);
 			if (ioctl(s, SIOCGIFHWADDR, &ifr) < 0) {
 				perror("ioctl");
 				return LINUX_ERROR;

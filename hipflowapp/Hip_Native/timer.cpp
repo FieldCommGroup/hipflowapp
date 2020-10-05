@@ -32,6 +32,8 @@
 //#include "hthreads.h"
 #include "timer.h"
 
+#include "safe_lib.h"
+
 #define  TIMING_LOG      0
 
 /************
@@ -68,7 +70,8 @@ errVal_t halt_itimer(void)
 {
 	errVal_t errVal = NO_ERROR;
 	uint32_t secTime, usecTime;
-	char buf[80];
+	const int bufsiz = 80;
+	char buf[bufsiz];
 
 	/* Save old values and reset value of interval timer */
 	wdTimerFlag = FALSE;
@@ -82,7 +85,7 @@ errVal_t halt_itimer(void)
 	set_timeval(&(inITimer.it_interval), secTime, usecTime);
 	set_timeval(&(inITimer.it_value), secTime, usecTime);
 
-	sprintf(buf, "halt_itimer    new timer: secTime=%u  usecTime=%u", secTime,
+	sprintf_s(buf, bufsiz, "halt_itimer    new timer: secTime=%u  usecTime=%u", secTime,
 			usecTime);
 	timinglog(buf);
 
@@ -97,7 +100,7 @@ errVal_t halt_itimer(void)
 		display_timer(&saveITimer);
 	}
 
-	sprintf(buf, "halt_itimer    saveITimer: secTime=%d  usecTime=%d",
+	sprintf_s(buf, bufsiz, "halt_itimer    saveITimer: secTime=%d  usecTime=%d",
 			(int32_t) saveITimer.it_value.tv_sec,
 			(int32_t) saveITimer.it_value.tv_usec);
 	timinglog(buf);
@@ -109,7 +112,8 @@ errVal_t resume_itimer(void)
 {
 	errVal_t errVal = NO_ERROR;
 	itimerval_t outITimer;
-	char buf[80];
+	const int bufsiz = 80;
+	char buf[bufsiz];
 
 	/* Restore event flag */
 	flag_event(saveEvent);
@@ -121,7 +125,7 @@ errVal_t resume_itimer(void)
 	dbgp_tmr("Resuming Timer (event = 0x%.4hX, Time left:\n", saveEvent);
 	display_timer(&inITimer);
 
-	sprintf(buf, "resume_itimer    new timer: secTime=%d  usecTime=%d",
+	sprintf_s(buf, bufsiz, "resume_itimer    new timer: secTime=%d  usecTime=%d",
 			(int32_t) inITimer.it_value.tv_sec,
 			(int32_t) inITimer.it_value.tv_usec);
 	timinglog(buf);
@@ -132,7 +136,7 @@ errVal_t resume_itimer(void)
 		errVal = ITIMER_ERROR;
 	}
 
-	sprintf(buf, "resume_itimer    saveITimer: secTime=%d  usecTime=%d",
+	sprintf_s(buf, bufsiz, "resume_itimer    saveITimer: secTime=%d  usecTime=%d",
 			(int32_t) saveITimer.it_value.tv_sec,
 			(int32_t) saveITimer.it_value.tv_usec);
 	timinglog(buf);
@@ -180,7 +184,8 @@ errVal_t set_itimer(uint32_t uSec, uint16_t event)
 	itimerval_t outITimer;
 	errVal_t errVal = NO_ERROR;
 	uint32_t secTime, usecTime;
-	char buf[100];
+	const int bufsiz = 80;
+	char buf[bufsiz];
 
 	/* Set interval (repetition) value of ITimer to 0 */
 	secTime = 0;
@@ -192,7 +197,7 @@ errVal_t set_itimer(uint32_t uSec, uint16_t event)
 	usecTime = uSec % USEC_PER_SEC;
 	set_timeval(&(inITimer.it_value), secTime, usecTime);
 
-	sprintf(buf, "set_itimer %u   secTime=%u  usecTime=%u", uSec, secTime,
+	sprintf_s(buf, bufsiz, "set_itimer %u   secTime=%u  usecTime=%u", uSec, secTime,
 			usecTime);
 	timinglog(buf);
 
@@ -229,7 +234,7 @@ void timinglog(const char *text)
 
 	if (fp == NULL)
 	{
-		fp = fopen("timing.log", "w");
+		fp = fopen("timing.log", "w");	// no user access
 	}
 
 	if (fp)
@@ -250,14 +255,15 @@ void timinglogmsg(const char *text, uint8_t rspCount, BYTE *rspMsg)
 #if (TIMING_LOG)
 
 	uint8_t i;
-	char buf[500], buf2[500];
+	const int bufsiz = 500;
+	char buf[bufsiz], buf2[bufsiz];
 
 	for (i = 0; i < rspCount; i++)
 	{
-		sprintf(buf+3*i, "%02x ", rspMsg[i]);
+		sprintf_s(buf + 3*i, bufsiz, "%02x ", rspMsg[i]);
 	}
 
-	sprintf(buf2, "%s: %s", text, buf);
+	sprintf_s(buf2, bufsiz, "%s: %s", text, buf);
 	timinglog(buf2);
 
 #endif /* (TIMING_LOG) */
