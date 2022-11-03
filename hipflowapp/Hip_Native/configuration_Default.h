@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,9 +37,10 @@
 // this needs to be defin3ed on the command line (ie property box) #define _IS_HART7
 #endif
 
+#define INIT_MFG_ID         0xf9
 /* some of these may change from NV memory...eg INIT_CONFIG_CNT*/
 #ifdef _PRESSUREDEVICE
-#define INIT_DEVTYPE_HI		0xf9
+#define INIT_DEVTYPE_HI		(INIT_MFG_ID & 0x3F)
 #define INIT_DEVTYPE_LO		0xfc
 
 #define INIT_DEV_ID0        0xbc 
@@ -50,7 +51,7 @@
 #define INIT_LONG_TAG       "NATIVE_PRESS"
 #else
   #ifdef _FLOWDEVICE
-    #define INIT_DEVTYPE_HI		0xf9
+    #define INIT_DEVTYPE_HI		(INIT_MFG_ID & 0x3F)
     #define INIT_DEVTYPE_LO		0xfd
 #define INIT_DEV_ID0        0xbc 
 #define INIT_DEV_ID1        0x68
@@ -58,9 +59,10 @@
 #define INIT_TAG            "NATIVEPI"
 #define TAG_LEN             8
 #define INIT_LONG_TAG       "NATIVE_PI_FLOW"
+#define INIT_LONG_TAG_HART  "??????????????????"
 #define LONG_LEN            14          
   #else
-    #define INIT_DEVTYPE_HI		0xf9
+#define INIT_DEVTYPE_HI		(INIT_MFG_ID & 0x3F)
     #define INIT_DEVTYPE_LO		0xfd
 #define INIT_DEV_ID0        0xbc 
 #define INIT_DEV_ID1        0x61
@@ -84,20 +86,24 @@
 #define INIT_BURST_ENABLE   0x00  /* turn 'em off while debugging */
   #endif
 #endif
-#define INIT_DEV_REV		0x01
+#define INIT_DEV_REV		0x02
 #define INIT_SW_REV			0x04
 
-#define INIT_HW_REV			0x48  /* top 5 bits...ie 9 */
-#define INIT_SIG_CODE       0x06  /* bottom 3 bits, and with above*/
+#define INIT_HW_REV			0x09  // changed this to x09 so that or works properly; was 0x48 /* top 5 bits...ie 9 */
+#define INIT_SIG_CODE       0x06  /* bottom 3 bits, and with above - 6  Special (includes, for example, Ethernet, TCP/IP, WiFi, etc.)*/
 #define INIT_BYTE_7         ( ((INIT_HW_REV & 0x1f)<<3) | (INIT_SIG_CODE & 0x07) )
 #define INIT_FLAGS          0x00
 #define INIT_MY_PREAMBL     0x00
 #define INIT_DEV_VAR_CNT    0x03  /* without the 'standard's */
 #define INIT_CONFIG_CNT    {0x00, 0x01}
 #define INIT_EXT_DEV_STAT   0x00
-#define INIT_MFG_ID		   {0x00, 0xf9}
 #define INIT_PRIV_ID       {0x00, 0xf9}
 #define INIT_DEV_PROFILE    0x41
+#define INIT_PROCESS_UNIT_TAG       ""
+
+#define INIT_SI_UNIT_CODE    0
+#define INIT_COUNTRY_CODE    "00"
+#define COUNTRY_CODE_LEN     2
 
 
 #endif //_CONFIGURE_DEFAULT_H

@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -161,7 +161,8 @@ typedef struct NONvolatileRaw_s
 	uint8_t xmtrRev;
 	uint8_t swRev;
 	uint8_t hwRev;
-	uint8_t flags;	
+	uint8_t flags;
+	uint8_t RTCflags; // #31
 	uint8_t devID[3];
 	/* end of HART 5 zero response */
 	uint8_t myPreambles;	
@@ -186,6 +187,7 @@ typedef struct NONvolatileRaw_s
 	uint8_t date[3]; // dflt ff ff ff
 	uint8_t finalAssembly[3];// dflt 00
 	uint8_t longTag	[32];// dflt 00
+	uint8_t processUnitTag [32]; //dflt 00
 	
 /* the following are the data that the PV has that doesn't pertain to any other */
 	uint8_t  transferFunction;	
@@ -213,6 +215,9 @@ typedef struct NONvolatileRaw_s
 	uint8_t        maxMsgs; //MAX_BURSTMSGS
 
 	burstMsg_Raw_t brstMsgs[MAX_BURSTMSGS];
+	
+	uint8_t countryCode[COUNTRY_CODE_LEN];
+	uint8_t siUnitCode;
 }
 /* typedef */ NONvolatileRaw;
 

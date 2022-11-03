@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,6 +58,7 @@ typedef struct stackStruct_s
 
 extern stackStruct_t burstStack[MAX_BURSTMSGS];
 
-
+// true if devcice is bursting any message
+bool isBursting();
 
 #endif // _BURST_H

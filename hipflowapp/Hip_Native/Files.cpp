@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -166,7 +166,7 @@ int cpfile(FILE *to, FILE *from)
  *        at fail  will return NULL pointer...caller should warn to open as su before running
  * This complexity is due to not being able to debug in super user mode.
  ***/
-FILE* openSystemFile( string& dataFileSpec, string& systemFileSpec )
+FILE* openSystemFile( std::string& dataFileSpec, std::string& systemFileSpec )
 {
 	unsigned pos;
 	int r;
@@ -204,7 +204,7 @@ FILE* openSystemFile( string& dataFileSpec, string& systemFileSpec )
 	// makedir
 	
     pos = dataFileSpec.find_last_of('/');
-    if (pos == string::npos) // no directory 
+    if (pos == std::string::npos) // no directory 
 	{
 		bcmLOGIT("%s has no path.\n",systemFileSpec.c_str());
 	}

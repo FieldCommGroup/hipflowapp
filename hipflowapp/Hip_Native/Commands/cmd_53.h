@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 class cmd_53 : public cmd_base
 {
 	uint8_t activeDevVar;
+	uint8_t unitCd; // #27
 
 public: // c.dtor
 	cmd_53():cmd_base(53) {	};
@@ -48,9 +49,19 @@ uint8_t cmd_53::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	if (ByteCnt < 2)
 	{
 		activeDevVar = 0xff;
+		unitCd = 0xff;
 		return RC_TOO_FEW;// too few data bytes
 	}
 	ret = extract( activeDevVar, &pData, ByteCnt);
+
+	// #27
+	unitCd = *pData;
+
+	if(((unitCd > 169) && (unitCd < 220)) || ((unitCd > 249) && (unitCd < 256)))
+	{
+		ret = RC_MULTIPLE_12;
+	}
+
 	if (ret)// not success
 	{
 		printf( "Data extraction error in cmd %d. ret = %d.\n", number(), ret);

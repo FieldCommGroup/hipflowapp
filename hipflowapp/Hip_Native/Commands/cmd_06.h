@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,10 +45,34 @@ uint8_t cmd_06::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	uint8_t ret = 0, chngCnt = 0;
 	do // once
 	{
+		dataItem pa(false, true, ht_int8, &(NONvolatileData.pollAddr));
+		pa = pollAddr;
+		
+		dataItem lcm(false, true, ht_int8, &(NONvolatileData.loopCurrentMode));
+		lcm = loopCurrentMode;
+		
 	//  if there is only poll address, DO NOT SET too-few-bytes-recieved....it's a V5 host
-		if ( ret = pollAddr       .extractSelf( &pData, &ByteCnt, chngCnt)  ) break;
+		if ( ret = pa       .extractSelf( &pData, &ByteCnt, chngCnt)  ) break;
 		if (ByteCnt != 0 && ret == RC_SUCCESS )// ie it's not a version 5 host
-		     ret = loopCurrentMode.extractSelf( &pData, &ByteCnt, chngCnt);  //table 16
+		     ret = lcm.extractSelf( &pData, &ByteCnt, chngCnt);  //table 16
+		
+		uint8_t a  = *((uint8_t*) pa.pRaw);	// poll address: [0, 63] are valid
+		if (a > 63)
+		{
+			ret = RC_INVALID;	// exceeds max poll address
+			break;
+		}	
+		
+		uint8_t l  = *((uint8_t*) lcm.pRaw);	// loop current mode: [0, 1] are valid
+		if ( !(l == 0 || l == 1))
+		{
+			ret = RC_INVALID; 
+			break;
+		}			
+
+		// SUCCESS
+		*((uint8_t*) pollAddr.pRaw) = a;
+		*((uint8_t*) loopCurrentMode.pRaw) = l;
 	}
 	while(false);// execute once
 
@@ -56,6 +80,7 @@ uint8_t cmd_06::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	{
 		bumpConfigCnt();
 	}
+	
 	return ret;
 }
 

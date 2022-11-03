@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@
 #include "nativeapp.h"
 #include "tooldef.h"
 #include "debug.h"
+#include "factory_reset.h"
 
 /******************  statics ****************************/
 template<> bool AppConnector<AppPdu>::time2stop = false;
@@ -70,6 +71,14 @@ int main(int argc, char *argv[])
 	AppConnector<AppPdu> globalAppConnector; // ctor sets config, incl address
 	pAppConnector = &globalAppConnector;
 
+// #135
+#if !defined(__x86_64__)
+	  // Initialize GPIO for reset and write_protect (GPIO 2 and GPIO3) both pins are pulled high on PI3B+ board
+	  if (gpioInitialise() < 0)
+	  {
+		printf("WARNING: gpio pin initialization failed. factory_reset or write_protect state may not be correct!\n");
+	  }
+#endif
 	do
 	{
 		if ((errval = app.commandline(argc, argv)))

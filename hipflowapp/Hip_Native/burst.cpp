@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,6 +48,19 @@ bool isBursting(uint8_t Msg_Number)
 	return burstStack[Msg_Number].is_enabled;
 }
 
+// true if devcice is bursting any message
+bool isBursting()
+{
+	bool ret = false;
+	uint8_t Msg_Number;
+	
+	for (int Msg_Number = 0; Msg_Number < MAX_BURSTMSGS; Msg_Number++)
+	{
+		if (isBursting(Msg_Number))
+			ret = true;
+	}
+	return ret;
+}
 
 void burstDeactivate(uint8_t Msg_Number)
 {
@@ -176,7 +189,8 @@ int burstMessage::step(uint32_t& aTime, unsigned &ret)
 		/* I move the start limit for particular CAL test 103a to .5 sec since the test has not been updated to the HART-IP level specs ( .05 sec )
 			This is so we can pass that part and verify that test points further down in the test pass OK. testNumber variable is normally 0
 		    actual testNumber is received from command 120 (which is addressed to someone else) we also use it to deliniate the terminal output for tests*/
-		int start = (testNumber > 103.05 && testNumber < 103.15)?3:0;//////deal with the old test to see if there is any other issue
+		int start = 0; // #17
+
 		for( int i = start; legalValues[i] != 0; i++ )
 		{
 			if (aTime <= legalValues[i])// makes legalValues[i] the higher

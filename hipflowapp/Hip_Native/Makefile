@@ -1,5 +1,5 @@
 #********************************************************************
-# Copyright 2019 FieldComm Group, Inc.
+# Copyright 2019-2021 FieldComm Group, Inc.
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -59,6 +59,7 @@ clean:
 	$(RM) -fr $(HIP_OBJS)	   >  /dev/null 2>&1
 	cd hipserver/hipserver/safestringlib && $(MAKE) clean
 	cd ../../..
+	rm -f hipflowapp
 
 .PHONY: cleanall
 cleanall:

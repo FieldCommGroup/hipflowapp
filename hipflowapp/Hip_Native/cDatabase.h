@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -286,6 +286,7 @@ extern dataItem xmtrRev;
 extern dataItem swRev;
 extern dataItem hwRev;
 extern dataItem flags;
+extern dataItem RTCflags; // #31
 extern dataItem devID;
 	/* end of HART 5 zero response */
 extern dataItem myPreambles;
@@ -313,6 +314,7 @@ extern dataItem date;
 extern dataItem finalAssembly;
 extern dataItem longTag;
 extern dataItem templongTag;
+extern dataItem processUnitTag;
 
 
 extern deviceVar devVarArray[NUMBER_OF_DEVICE_VARIABLES];
@@ -358,6 +360,8 @@ extern dataItem constUnused;
 
 extern dataItem& getBurstUnit(uint8_t burstMessageNumber);
 
+extern dataItem countryCode;  // uint8_t-save;;// dflt 00
+extern dataItem siUnitCode;  // uint8_t-save;;// dflt 0
 
 // these are not actually mapped in this app, the infrastructure is in place though
 #define devVar_PV    (devVarArray[NONvolatileData.devVar_Map[0]])

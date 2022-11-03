@@ -50,6 +50,13 @@ sudo rm -rf /ect/native_dev
 This removes the folder containing the device's configuration.  The folder will be recreated with the factory settings the next time the device is started.
 
 ## Developer Guide
+
+```
+ sudo apt-get install ninja-build
+ sudo apt-get install -y gdb
+ sudo apt-get install -y gdbserver
+```
+
 ### Launching the programs for development
 
 Developers wanting to debug one or both applications will launch the programs

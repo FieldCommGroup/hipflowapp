@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,7 +67,12 @@ uint8_t cmd_52::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	{
 		zeroDV(dv2Bzeroed);
 	}
-
+	
+	if (RC_SUCCESS == ret)
+	{
+		bumpConfigCnt();
+	}
+	
 	return ret;
 }
 

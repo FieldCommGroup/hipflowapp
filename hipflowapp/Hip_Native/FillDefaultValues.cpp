@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,10 @@
 #include "PhysicalAlarms.h"
 #include "configuration_Default.h"
 #include "safe_lib.h"
+#include <stdio.h>
+#include <time.h>
+#include "nativeapp.h" // included to reuse get mac address function
+#include "factory_reset.h"
 
 extern  uint8_t *pack(uint8_t *dest, const uint8_t *source, int nChar);// in database.cpp
 
@@ -33,16 +37,37 @@ using namespace std;
 ////debug code
 extern uint8_t debugUnitchnge;
 
+void getDate(uint8_t *src)
+{ // #31
+	  time_t rawtime;
+	  struct tm * timeinfo;
+
+	  time (&rawtime);
+	  timeinfo = localtime (&rawtime);
+
+	  src[0] = (uint8_t) timeinfo->tm_mday;	     		// day 1-31
+	  src[1] = (uint8_t) (timeinfo->tm_mon + 1);		// month 1-12
+	  src[2] = (uint8_t) timeinfo->tm_year;			    // years since 1900
+}
+
 // fill all non volatile with default values and save 'em to the open file
 // close the file on exit
 errVal_t FillDefaultValues()
 {
 	errVal_t retval = NO_ERROR;
 	volatileData.expansion = 254;
+	bool getFullAddress = true;
+	uint8_t macAddress[6] = { 0,0,0,0,0,0 };
+	uint8_t dayMonYr[3] = {0,0,0};
+	getDate(dayMonYr);
+	uint8_t wrtPrtCd = 0;
+
+	// #135
+	wrtPrtCd = writeProtectSet();
 
 	/************************* Default Values ******************************/
 
-	NONvolatileData.mfrID = INIT_DEVTYPE_HI;
+	NONvolatileData.mfrID = INIT_MFG_ID;
 	NONvolatileData.devType = INIT_DEVTYPE_LO;
 	NONvolatileData.reqPreambles = INIT_REQ_PREAMBL;
 
@@ -52,6 +77,7 @@ errVal_t FillDefaultValues()
 	NONvolatileData.swRev = INIT_SW_REV;
 	NONvolatileData.hwRev = INIT_BYTE_7;  /* see INIT_HW_REV & */
 	NONvolatileData.flags = INIT_FLAGS;
+	NONvolatileData.RTCflags = INIT_FLAGS; // #31
 	NONvolatileData.devID[0] = INIT_DEV_ID0;
 	NONvolatileData.devID[1] = INIT_DEV_ID1;
 	NONvolatileData.devID[2] = INIT_DEV_ID2;
@@ -63,25 +89,50 @@ errVal_t FillDefaultValues()
 	NONvolatileData.MfgId[0] =
 		NONvolatileData.PrivLabelDistr[0] = 0;
 	NONvolatileData.MfgId[1] =
-		NONvolatileData.PrivLabelDistr[1] = INIT_DEVTYPE_HI;
+		NONvolatileData.PrivLabelDistr[1] = INIT_MFG_ID;
 	NONvolatileData.Profile = 65;
 	/* end of HART 7 zero response */
 
 /* the following are variable via command or device */
 	NONvolatileData.configChangeCnt = 1; // configuration change counter
-	NONvolatileData.writeProtectCode = 0;
+	NONvolatileData.writeProtectCode = wrtPrtCd;  // #135
 	NONvolatileData.loopCurrentMode = 0; //dflt 0 (disabled) (1 is enabled) for now
 
 	NONvolatileData.pollAddr = 0;// dflt 00	
 	memset(&(NONvolatileData.tag[0]), 0xff, 6);// dflt ff
 	memset(&(NONvolatileData.message[0]), 0xff, 24);// dflt ff
 	memset(&(NONvolatileData.descriptor[0]), 0xff, 12);// dflt ff
-	memset(&(NONvolatileData.date[0]), 0xff, 3);// dflt ff
+	memcpy_s(&(NONvolatileData.date[0]), 3, dayMonYr, 3);// #31
 	memset(&(NONvolatileData.finalAssembly[0]), 0x00, 3);// dflt 00
 
 	uint8_t buffer[64]; // plenty big
 	strcpy_s((char*)(NONvolatileData.tag), sizeof(NONvolatileData.tag), (char*)pack(&(buffer[0]), (uint8_t*)INIT_TAG, (int)TAG_LEN) /*, 6*/);     // dflt ff
-	strcpy_s((char*)(NONvolatileData.longTag), 32, (char*)INIT_LONG_TAG);// dflt 00
+	retval = NativeApp::getLowMAC(macAddress, getFullAddress);
+	if (retval == NO_ERROR)
+	{
+		char buffer[30];
+		string macAddrToString;
+		for (uint8_t value:macAddress)
+		{
+			sprintf(buffer, "%x", value);
+			if (value <= 0x0f) // pad 0 if byte value is less than or equal to 0x0f
+			{
+				macAddrToString += "0";
+			}
+			macAddrToString += string(buffer) + '-';
+		}
+		
+		macAddrToString.pop_back();
+		strcpy_s((char*)(NONvolatileData.longTag), 32, macAddrToString.c_str());
+	}
+	
+	else // use ???? instead of MAC address if unable to process mac address
+	{
+		strcpy_s((char*)(NONvolatileData.longTag), 32, (char*)INIT_LONG_TAG);// dflt 00
+	}
+	
+	memset(NONvolatileData.processUnitTag, 0x00, sizeof(NONvolatileData.processUnitTag));
+    strcpy_s((char*)(NONvolatileData.processUnitTag), 32, (char*)INIT_PROCESS_UNIT_TAG);
 
 
 /* the following are the data that the PV has that doesn't pertain to any other */
@@ -224,9 +275,9 @@ debugUnitchnge =	NONvolatileData.devVars[0].Units;
 	NONvolatileData.brstMsgs[0].MsgNum = 0;//	uint8_t  
 	NONvolatileData.brstMsgs[0].CmdNum = 9;//	uint16_t 
 	NONvolatileData.brstMsgs[0].Cntrl  = INIT_BURST_ENABLE;//  uint8_t -- 0 ==> Disabled, 4==>burst on HART-IP
-	NONvolatileData.brstMsgs[0].Period = 1600;// uint32_t -- 1/32nd mS 1600 = 50mS
-	NONvolatileData.brstMsgs[0].MaxPer = 3200;// uint32_t -- .1 sec
-
+	NONvolatileData.brstMsgs[0].Period = 8000;// uint32_t -- 1/32nd mS 8000  = 0.25s
+	NONvolatileData.brstMsgs[0].MaxPer = 1920000;  //uint32_t 60 s
+	
 	NONvolatileData.brstMsgs[0].TrMode = 0;//uint8_t  -- 0 = continuous(1=Window; 4=ValueChange)
 	NONvolatileData.brstMsgs[0].TrClas = HART_NOT_CLASFD;//uint8_t  
 	NONvolatileData.brstMsgs[0].TrUnit = NOT_USED;//uint8_t
@@ -245,9 +296,9 @@ debugUnitchnge =	NONvolatileData.devVars[0].Units;
 	NONvolatileData.brstMsgs[1].CmdNum = 48;//	uint16_t 
 	NONvolatileData.brstMsgs[1].Cntrl  = INIT_BURST_ENABLE;//  uint8_t
 	NONvolatileData.brstMsgs[1].Period = 160000;//.uint32_t - 5 seconds
-	NONvolatileData.brstMsgs[1].MaxPer = 160000;//uint32_t 
-
-	NONvolatileData.brstMsgs[1].TrMode = 0;//uint8_t  -- 0 = continuous(1=Window; 4=ValueChange)
+	NONvolatileData.brstMsgs[1].MaxPer = 1920000; //uint32_t 60 s
+	
+	NONvolatileData.brstMsgs[1].TrMode = 4;//uint8_t  -- 4=OnChange, was: 0 = continuous(1=Window; 4=ValueChange)
 	NONvolatileData.brstMsgs[1].TrClas = HART_NOT_CLASFD;//uint8_t  
 	NONvolatileData.brstMsgs[1].TrUnit = NOT_USED;//uint8_t
 	NONvolatileData.brstMsgs[1].TrVal = HART_NAN;//float    
@@ -264,8 +315,8 @@ debugUnitchnge =	NONvolatileData.devVars[0].Units;
 	NONvolatileData.brstMsgs[2].MsgNum = 2;//	uint8_t  
 	NONvolatileData.brstMsgs[2].CmdNum = 38;//	uint16_t 
 	NONvolatileData.brstMsgs[2].Cntrl = INIT_BURST_ENABLE;//  uint8_t
-	NONvolatileData.brstMsgs[2].Period = 38400000;//.uint32_t 20 minutes (shouldn't be used here)
-	NONvolatileData.brstMsgs[2].MaxPer = 115200000;//uint32_t 1 hour
+	NONvolatileData.brstMsgs[2].Period = 160000; //.uint32_t - 5 seconds
+	NONvolatileData.brstMsgs[2].MaxPer = 1920000;//uint32_t 60 s
 
 	NONvolatileData.brstMsgs[2].TrMode = 4;//uint8_t  -- 0 = continuous(1=Window; 4=ValueChange)
 	NONvolatileData.brstMsgs[2].TrClas = HART_NOT_CLASFD;//uint8_t  
@@ -280,7 +331,11 @@ debugUnitchnge =	NONvolatileData.devVars[0].Units;
 	NONvolatileData.brstMsgs[2].Idx[5] = NOT_USED;
 	NONvolatileData.brstMsgs[2].Idx[6] = NOT_USED;
 	NONvolatileData.brstMsgs[2].Idx[7] = NOT_USED;
-
+	
+	memcpy_s((char*)(NONvolatileData.countryCode), (int)COUNTRY_CODE_LEN, INIT_COUNTRY_CODE, (int)COUNTRY_CODE_LEN);        // dflt "00"
+	NONvolatileData.siUnitCode = INIT_SI_UNIT_CODE;
+	
+	
 	/* * * * * * * * End of Default Values * * * * * * * * * * * * * * */
 
 	return retval;

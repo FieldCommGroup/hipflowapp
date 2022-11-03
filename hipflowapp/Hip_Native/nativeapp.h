@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,7 +98,8 @@ public:
 	errVal_t start_system(void); // starts up the data acquasition system
 	cmd_base * cmd(uint16_t cNum){ return commandList.getCmd(cNum); };// NULL on bad #
 	int burstIt(dataItem indexList[], AppPdu *pPDU);// pdu must have command # and master address
-	errVal_t getLowMAC(uint8_t *pArr);
+	static errVal_t getLowMAC(uint8_t *pArr, bool getFullAddress = false);
+	static errVal_t initHostNameDns();
 	void incBurstCnt(){ deviceBurstCnt ++; };
 	bool isBurstCntOdd() { return ( (deviceBurstCnt & 0x00001) != 0 );  };
 	void setBursting(bool is_Bursting){ deviceISbursting  = is_Bursting;};

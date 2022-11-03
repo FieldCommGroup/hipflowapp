@@ -1,0 +1,9 @@
+network:
+  ethernets:
+    eth0:
+      dhcp4: no
+      addresses:
+        - 192.168.0.10/24
+      optional: true
+
+  version: 2

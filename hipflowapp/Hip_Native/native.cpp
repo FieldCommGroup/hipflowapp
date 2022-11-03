@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@
 #include "appconnector.h"
 #include "apppdu.h"
 #include "PhysicalAlarms.h"
-
+#include "nativeapp.h"
 
 extern int init_ProcessVariables(void);/*  instead of all PV.h  */
 
@@ -54,6 +54,7 @@ errVal_t NativeData::commandline(int argc, char *argv[])  // -p <port>
 	return retval;
 }
 extern void testTime();
+
 // read a file and/or set static data items
 /* stevev --- set variables from file...or default values..burst coomand included */
 errVal_t NativeData::configure()
@@ -67,13 +68,28 @@ errVal_t NativeData::configure()
 	if ( CheckFile((char*)CONFIG_FILENAME) && ! ret)// it exists, has data, and is closed
 	{
 		retval = getData();
-		handleDataDependencies();
+		if (retval != NO_ERROR)
+		{
+			printf ("FATAL: getData (load hipflowapp configuration file) failed\n");
+		}
+		else
+		{
+			NativeApp::initHostNameDns();
+			handleDataDependencies();
+		}
 	}
-	else
-	if( CheckFile((char *)CONFIG_FILENAME) && ret > 0 )// it exists, is empty and is closed
+	else if( CheckFile((char *)CONFIG_FILENAME) && ret > 0 )// it exists, is empty and is closed
 	{
 		retval = fileFillDefault();// generate and save default values to new file
-		handleDataDependencies();
+		if (retval != NO_ERROR)
+		{
+			printf ("FATAL: fileFilldefault (initialize and load default hipflowapp config failed)\n");
+		}
+		else
+		{
+			NativeApp::initHostNameDns();
+			handleDataDependencies();
+		}
 	}
 	else
 	{
