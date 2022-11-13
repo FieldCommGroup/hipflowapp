@@ -225,12 +225,13 @@ CValueVarient::operator char(void)
 		{	cVal =  (char) vValue.fFloatConst;} break;
 	case isString:
 		{
+			// No vulnerability by inspection: no user-accessible parameters
 			if ( SCAN_FUNC( sStringVal.c_str(), "%hhd", &cVal FORTH_PARAM ) <= 0) 
 			{  cVal = 0;  }
 		} break;
 	case isWideString:
 		{
-			// user cannot enter the format
+			// No vulnerability by inspection: user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%hhd",&cVal) <= 0) {  cVal = 0;  }
 		} break;
 
@@ -270,12 +271,13 @@ CValueVarient::operator unsigned char(void)
 		{	uVal =  (unsigned char) vValue.fFloatConst;} break;
 	case isString:
 		{
+			// No vulnerability by inspection: no user-accessible parameters
 			if ( SCAN_FUNC( sStringVal.c_str(), "%hhu", &uVal FORTH_PARAM ) <= 0) 
 			{  uVal = 0;  }
 		} break;
 	case isWideString:
 		{
-			// user cannot enter the format
+			// No vulnerability by inspection: user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%hhu",&uVal) <= 0) {  uVal = 0;  }
 		} break;
 
@@ -324,6 +326,7 @@ CValueVarient::operator short(void)
 		{	cVal =  (short) vValue.fFloatConst;} break;
 	case isString:
 		{ 
+			// No vulnerability by inspection: no user-accessible parameters
 			if ( SCAN_FUNC( sStringVal.c_str(), "%hd", &cVal FORTH_PARAM ) <= 0) 
 			{  cVal = 0;  }
 		} break;
@@ -369,12 +372,13 @@ CValueVarient::operator unsigned short(void)
 		{	uVal =  (unsigned short) vValue.fFloatConst;} break;
 	case isString:
 		{
+			// No vulnerability by inspection: no user-accessible parameters
 			if ( SCAN_FUNC( sStringVal.c_str(), "%hu", &uVal FORTH_PARAM ) <= 0) 
 			{  uVal = 0;  }
 		} break;
 	case isWideString:
 		{
-			// user cannot enter the format
+			// No vulnerability by inspection: user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%hu",&uVal) <= 0) {  uVal = 0;  }
 		} break;
 
@@ -429,12 +433,13 @@ CValueVarient::operator double(void)
 		{	fVal =          vValue.fFloatConst;} break;
 	case isString:
 		{
+			// No vulnerability by inspection: no user-accessible parameters
 			if ( SCAN_FUNC( sStringVal.c_str(), "%lf", &fVal FORTH_PARAM ) <= 0) 
 			{  fVal = 0.0;  }
 		} break;
 	case isWideString:
 		{
-			// user cannot enter the format
+			// No vulnerability by inspection: user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%lf",&fVal) <= 0) {  fVal = 0;  }
 		} break;
 
@@ -539,12 +544,13 @@ CValueVarient::operator int(void)
 		{	iVal =  (int) vValue.fFloatConst;} break;
 	case isString:
 		{
+			// No vulnerability by inspection: no user-accessible parameters
 			if ( SCAN_FUNC( sStringVal.c_str(), "%d", &iVal FORTH_PARAM ) <= 0) 
 			{  iVal = 0;  }
 		} break;
 	case isWideString:
 		{
-			// user cannot enter the format
+			// No vulnerability by inspection: user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%d",&iVal) <= 0) {  iVal = 0;  }
 		} break;
 
@@ -586,12 +592,13 @@ CValueVarient::operator unsigned int(void)
 		{	uVal =  (unsigned int) vValue.fFloatConst;} break;
 	case isString:
 		{
+			// No vulnerability by inspection: no user-accessible parameters
 			if ( SCAN_FUNC( sStringVal.c_str(), "%u", &uVal FORTH_PARAM ) <= 0) 
 			{  uVal = 0;  }
 		} break;
 	case isWideString:
 		{
-			// user cannot enter the format
+			// No vulnerability by inspection: user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%u",&uVal) <= 0) {  uVal = 0;  }
 		} break;
 
@@ -647,9 +654,8 @@ CValueVarient::operator INT_LL(void)
 		{	if ( sscanf(sStringVal.c_str(),"%lld",&iVal) <= 0) {  iVal = 0;  }
 		} break;
 	case isWideString:
-		// user cannot enter the format
 		{
-			// user cannot enter the format
+			// No vulnerability by inspection: user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%lld",&iVal) <= 0) {  iVal = 0;  }
 		} break;
 
@@ -696,13 +702,13 @@ CValueVarient::operator unsigned INT_LL(void)
 	case isFloatConst:
 		{	uVal =  (unsigned INT_LL) vValue.fFloatConst;} break;
 	case isString:
-		// user cannot enter the format
+		// No vulnerability by inspection: user cannot enter the format
 		{	if ( sscanf(sStringVal.c_str(),"%llu",&uVal) <= 0) {  uVal = 0;  }
 		} break;
 	case isWideString:
 		// user cannot enter the format
 		{
-			// user cannot enter the format
+			// No vulnerability by inspection: user cannot enter the format
 			if ( swscanf(sWideStringVal.c_str(),L"%llu",&uVal) <= 0) {  uVal = 0;  }
 		} break;
 

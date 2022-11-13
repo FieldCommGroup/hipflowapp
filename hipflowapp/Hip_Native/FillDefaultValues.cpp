@@ -110,11 +110,12 @@ errVal_t FillDefaultValues()
 	retval = NativeApp::getLowMAC(macAddress, getFullAddress);
 	if (retval == NO_ERROR)
 	{
-		char buffer[30];
+		const int bufSize = 30;
+		char buffer[bufSize];
 		string macAddrToString;
 		for (uint8_t value:macAddress)
 		{
-			sprintf(buffer, "%x", value);
+			sprintf_s(buffer, bufSize, "%x", value);
 			if (value <= 0x0f) // pad 0 if byte value is less than or equal to 0x0f
 			{
 				macAddrToString += "0";

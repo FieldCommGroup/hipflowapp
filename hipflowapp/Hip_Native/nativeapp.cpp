@@ -407,7 +407,8 @@ errVal_t NativeApp::initHostNameDns()
         // (re-)set hostname
         char hostname[65];
         char cmd[255];
-        if (strlen((char*)NONvolatileData.processUnitTag)==0)
+		const int tagSize = 32;
+        if (strnlen_s((char*)NONvolatileData.processUnitTag, tagSize)==0)
         {
                 // just use longtag for hostname
                 snprintf(hostname, 65, "%s", NONvolatileData.longTag);
