@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
 
 #include "command.h"
 #include "PV.h"
+#include "burst.h"
  
 cmd_base::cmd_base(int num) :  cmdNumber(num), fromPrimary(true)
 {
@@ -35,9 +36,11 @@ int cmd_base::handleCmd(AppPdu *pPDU)
 { 
 	int returnValue = RC_SUCCESS;
 	uint8_t  rtnCd  = RC_SUCCESS, inRC = RC_SUCCESS, dataBC = 0, *pData = NULL;
+	uint16_t cmdNum = 0;
 	responseCode.setValue(rtnCd); // rtnCd is zero now, success
 
-	pData  = pPDU->DataBytes();
+	cmdNum = pPDU->CmdNum();
+	pData  = pPDU->RequestBytes();
 	dataBC = pPDU->RequestByteCount();
 	fromPrimary = pPDU->isPrimary();
 	rtnCd = extractData(dataBC, pData);
@@ -46,7 +49,14 @@ int cmd_base::handleCmd(AppPdu *pPDU)
 	//if (! fromPrimary)
 	//	printf("        Secondary cmd Rcv'd. Cmd %d\n", pPDU->CmdNum());
 
-	pPDU->msg2Ack(); // convert to reply pkt for all commands
+	pPDU->msg2Ack(TPDELIM_FRAME_STX, isBursting());  // convert to reply pkt for all commands
+	cmdNum = (cmdNum <= 255) ? pPDU->CmdNum() : cmdNum; // #39
+	if(pPDU->CmdNum1Byte() == HART_CMD_EXP_FLAG && pPDU->ByteCount() < 2)
+	{
+		// command 31 but no extended command number followsa
+		rtnCd = RC_TOO_FEW;
+	}
+		
 	if (rtnCd == RC_DONOTSEND)
 	{
 		returnValue = rtnCd;// do nothing, return the 0x80, BC still 0
@@ -60,7 +70,7 @@ int cmd_base::handleCmd(AppPdu *pPDU)
 	}
 	else // success or warning
 	{
-		pData  = pPDU->DataBytes();// bc is zero, since masg2Ack, this is rawdata+2
+		pData  = pPDU->ResponseBytes();// bc is zero, since masg2Ack, this is rawdata+2
 		inRC = insert_Data(dataBC, pData);
 		if (inRC == RC_DONOTSEND)
 		{
@@ -83,8 +93,14 @@ int cmd_base::handleCmd(AppPdu *pPDU)
 		}
 	}
 
-	// add 2 for RC/DS (ie from RequestByteCount to ResponseByteCount)
-	pPDU->SetByteCount(dataBC + 2);// insert should have zeroed BC on error
+	pPDU->setCommandNumber(cmdNum);
+	
+	bool isError = (dataBC == 0);		// insert should have zeroed BC on error
+	dataBC += 2;						// RC + DS bytes  #36
+	dataBC += pPDU->IsExpCmd() ? 2 : 0;	// add 2 for expanded command number is included in the data field
+	dataBC += (isError && pPDU->IsExpCmd()) ? 2 : 0; // #27
+	pPDU->SetByteCount(dataBC);	
+	
 	return returnValue;
 }
 

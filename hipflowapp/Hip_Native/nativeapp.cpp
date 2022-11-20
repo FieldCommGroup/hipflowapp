@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include "memory_glbl.h"
 #include <math.h>
+#include <spawn.h>
 
 extern int kill_burst(void);
 
@@ -175,6 +176,10 @@ int NativeApp::handleMessage(AppPdu *pPDU)
 	}
 	pPDU->printMsg();
 #endif
+	if(pPDU->IsSTX())
+	{  // #36
+		pPDU->setReqByteCount(pPDU->ByteCount());
+	}
 	if (pPDU->IsSTX()) pAppConnector->incStx();
 	do
 	{	// see line 174 in burst.cpp for cmd 120 handling info
@@ -195,6 +200,15 @@ int NativeApp::handleMessage(AppPdu *pPDU)
 				{
 					pPDU->learnAddress();// from the response packet
 				}
+				if ((pPDU->CmdNum() == 6) && (pPDU->ByteCount() > 0) && pPDU->ResponseCode() == NO_ERROR)
+				{   // #29
+					pPDU->setShort(pPDU->DataBytes()[0]);
+				}
+				// update hostname and dns server entries for longtag or process unit tag updates
+				if ((pPDU->CmdNum() == 22) || (pPDU->CmdNum() == 521))
+				{
+					// initHostNameDns(); // DNS change will be done by server
+				} 
 			}// fall thru to return & send_message
 			// TJ 20may2019 - caller only supports NO_ERROR & FATAL_ERROR, all else is discarded
 			// this must be no-error 
@@ -204,10 +218,11 @@ int NativeApp::handleMessage(AppPdu *pPDU)
 		// TJ 20may2019 - caller only supports NO_ERROR & FATAL_ERROR, all else is discarded like -1
 		{
 		// timj 30jul2019 - hip_server clients must respond to wrong address
+			// #29
 			uint8_t commerr = 0x84;             // Comm Error 0x80 + Communication Failure 0x04
 			TpPdu tppdu(pPDU->GetPduBuffer());
 			tppdu.ProcessErrResponse(0x84);    // forms error response in place..using resrved comm err
-			return NO_ERROR;
+			return COMM_ERROR;
 		}
 		// evalMsg only returns good or bad  
 	}
@@ -263,9 +278,15 @@ int NativeApp::handle_device_message(AppPdu *pPDU)
 	else
     if ( i == -1 )   // not supported
 	{
-        *pRC = 64;   // command not implemented error packet
-        pPDU->SetByteCount( 2 );
+		*pRC = RC_NOT_IMPLEM;
+		pPDU->ProcessErrResponse(RC_NOT_IMPLEM); // PDU is modified to be error
     }
+	else
+	if (i == RC_TOO_FEW)   // not supported
+	{
+		*pRC = RC_TOO_FEW;
+		pPDU->ProcessErrResponse(RC_TOO_FEW);  // PDU is modified to be error
+	}
     else // we have a response code
 	{
         *pRC = i;
@@ -380,8 +401,55 @@ errVal_t NativeApp::start_system(void)
 #include <ifaddrs.h>
 #include <linux/if_link.h>
 
+errVal_t NativeApp::initHostNameDns()
+{
+	errVal_t result = LINUX_ERROR;
+        // (re-)set hostname
+        char hostname[65];
+        char cmd[255];
+		const int tagSize = 32;
+        if (strnlen_s((char*)NONvolatileData.processUnitTag, tagSize)==0)
+        {
+                // just use longtag for hostname
+                snprintf(hostname, 65, "%s", NONvolatileData.longTag);
+        }
+        else
+        {
+                snprintf(hostname, 65, "%s-%s", NONvolatileData.processUnitTag, NONvolatileData.longTag);
+        }
+
+        //printf("hipflowapp setting hostname %s\n", hostname);
+
+        snprintf(cmd, 255, "hostnamectl set-hostname %s --static", hostname);
+
+        int status = system(cmd);
+        if (WIFEXITED(status))
+        {
+                result = NO_ERROR;
+        }
+
+        //printf("hipflowapp calling dhclient\n");
+
+        // register hostname with DNS server
+        result = LINUX_ERROR;
+	// using posix_spawn here instead of system() so that it will create a child process and not block
+	// This is needed so the cmd 22 and cmd 521 responses are not delayed
+	pid_t pid;
+	extern char **environ;
+	char *argv[] = {"sh", "-c", "dhclient", "-r", NULL};
+	status = posix_spawn(&pid, "/bin/sh", NULL, NULL, argv, environ);
+
+	char *argv2[] = {"sh", "-c", "dhclient", NULL};
+	status = posix_spawn(&pid, "/bin/sh", NULL, NULL, argv2, environ);
+
+        //printf("hipflowapp finished Updating dns server with hostname %s for eth0\n", hostname);
+
+
+        return result;
+}
+
 // this requires at least 3 bytes in the array
-errVal_t NativeApp::getLowMAC(uint8_t *pArr)
+errVal_t NativeApp::getLowMAC(uint8_t *pArr, bool getFullAddress)
 {
 	errVal_t Ret = NO_ERROR;
 	struct ifaddrs *ifaddr, *ifa;
@@ -419,8 +487,7 @@ errVal_t NativeApp::getLowMAC(uint8_t *pArr)
 			if (hwaddr[1] != 0)
 			{
 			//  for debug only
-			//	printf("\n**| %s :   %02X:%02X:%02X:%02X:%02X:%02X\n", ifa->ifa_name, hwaddr[0], hwaddr[1],
-			//		hwaddr[2], hwaddr[3], hwaddr[4], hwaddr[5]);
+				printf("\n**| %s :   %02X:%02X:%02X:%02X:%02X:%02X\n", ifa->ifa_name, hwaddr[0], hwaddr[1], hwaddr[2], hwaddr[3], hwaddr[4], hwaddr[5]);
 
 				if (pArr == NULL)
 				{
@@ -428,10 +495,24 @@ errVal_t NativeApp::getLowMAC(uint8_t *pArr)
 				}
 				else
 				{
-					pArr[0] = hwaddr[3];
-					pArr[1] = hwaddr[4];
-					pArr[2] = hwaddr[5];
-					Ret = NO_ERROR;
+				        if (getFullAddress)
+				        {
+				            pArr[0] = hwaddr[0];
+				            pArr[1] = hwaddr[1];
+				            pArr[2] = hwaddr[2];
+				            pArr[3] = hwaddr[3];
+				            pArr[4] = hwaddr[4];
+				            pArr[5] = hwaddr[5];
+				            
+				        }
+				        
+				        else 
+				        {
+					    pArr[0] = hwaddr[3];
+					    pArr[1] = hwaddr[4];
+					    pArr[2] = hwaddr[5];
+				        }
+				        Ret = NO_ERROR;
 				}
 
 				close(s);

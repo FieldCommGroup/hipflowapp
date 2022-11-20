@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ extern void nop();
 #define  NATIVE_RANGES_FILE   "/var/data/NativeDevice/ranges"
 #define  PI_MEMORY_PATH       "/dev/mem"
 
-FILE* openSystemFile( string& dataFileSpec, string& systemFileSpec );
+FILE* openSystemFile( std::string& dataFileSpec, std::string& systemFileSpec );
 
 
 

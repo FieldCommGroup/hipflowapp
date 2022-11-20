@@ -6,7 +6,7 @@
 **hipflowapp** is one component of the [HART-IP Developer
 Kit](https://github.com/FieldCommGroup/HART-IP-Developer-Kit).
 It implements a [HART flow
-device](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/doc/hart-ip-flowdevice-spec.md)
+device](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/doc/hart-ip-flowdevice-spec.md)
 on the Raspberry Pi computer. Together with the
 [hipserver](https://github.com/FieldCommGroup/hipserver) component, it forms a
 fully functional HART-IP device.
@@ -50,6 +50,13 @@ sudo rm -rf /ect/native_dev
 This removes the folder containing the device's configuration.  The folder will be recreated with the factory settings the next time the device is started.
 
 ## Developer Guide
+
+```
+ sudo apt-get install ninja-build
+ sudo apt-get install -y gdb
+ sudo apt-get install -y gdbserver
+```
+
 ### Launching the programs for development
 
 Developers wanting to debug one or both applications will launch the programs
@@ -90,7 +97,7 @@ The Makefile is configured to build a HART7 device.
 ### Debugging
 To debug **hipflowapp,** start it using the IDE of your choice. Project files
 for Visual Studio 2017 are included in the repository. Debugging remotely from Windows using ssh will require a root login from Windows. The [procedure for
-configuring Ubuntu](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/blob/master/doc/Install%20OS.md)
+configuring Ubuntu](https://github.com/FieldCommGroup/HART-IP-Developer-Kit/doc/install-os.md)
 supplied in this kit does not include adding a root login on Ubuntu.
 
 #### Enable root login on Ubuntu

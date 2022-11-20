@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@
  #include "cmd_20.h"  
  #include "cmd_21.h" 
  #include "cmd_22.h"  
+ #include "cmd_31.h"
  #include "cmd_35.h"
  #include "cmd_38.h"  
  #include "cmd_44.h"  
@@ -51,6 +52,7 @@
  #include "cmd_53.h"
  #include "cmd_54.h"
  #include "cmd_79.h"
+ #include "cmd_90.h" // #31
  #include "cmd_95.h"
  #include "cmd_c103.h"
  #include "cmd_c104.h"
@@ -59,6 +61,10 @@
  #include "cmd_c108.h"
  #include "cmd_c109.h"
  #include "cmd_c120.h"
+ #include "cmd_c512.h"
+ #include "cmd_c513.h"
+ #include "cmd_c520.h"
+ #include "cmd_c521.h"
  #include "cmd_c534.h"
  #include "cmd_k2560.h"
  #include "cmd_k2561.h"
@@ -106,6 +112,7 @@ static cmd_19 c_nineteen;
 static cmd_20 c_twenty;
 static cmd_21 c_twentyOne;
 static cmd_22 c_twentyTwo;
+static cmd_31 c_thirtyOne;
 static cmd_35 c_thirtyFive;
 static cmd_38 c_thirtyEight;
 static cmd_44 c_fortyFour;
@@ -116,6 +123,7 @@ static cmd_52 c_fiftyTwo;
 static cmd_53 c_fiftyThree;
 static cmd_54 c_fiftyFour;
 static cmd_79 c_seventyNine;
+static cmd_90 c_ninty;
 static cmd_95 c_nintyfive;
 static cmd_103 c_oneOhThree;
 static cmd_104 c_oneOhFour;
@@ -124,6 +132,10 @@ static cmd_107 c_oneOhSeven;
 static cmd_108 c_oneOhEight;
 static cmd_109 c_oneOhNine;
 static cmd_120 c_oneTwenty;// the test command 
+static cmd_512 c_fiveTwelve;
+static cmd_513 c_fiveThirteen;
+static cmd_520 c_fiveTwenty;
+static cmd_521 c_fiveTwentyOne;
 static cmd_534 c_fiveThirtyFour;
 static cmd_2560	c_twentyfiveSixty;
 static cmd_2561 c_twentyfiveSixtyone;
@@ -159,6 +171,7 @@ cmd_base * cmdSet::commandList[] =
 &c_twenty,
 &c_twentyOne,
 &c_twentyTwo,
+&c_thirtyOne,
 &c_thirtyFive,
 &c_thirtyEight,
 &c_fortyFour,
@@ -169,6 +182,7 @@ cmd_base * cmdSet::commandList[] =
 &c_fiftyThree,
 &c_fiftyFour,
 &c_seventyNine,
+&c_ninty,
 &c_nintyfive,
 &c_oneOhThree,
 &c_oneOhFour,
@@ -177,6 +191,10 @@ cmd_base * cmdSet::commandList[] =
 &c_oneOhEight,
 &c_oneOhNine,
 &c_oneTwenty,
+&c_fiveTwelve,
+&c_fiveThirteen,
+&c_fiveTwenty,
+&c_fiveTwentyOne,
 &c_fiveThirtyFour,
 &c_twentyfiveSixty,
 &c_twentyfiveSixtyone,
@@ -226,7 +244,7 @@ int cmdSet::handleCmd(AppPdu *pPDU)
 		printf("Rcv'd command 120.\n");
 	}
 	int index = cmdSupported( actualCmdNumber );
-	if ( index < 0 )
+	if ( index < 0)
 	{// command not supported
 		ret = -1;// not supported
 	}

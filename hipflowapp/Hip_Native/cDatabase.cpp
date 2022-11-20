@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -111,6 +111,7 @@ dataItem xmtrRev  (false, false, ht_int8, &(NONvolatileData.xmtrRev) );// uint8_
 dataItem swRev    (false, false, ht_int8, &(NONvolatileData.swRev) );// uint8_t-save;
 dataItem hwRev    (false, false, ht_int8, &(NONvolatileData.hwRev) );// uint8_t-save;// has to have physical signalling code in it
 dataItem flags    (false, false, ht_int8, &(NONvolatileData.flags) );// uint8_t-save;
+dataItem RTCflags    (false, false, ht_int8, &(NONvolatileData.flags) );// uint8_t-save; // #31
 dataItem devID    (false, false, ht_int8, &(NONvolatileData.devID), 3 );// uint8_t-save;
 	/* end of HART 5 zero response */
 dataItem myPreambles(false, true, ht_int8, &(NONvolatileData.myPreambles) );// uint8_t-save	
@@ -134,7 +135,8 @@ dataItem descriptor(false, true, ht_packed, &(NONvolatileData.descriptor),12 );/
 dataItem date(false, true, ht_int8, &(NONvolatileData.date),3 );// uint8_t-save;; // dflt ff ff ff
 dataItem finalAssembly(false, true, ht_int8, &(NONvolatileData.finalAssembly),3 );// uint8_t-save;;// dflt 00
 dataItem longTag(false, true, ht_int8, &(NONvolatileData.longTag),32 );// uint8_t-save;;// dflt 00
-dataItem			templongTag(true, false, ht_int8, &(tempData.longTag),32 );
+dataItem templongTag(true, false, ht_int8, &(tempData.longTag),32 );
+dataItem processUnitTag(false, true, ht_int8, &(NONvolatileData.processUnitTag), 32 );
 
 
 deviceVar devVarArray[NUMBER_OF_DEVICE_VARIABLES] = { 0, 1, 2    ,244,245,255 };// these are mapped to orig: 246, 247, 248, 249 };
@@ -175,6 +177,9 @@ dataItem totValue(false, false, ht_double, &(NONvolatileData.totValue));		//upda
 dataItem totTimeStamp(true,false, ht_int32, &(volatileData.totTimeStamp));
 
 dataItem maxBurstMsgCnt(false, false, ht_int8, &(NONvolatileData.maxMsgs));
+
+dataItem countryCode(false, true, ht_int8, &(NONvolatileData.countryCode), COUNTRY_CODE_LEN); // uint8_t-save;;// dflt 00
+dataItem siUnitCode(false, true, ht_int8, &(NONvolatileData.siUnitCode), 1); // uint8_t-save;;// dflt 0
 
 
 			burstMessage burstMsgArray[MAX_BURSTMSGS]{ 0,1,2 };
@@ -310,7 +315,7 @@ uint8_t insert_Ident(uint8_t &ByteCnt, uint8_t *pData)
 		if ( (ret = xmtrRev.        insertSelf( &pData, &ByteCnt )  ) ) break;
 		if ( (ret = /*swRev.*/      insert( SOFTWAREVERSION, &pData, ByteCnt)) ) break; // was    insertSelf( &pData, &ByteCnt )  ) ) break;
 		if ( (ret = hwRev.          insertSelf( &pData, &ByteCnt )  ) ) break;
-		if ( (ret = flags.          insertSelf( &pData, &ByteCnt )  ) ) break;
+		if ( (ret = flags.          insertSelf( &pData, &ByteCnt )  ) ) break;  // flags is a bitfield inside hwRev. see INIT_BYTE_7  
 		if ( (ret = devID.          insertSelf( &pData, &ByteCnt )  ) ) break;
 #if defined(_IS_HART7) || defined(_IS_HART6)
 		if ( (ret = myPreambles.    insertSelf( &pData, &ByteCnt )  ) ) break;
@@ -791,7 +796,7 @@ uint8_t dataItem::extractSelf( uint8_t **ppData, uint8_t *pInserCnt, uint8_t& /*
 		{
 			//ret = extract( * (pSrc + i), ppData, *pInserCnt );
 			ret = extract(data_ui8Arr[ i ], ppData, *pInserCnt);
-			if (!ret && data_ui8Arr[i] != *(pSrc + i))
+			if (!ret /* && data_ui8Arr[i] != *(pSrc + i) */ )   // tjohnston 9/15/2021 : I don't see the intent of this commented out portion
 			{
 				changed = true;
 			}

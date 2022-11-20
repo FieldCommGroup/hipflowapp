@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@
 
 #ifdef _FLOWDEVICE
  #define TOOL_NAME      "Hip_Native-Flow"
- #define TOOL_VERS      "2.0"
+ #define TOOL_VERS      "1.1.0"
 #else
   #ifdef _PRESSUREDEVICE
    #define TOOL_NAME   "Hip_Native-Pres"
@@ -43,7 +43,7 @@
 #endif
 
 
- #define TOOL_VERS      "2.0"
+ #define TOOL_VERS      "1.1"
 
  
 #endif /* _TOOLDEF_H */

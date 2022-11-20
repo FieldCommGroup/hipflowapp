@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -376,7 +376,7 @@ bool getCmd48Bytes(uint8_t &Byte0, uint8_t &ExDevSt)
 	{
 		DS |= 0x02;
 	}
-	ExDevSt = DS;
+	ExDevSt = volatileData.extended_fld_dev_status; // #25
 	Byte0   = volatileData.cmd48Data[0];
 
 	return false;

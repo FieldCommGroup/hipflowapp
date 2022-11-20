@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,6 +66,11 @@ uint8_t cmd_35::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	if (ret)
 	{
 		printf( "Data extraction error in cmd %d. ret = %d.\n", number(), ret);
+	}
+	
+	if (RC_SUCCESS == ret)
+	{
+		bumpConfigCnt();
 	}
 
 	return ret;

@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -104,7 +104,11 @@ uint8_t cmd_107::extractData(uint8_t &ByteCnt, uint8_t *pData)
 	{
 		pBM->indexList[idxNumber].setValue(localArray[idxNumber]);
 	}
-
+	
+	if (RC_SUCCESS == ret)
+	{
+		bumpConfigCnt();
+	}
 	return ret;
 }
 

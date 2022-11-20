@@ -1,5 +1,5 @@
 #********************************************************************
-# Copyright 2019 FieldComm Group, Inc.
+# Copyright 2019-2021 FieldComm Group, Inc.
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,18 +26,20 @@
 #include $(MAIN_DIR)/Makefile_macros.inc
 
 # Header files with definitions that are used in multiple files for the tool
-COMMON_HFILES = $(MAIN_DIR)/hipserver/hipserver/Common/common.h      	\
+COMMON_HFILES = $(MAIN_DIR)/hipserver/hipserver/Server/factory_reset.h  \
+				$(MAIN_DIR)/hipserver/hipserver/Common/common.h      	\
                 $(MAIN_DIR)/hipserver/hipserver/Common/datatypes.h   	\
                 $(MAIN_DIR)/hipserver/hipserver/Common/errval.h      	\
                 $(MAIN_DIR)/hipserver/hipserver/Common/hartdefs.h    	\
                 $(MAIN_DIR)/hipserver/hipserver/AppConnect/tpdll.h		\
                 $(MAIN_DIR)/hipserver/hipserver/AppConnect/appconnector.h \
-				$(MAIN_DIR)/hipserver/hipserver/safestringlib/include/safe_lib.h 
+				$(MAIN_DIR)/hipserver/hipserver/safestringlib/include/safe_lib.h
 
 # List all HART-IP .c files (without extension)
 # First list all .c files that have a corresponding .h file
 # (1a)
 HIP_CFILES =	\
+			$(MAIN_DIR)/hipserver/hipserver/Server/factory_reset    \
 			$(MAIN_DIR)/hipserver/hipserver/Realtime/toolqueues		\
 			$(MAIN_DIR)/hipserver/hipserver/Realtime/toolutils		\
 			$(MAIN_DIR)/hipserver/hipserver/Realtime/toolsems       \

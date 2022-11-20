@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,7 +77,11 @@ uint8_t cmd_51::extractData(uint8_t &ByteCnt, uint8_t *pData)
 		}
 		// we only support 2 channels, dump the rest
 	} while (false);// execute once
-
+	
+	if (RC_SUCCESS == ret)
+	{
+		bumpConfigCnt();
+	}
 	return ret;
 }
 

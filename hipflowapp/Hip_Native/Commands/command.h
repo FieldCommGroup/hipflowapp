@@ -1,5 +1,5 @@
 /*************************************************************************************************
- * Copyright 2019 FieldComm Group, Inc.
+ * Copyright 2019-2021 FieldComm Group, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -88,6 +88,9 @@ public: // work
 			configChangeCnt.setValue(localCnt);
 			configChangedBit_Pri = true;
 			configChangedBit_Sec = true;
+				
+			writeNeeded = true; 	// actual write done in NativeApp::handle_device_message
+			
 #ifdef _DEBUG
 fprintf(stderr,"        SecCCB set.\n");
 #endif
