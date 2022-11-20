@@ -51,3 +51,5 @@ hipflowapp/Hip_Native/hipserver/.gitbook/assets/syslog_message.png
 hipflowapp/Hip_Native/hipserver/
 VisualGDB
 .visualgdb
+
+hipflowapp/Hip_Native/Data/hipserver_log.txt
