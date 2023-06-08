@@ -1,5 +1,5 @@
 # build hipserver
-cd ~/private.hipserver/hipserver/Server
+cd ~/hipserver/hipserver/Server
 make clean
 make
 cp hipserver ~/

@@ -2,18 +2,18 @@
 
 cd ~/
 
-rm -rf ~/private.hipserver
+rm -rf ~/hipserver
 
-rm -rf ~/private.hipflowapp
+rm -rf ~/hipflowapp
 
-git clone git@github.com:FieldCommGroup/private.hipserver.git
+git clone git@github.com:FieldCommGroup/hipserver.git
 
 # purposefully not recursive
-git clone git@github.com:FieldCommGroup/private.hipflowapp.git
+git clone git@github.com:FieldCommGroup/hipflowapp.git
 
-cp -r ~/private.hipserver ~/private.hipflowapp/hipflowapp/Hip_Native
-rm -rf ~/private.hipflowapp/hipflowapp/Hip_Native/hipserver
-mv ~/private.hipflowapp/hipflowapp/Hip_Native/private.hipserver  ~/private.hipflowapp/hipflowapp/Hip_Native/hipserver
+cp -r ~/hipserver ~/hipflowapp/hipflowapp/Hip_Native
+rm -rf ~/hipflowapp/hipflowapp/Hip_Native/hipserver
+mv ~/hipflowapp/hipflowapp/Hip_Native/hipserver  ~/hipflowapp/hipflowapp/Hip_Native/hipserver
 
 source ~/build-hipserver.sh
 
